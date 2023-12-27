@@ -8,7 +8,7 @@ const Projects = () => {
     return (
         <div className="py-36 px-5 lg:px-0">
              <div className="mx-auto w-fit pb-16"><Title>My Projects</Title></div>
-             <div className="grid md:grid-cols-2 grid-cols-1 max-w-5xl mx-auto place-items-center gap-10">
+             <div className="grid lg:grid-cols-2 grid-cols-1 max-w-5xl mx-auto place-items-center gap-10">
                 <div className="card w-96 bg-white/90 shadow-xl text-black">
                     <div className="card-body h-80">
                         <h2 className="text-3xl font-bold text-light-blue">Concord</h2>

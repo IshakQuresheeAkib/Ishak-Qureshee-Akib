@@ -6,15 +6,14 @@ import {
 } from "react-router-dom";
 import "./index.css";
 import Main from './Root/Main';
+import About from './Pages/About/About';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Main></Main>,
-    children:[
-      
-    ]
+    element: <Main></Main>
   },
+  
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
