@@ -1,13 +1,7 @@
 .text-wrapper > h5{
     font-size: 24px;
     font-weight: 700;
-    text-align: center;
-    color: #2282ff;
-    margin: 0;
+    color: #3996ff;
     position: absolute;
-    left: 64px;
-
-    &:nth-of-type(5){
-        color: rgb(0, 255, 255);
-    }
+    left: 70px;
 }

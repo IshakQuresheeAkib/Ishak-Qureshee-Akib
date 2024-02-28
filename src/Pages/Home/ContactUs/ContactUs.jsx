@@ -1,30 +1,65 @@
 import Title from "../../Shared/Title/Title";
 import { motion } from "framer-motion"
-
+import contactlottie from '../../../assets/contactlottie.json'
+import Lottie from "lottie-react";
+import { AwesomeButton } from "react-awesome-button";
+import { RiSendPlaneFill } from "react-icons/ri";
+import emailjs from '@emailjs/browser';
+import { useRef } from "react";
+import {  toast } from 'react-toastify';
 
 const ContactUs = () => {
+
+    const form = useRef();
+    const sendEmail = (e) => {
+        e.preventDefault();
+        emailjs
+          .sendForm('service_xdlra7h', 'template_jw55v1a', form.current, {
+            publicKey: 'nmu0QC78WxNdqxX2X',
+          })
+          .then(
+            () => {
+                toast.success("Email sent successfully!")
+            },
+            (error) => {
+                toast.error("ERROR:",error.text)
+            },
+          );
+      };
+
+
     return (
-        <section class="pt-36" id="contactUs">
-  <motion.div initial={{y:-150,opacity:0,scale:0.5}} animate={{y:1,opacity:1,scale:1}} transition={{duration: 1}}
-   class="px-4 mx-auto max-w-screen-md">
-      <div className="w-fit mx-auto mb-5"><Title>Contact Us</Title></div>
-      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Got a technical issue? Want to send feedback about a betar feature? Need details about us? Let us know.</p>
-      <form action="#" class="space-y-8">
-          <div className="">
-              <label for="email" class="block mb-2 text-lg mt-10 font-medium text-white/80 px-1">Your email</label>
-              <input type="email" id="email" class="border-b bg-transparent text-sm focus:ring-primary-500 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="name@gmail.com" required/>
-          </div>
-          <div className="">
-              <label for="email" class="block mb-2 text-lg mt-10 font-medium text-white/80 px-1">Subject</label>
-              <input type="email" id="email" class="border-b bg-transparent text-sm focus:ring-primary-500 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Subject" required/>
-          </div>
-          <div class="sm:col-span-2">
-              <label for="message" class="block mb-2 text-lg mt-10 font-medium text-white/80 px-1">Your message</label>
-              <textarea id="message" rows="6" class="border-b bg-transparent text-sm focus:ring-primary-500 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Leave a comment..."></textarea>
-          </div>
-          <button type="submit" class="btn btn-outline">Send message</button>
-      </form>
-  </motion.div>
-</section>
+        <section class="pt-52 mx-auto" id="contactUs">
+            <div className="w-fit mx-auto mb-16"><Title>Contact Me</Title>
+            </div>
+            <div className="flex lg:flex-row flex-col justify-center items-center max-w-6xl mx-auto">
+                <motion.div initial={{x:-150,opacity:0}} whileInView={{x:1,opacity:1}} transition={{duration: 1}} className="text-white flex-1">
+                    <Lottie animationData={contactlottie} className=" max-w-xl"></Lottie>
+                </motion.div>
+                <motion.div initial={{x:150,opacity:0}} whileInView={{x:1,opacity:1}} transition={{duration: 1}}
+                className="flex-1 md:w-3/4 w-full">
+                    
+                    <form class="space-y-8" ref={form} onSubmit={sendEmail}>
+                        <div className="">
+                            <label for="Name" class="block mb-2 text-lg mt-10 font-medium text-white px-1">Name</label>
+                            <input type="text" name="name" class="border-b text-white/80 border-white/90 bg-transparent text-sm focus:ring-primary-500 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Name" required/>
+                        </div>
+                        <div className="text-white/80">
+                            <label for="email" class="block mb-2 text-lg mt-10 font-medium text-white px-1">Your email</label>
+                            <input type="email" name="email" class="border-b  border-white/90 bg-transparent text-sm block w-full py-2.5 px-1" placeholder="name@gmail.com" required/>
+                        </div>
+                        
+                        <div class="sm:col-span-2">
+                            <label for="message" class="block mb-2 text-lg mt-10 font-medium text-white px-1">Your message</label>
+                            <textarea name="message" rows="6" class="border-b border-white/90 bg-transparent text-sm focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Leave a comment..."></textarea>
+                        </div>
+                        <AwesomeButton type="primary" before={<RiSendPlaneFill className=" text-xl"/>}>
+                            <input type="submit" value="Send"/>
+                        </AwesomeButton>
+                    </form>
+                </motion.div>
+                
+            </div>
+        </section>
     )}
 export default ContactUs;

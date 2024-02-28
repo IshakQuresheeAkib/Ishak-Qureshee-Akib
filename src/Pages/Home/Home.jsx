@@ -20,15 +20,16 @@ animateScroll.scrollToTop(options);
 
 const Home = () => {
     return (
-        <div className='' id=''>
+        <div>
             <Navbar></Navbar>
+            <div className='xl:mx-10 md:mx-8 mx-5' id='#'>
             <Banner></Banner>
-            <MySkills></MySkills>
-            <Experiences></Experiences>
             <Projects></Projects>
             <About></About>
+            <MySkills></MySkills>
             <Education></Education>
             <ContactUs></ContactUs>            
+        </div>
         </div>
     )}
 export default Home;
