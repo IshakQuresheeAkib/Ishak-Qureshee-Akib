@@ -7,6 +7,7 @@ import { FaHome } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
 import BurgerMenu from "./BurgerMenu";
+import { motion } from "framer-motion"
 
 
 const Navbar = () => {
@@ -43,8 +44,8 @@ const Navbar = () => {
         <div className="fixed top-0 text-white/70 text-lg z-10">
              <AnimatePresence initial={true} mode='wait'>
              <Headroom>
-                <nav key={location.pathname} location={location} className={`flex w-screen lg:pl-10 lg:pr-28 pl-3 justify-between lg:py-4 py-2 ${scrolled ? "backdrop-blur-md bg-black/20" : ""}`}>
-                <img src="https://i.ibb.co/19dnyjP/Akib.png" className="w-32" alt="" />                    
+                <nav key={location.pathname} location={location} className={`flex w-screen lg:pl-9 lg:pr-28 pl-3 justify-between lg:py-3 py-2 ${scrolled ? "backdrop-blur-md bg-black/20" : ""}`}>
+                <motion.img src="https://i.ibb.co/wKR0hV6/Akib.png" className="w-24" alt="" initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:1.5}} />                    
                 <div className="lg:gap-24 gap-10 lg:flex hidden">
                 {
                             navbarItems1.map(navbarItem => <span key={navbarItem.id}  className="group items-center bg-transparent cursor-default hover:cursor-pointer flex gap-1 text-white hover:text-white/80 transition-colors duration-400">

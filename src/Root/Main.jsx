@@ -21,7 +21,7 @@ const Main = () => {
         setInitialLoading(true)
         setTimeout(()=>{
             setInitialLoading(false)
-        },2000)
+        },3000)
     },[])
 
     return (

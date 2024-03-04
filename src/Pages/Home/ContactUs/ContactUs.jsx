@@ -14,12 +14,14 @@ const ContactUs = () => {
     const sendEmail = (e) => {
         e.preventDefault();
         emailjs
-          .sendForm('service_xdlra7h', 'template_jw55v1a', form.current, {
-            publicKey: 'nmu0QC78WxNdqxX2X',
-          })
+          .sendForm('service_hqd6qop', 'template_q4tptmn', form.current ,'nmu0QC78WxNdqxX2X')
           .then(
-            () => {
-                toast.success("Email sent successfully!")
+            (result) => {
+                if (result.text == 'OK') {
+                    form.current.reset();
+                    return toast.success("Email sent successfully!")
+                  }
+                
             },
             (error) => {
                 toast.error("ERROR:",error.text)
@@ -42,16 +44,16 @@ const ContactUs = () => {
                     <form class="space-y-8" ref={form} onSubmit={sendEmail}>
                         <div className="">
                             <label for="Name" class="block mb-2 text-lg mt-10 font-medium text-white px-1">Name</label>
-                            <input type="text" name="name" class="border-b text-white/80 border-white/90 bg-transparent text-sm focus:ring-primary-500 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Name" required/>
+                            <input type="text" name='from_name' class="border-b text-white/80 border-white/90 bg-transparent text-sm focus:ring-primary-500 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Name" required/>
                         </div>
                         <div className="text-white/80">
                             <label for="email" class="block mb-2 text-lg mt-10 font-medium text-white px-1">Your email</label>
-                            <input type="email" name="email" class="border-b  border-white/90 bg-transparent text-sm block w-full py-2.5 px-1" placeholder="name@gmail.com" required/>
+                            <input type="email" name='from_email' class="border-b  border-white/90 bg-transparent text-sm block w-full py-2.5 px-1" placeholder="name@gmail.com" required/>
                         </div>
                         
                         <div class="sm:col-span-2">
                             <label for="message" class="block mb-2 text-lg mt-10 font-medium text-white px-1">Your message</label>
-                            <textarea name="message" rows="6" class="border-b border-white/90 bg-transparent text-sm focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Leave a comment..."></textarea>
+                            <textarea name="message" rows="6" class="border-b border-white/90 bg-transparent text-sm focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2.5 px-1" placeholder="Leave a comment..." required></textarea>
                         </div>
                         <AwesomeButton type="primary" before={<RiSendPlaneFill className=" text-xl"/>}>
                             <input type="submit" value="Send"/>

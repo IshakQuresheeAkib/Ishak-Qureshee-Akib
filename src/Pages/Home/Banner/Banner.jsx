@@ -41,8 +41,8 @@ const Banner = () => {
     })
 
     return (
-                <div className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center 2xl:pt-0 lg:pt-0 pt-20 pl-2 gap-5">
-                    <motion.div className="mt-20 w-fit" initial={{x:-150,opacity:0}} whileInView={{x:1,opacity:1}} transition={{duration: 1}}>
+                <div className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center 2xl:pt-0 lg:pt-0 pt-20 gap-5">
+                    <motion.div className="mt-20 " initial={{x:-150,opacity:0}} whileInView={{x:1,opacity:1}} transition={{duration: 1}}>
                     <Title>Hi! <br /> I'm Ishak Qureshee Akib</Title>
                     <p className="absolute text-2xl font-bold text-white mt-4">I'm a </p>
                     <div className="text-wrapper mt-3.5">
@@ -64,7 +64,8 @@ const Banner = () => {
                         <Lottie animationData={facebook} className="w-7 cursor-pointer"/>
                         </motion.a>
                     </div>
-                    <a href="https://www.dropbox.com/scl/fi/a9ainewv0w6v3hzbxbopr/Ishak-Qureshee-Akib-Resume.pdf?rlkey=igtpc9lbo59c05xep44edlx1a&dl=1" download>
+                    
+                    <a href="https://www.dropbox.com/scl/fi/g9evigs5abu4x8ia0cxgb/Ishak-Qureshee-Akib-Resume.pdf?rlkey=3lymxenn2o6d9jitnwczez40k&dl=1" download>
                         <AwesomeButton type="primary" before={<FaCloudDownloadAlt className=" text-xl"/>}>Download Resume</AwesomeButton>
                     </a>
                         
