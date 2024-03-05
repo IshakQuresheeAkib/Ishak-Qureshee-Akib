@@ -1,8 +1,10 @@
 import Title from "../../Shared/Title/Title";
-import { motion } from "framer-motion"
+import {  motion } from "framer-motion"
 
 
 const Education = () => {
+
+
     return (
         <div className="max-w-6xl mx-auto ">
             <div className="mx-auto w-fit pb-16"><Title>Education</Title></div>
@@ -17,7 +19,6 @@ const Education = () => {
                     <small>Session 2019-2020</small>
                     <h3 className="text-xl font-bold">Bachelor (HONORS) In Zoology </h3>
                     <p>- Mc College, Sylhet</p>
-                    <small>CGPA-2.79</small>
                 </div>
                 <div className="border-b pb-4  lg:w-1/3 md:w-3/4 w-full">
                     <small>Session 2017-2018</small>
