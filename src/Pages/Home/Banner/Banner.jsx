@@ -71,9 +71,9 @@ const Banner = () => {
                         
                     </motion.div>
                     <motion.div initial={{x:150,opacity:0}} whileInView={{x:1,opacity:1}} transition={{duration: 1}}>
-                        <Lottie animationData={bloob} className="absolute xl:-bottom-24 -bottom-20 2xl:-left-52 xl:-left-28 md:-left-20 -left-14 2xl:w-[550px] w-[450px]"></Lottie>    
+                        <Lottie animationData={bloob} className="absolute xl:-bottom-24 -bottom-20 2xl:-left-64 xl:-left-28 md:-left-20 -left-14 2xl:w-[550px] w-[450px]"></Lottie>    
                         <img
-                        src="https://i.ibb.co/dkRQyDC/bbb-1.png" className="2xl:max-w-sm max-w-xs sm:-left-5 relative lg:-left-4 xl:-left-10 2xl:-left-28 lg:-bottom-7 rounded-full"/>
+                        src="https://i.ibb.co.com/XNmZQD8/Untitled-design.png" className="2xl:max-w-sm max-w-xs sm:-left-5 relative lg:-left-4 xl:-left-10 2xl:-left-40 lg:-bottom-7 rounded-full"/>
                     </motion.div>  
                                     
                 </div>
