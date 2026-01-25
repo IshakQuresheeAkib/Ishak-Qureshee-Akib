@@ -128,9 +128,9 @@ export default function Banner(): React.ReactElement {
         <p className="absolute text-2xl font-bold text-white mt-4">I&apos;m a </p>
         <div className="text-wrapper mt-3.5" ref={textWrapperRef}>
           <h5>Web Developer</h5>
-          <h5>Mern Stack Developer</h5>
           <h5>Front End Developer</h5>
-          <h5>React Developer</h5>
+          <h5>Mern Stack Developer</h5>
+          <h5>Full Stack Developer</h5>
           <h5>Javascript Developer</h5>
         </div>
         <p className="pt-9 font-thin text-white/80 lg:w-4/5 2xl:text-base text-sm">
