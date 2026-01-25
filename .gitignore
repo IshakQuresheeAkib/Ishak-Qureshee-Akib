@@ -29,3 +29,7 @@ dist-ssr
 
 # production
 /build
+
+# Documentation files (keep local only)
+NEXTJS_MIGRATION_GUIDE.md
+PROJECT_DOCUMENTATION.md
