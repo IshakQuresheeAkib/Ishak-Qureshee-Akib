@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import dynamic from "next/dynamic";
-import Image from "next/image";
 import { FaCloudDownloadAlt } from "react-icons/fa";
 import Title from "@/components/Title/Title";
 import CustomButton from "@/components/CustomButton/CustomButton";
+import AnimatedAvatar from "@/components/AnimatedAvatar/AnimatedAvatar";
 import { SOCIAL_LINKS, EXTERNAL_URLS, ANIMATION_DURATION } from "@/lib/constants";
 
 // Dynamic import for Lottie to prevent SSR issues
@@ -23,12 +23,10 @@ export default function Banner(): React.ReactElement {
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [lottieAnimations, setLottieAnimations] = useState<{
-    bloob: object | null;
     github: object | null;
     linkedin: object | null;
     facebook: object | null;
   }>({
-    bloob: null,
     github: null,
     linkedin: null,
     facebook: null,
@@ -38,13 +36,11 @@ export default function Banner(): React.ReactElement {
     setIsMounted(true);
     // Dynamic imports for Lottie JSON files to reduce bundle size
     Promise.all([
-      import("@/assets/Animation - 1708466125666.json") as Promise<LottieData>,
       import("@/assets/github.json") as Promise<LottieData>,
       import("@/assets/linkedin.json") as Promise<LottieData>,
       import("@/assets/facebook.json") as Promise<LottieData>,
-    ]).then(([bloob, github, linkedin, facebook]) => {
+    ]).then(([github, linkedin, facebook]) => {
       setLottieAnimations({
-        bloob: bloob.default,
         github: github.default,
         linkedin: linkedin.default,
         facebook: facebook.default,
@@ -113,30 +109,22 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center 2xl:pt-0 lg:pt-0 pt-20 gap-5"
+      className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center 2xl:pt-0 lg:pt-0 pt-20"
     >
-      <motion.div
-        className="mt-20 px-4 lg:px-0"
-        initial={{ x: -150, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: ANIMATION_DURATION }}
-        viewport={{ once: true }}
-      >
+      <div className="mt-20 px-4 lg:px-0 w-[60%]">
         <Title>
           Hi! <br /> I&apos;m Ishak Qureshee Akib
         </Title>
         <p className="absolute text-2xl font-bold text-white mt-4">I&apos;m a </p>
-        <div className="text-wrapper mt-3.5" ref={textWrapperRef}>
+        <div className="text-wrapper mt-3.5 w-fit" ref={textWrapperRef}>
           <h5>Web Developer</h5>
           <h5>Front End Developer</h5>
           <h5>Mern Stack Developer</h5>
           <h5>Full Stack Developer</h5>
           <h5>Javascript Developer</h5>
         </div>
-        <p className="pt-9 font-thin text-white/80 lg:w-4/5 2xl:text-base text-sm">
-          specializing in making attractive and dynamic websites using HTML, CSS,
-          and JavaScript. I specialize in Tailwind CSS and React to create modern,
-          scalable interfaces for better user experiences.
+        <p className="pt-9 font-thin text-white/80 lg:w-[60%] 2xl:text-base text-sm">
+          specializing in creating Full stack web application using MERN stack. Mostly i focused on front end of website to create highly optimized, scalable and fully responsive interfaces for better user experiences with React and Next js.
         </p>
         <div className="xl:py-8 py-6 flex w-fit gap-4">
           {isMounted && lottieAnimations.github && lottieAnimations.linkedin && lottieAnimations.facebook && (
@@ -186,31 +174,15 @@ export default function Banner(): React.ReactElement {
             Download Resume
           </CustomButton>
         </a>
-      </motion.div>
+      </div>
 
-      <motion.div
-        initial={{ x: 150, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: ANIMATION_DURATION }}
-        viewport={{ once: true }}
-        className="relative"
-      >
-        {isMounted && lottieAnimations.bloob && (
-          <Lottie
-            animationData={lottieAnimations.bloob}
-            className="absolute xl:-bottom-24 -bottom-20 2xl:-left-64 xl:-left-28 md:-left-20 -left-14 2xl:w-[550px] w-[450px]"
-            loop
-          />
-        )}
-        <Image
-          src="https://i.ibb.co.com/XNmZQD8/Untitled-design.png"
+      <div className="scale-[1.7]">
+        <AnimatedAvatar
+          src={EXTERNAL_URLS.avatarImage}
           alt="Ishak Qureshee Akib"
-          width={384}
-          height={384}
-          className="2xl:max-w-sm max-w-xs sm:-left-5 relative lg:-left-4 xl:-left-10 2xl:-left-40 lg:-bottom-7 rounded-full"
           priority
         />
-      </motion.div>
+      </div>
     </section>
   );
 }
