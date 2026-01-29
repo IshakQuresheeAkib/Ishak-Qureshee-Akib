@@ -87,11 +87,11 @@ export default function Projects(): React.ReactElement {
   };
 
   return (
-    <section className="py-28" id="projects">
-      <div className="mx-auto w-fit">
+    <section className="py-12 sm:py-16 lg:py-28 px-4 sm:px-6 lg:px-8" id="projects">
+      <div className="mx-auto w-fit mb-6 sm:mb-8 lg:mb-0">
         <Title>Projects</Title>
       </div>
-      <div className="grid lg:grid-cols-2 grid-cols-1 mx-auto place-items-center gap-6">
+      <div className="grid lg:grid-cols-2 grid-cols-1 mx-auto place-items-center gap-4 sm:gap-6 max-w-7xl">
         {projects.map((project, index) => (
           <ProjectItem
             key={project.id}
@@ -126,41 +126,41 @@ function ProjectItem({
       whileInView={animationVariants.animate}
       transition={animationVariants.transition}
       viewport={{ once: true }}
-      className="lg:mt-28 mt-10"
+      className="lg:mt-28 mt-6 sm:mt-8 w-full"
     >
       <Image
         src={project.image}
         alt={project.title}
         width={600}
         height={400}
-        className="rounded-2xl"
+        className="rounded-xl sm:rounded-2xl w-full h-auto max-w-full"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 600px"
       />
     </motion.div>
   );
 
   const contentElement = (
     <motion.div
-      className="text-white lg:mt-28 mt-10"
+      className="text-white lg:mt-28 mt-4 sm:mt-6 w-full"
       initial={animationVariants.initial}
       whileInView={animationVariants.animate}
       transition={animationVariants.transition}
       viewport={{ once: true }}
     >
-      <h1 className="mb-2 text-5xl font-bold">{project.title}</h1>
-      <p className="2xl:text-base text-white/90 text-sm font-thin">
+      <h1 className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold">{project.title}</h1>
+      <p className="2xl:text-base text-white/90 text-xs sm:text-sm font-thin leading-relaxed">
         {project.description}
       </p>
-      <h3 className="mt-4 font-bold">Core Features:</h3>
-      <ul className="mb-7 list-inside list-disc 2xl:text-base text-white/90 text-sm font-thin">
+      <h3 className="mt-3 sm:mt-4 font-bold text-sm sm:text-base">Core Features:</h3>
+      <ul className="mb-4 sm:mb-5 lg:mb-7 list-inside list-disc 2xl:text-base text-white/90 text-xs sm:text-sm font-thin space-y-0.5">
         {project.features.map((feature, idx) => (
           <li key={idx}>{feature}</li>
         ))}
       </ul>
       <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
         <CustomButton
-          className="text-sm"
           variant="primary"
-          before={<HiOutlineExternalLink className="text-lg font-bold" />}
+          before={<HiOutlineExternalLink className="text-base sm:text-lg font-bold" />}
         >
           Live Site
         </CustomButton>

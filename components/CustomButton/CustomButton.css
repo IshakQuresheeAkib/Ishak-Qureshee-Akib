@@ -14,7 +14,7 @@
   cursor: pointer;
   font-family: inherit;
   background: transparent;
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  transition: transform 1s ease, box-shadow 1s ease;
 }
 
 .liquid-btn:hover {
@@ -55,7 +55,7 @@
   left: 0;
   width: 100%;
   height: 200px;
-  background: var(--liquid-color, #2396fb);
+  background: var(--liquid-color, #2396fb89);
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
   transition: top 0.5s ease;
 }
@@ -73,13 +73,13 @@
 
 .liquid-btn__liquid::before {
   border-radius: 45%;
-  background: var(--liquid-bg, rgba(11, 47, 82, 1));
+  background: var(--liquid-bg, rgba(11, 47, 82, 0.644));
   animation: liquidWave 5s linear infinite;
 }
 
 .liquid-btn__liquid::after {
   border-radius: 40%;
-  background: var(--liquid-bg-transparent, rgba(11, 47, 82, 0.5));
+  background: var(--liquid-bg-transparent, rgba(11, 47, 82, 0.208));
   animation: liquidWave 10s linear infinite;
 }
 
@@ -153,9 +153,9 @@
 
 /* Primary - Blue theme */
 .liquid-btn--primary {
-  --liquid-color: #2396fb;
+  --liquid-color: #2396fbb6;
   --liquid-bg: rgba(11, 47, 82, 1);
-  --liquid-bg-transparent: rgba(11, 47, 82, 0.5);
+  --liquid-bg-transparent: rgba(11, 47, 82, 0.216);
   box-shadow: 0 4px 20px rgba(35, 150, 251, 0.3);
 }
 
@@ -164,12 +164,12 @@
 }
 
 .liquid-btn--primary .liquid-btn__liquid {
-  background: linear-gradient(135deg, #2396fb 0%, #187bd1 50%, #65c1ff 100%);
+  background: linear-gradient(135deg, #2396fb9c 0%, #187bd1c7 50%, #65c1ffd3 100%);
 }
 
 /* Secondary - Gray theme */
 .liquid-btn--secondary {
-  --liquid-color: #4a5568;
+  --liquid-color: #4a5568a3;
   --liquid-bg: rgba(26, 32, 44, 1);
   --liquid-bg-transparent: rgba(26, 32, 44, 0.5);
   box-shadow: 0 4px 20px rgba(74, 85, 104, 0.3);

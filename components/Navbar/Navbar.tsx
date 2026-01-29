@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect, useCallback, memo } from "react";
 import { FaHome } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
@@ -10,14 +8,13 @@ import { HiOutlineSparkles } from "react-icons/hi";
 import { IoSchoolOutline } from "react-icons/io5";
 import { BsPersonVcard } from "react-icons/bs";
 import BurgerMenu from "./BurgerMenu";
-import Logo from "@/components/Logo/Logo";
 import { SCROLL_THRESHOLD } from "@/lib/constants";
 import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
 import "./Navbar.css";
 
-export default function Navbar(): React.ReactElement {
+const Navbar = memo(function Navbar(): React.ReactElement {
   const [scrolled, setScrolled] = useState<boolean>(false);
-  const pathname = usePathname();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const { activeSection, scrollToSection } = useScrollSnap();
 
   // Scroll handler for background state only (header is always visible)
@@ -45,57 +42,56 @@ export default function Navbar(): React.ReactElement {
     scrollToSection(index);
   };
 
+  const handleMouseEnter = (index: number): void => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = (): void => {
+    setHoveredIndex(null);
+  };
+
   return (
     <header className="site-header">
-      <AnimatePresence initial={true} mode="wait">
-        <nav
-          key={pathname}
-          className={`navbar-container ${scrolled ? "navbar-scrolled" : ""}`}
-        >
-          {/* Logo */}
-          <motion.div
-            className="navbar-logo"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            onClick={() => scrollToSection(0)}
-          >
-            <Logo />
-          </motion.div>
+      <nav
+        className={`navbar-container ${scrolled ? "navbar-scrolled" : ""} ${
+          hoveredIndex !== null ? "has-hover" : ""
+        }`}
+      >
 
-          {/* Desktop Navigation */}
-          <div className="navbar-links">
-            {SECTIONS.map((section, index) => (
-              <motion.button
-                key={section.id}
-                className={`nav-link ${activeSection === index ? "active" : ""}`}
+        {/* Desktop Navigation */}
+        <ul
+          className="navbar-links"
+          data-no-hover={hoveredIndex === null ? "true" : "false"}
+        >
+          {SECTIONS.map((section, index) => (
+            <li key={section.id} className="nav-item">
+              <button
+                className={`nav-link ${
+                  activeSection === index ? "active" : ""
+                } ${
+                  hoveredIndex === index ? "hovered" : ""
+                }`}
                 onClick={() => handleNavClick(index)}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
                 type="button"
+                aria-label={`Navigate to ${section.title}`}
+                aria-current={activeSection === index ? "page" : undefined}
               >
                 {iconMap[section.title]}
                 <span className="nav-text">{section.title}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
 
-                {/* Active indicator line */}
-                {activeSection === index && (
-                  <motion.div
-                    className="nav-active-indicator"
-                    layoutId="activeNav"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </motion.button>
-            ))}
-          </div>
-
-          {/* Mobile menu */}
-          <div className="navbar-mobile">
-            <BurgerMenu />
-          </div>
-        </nav>
-      </AnimatePresence>
+        {/* Mobile menu */}
+        <div className="navbar-mobile">
+          <BurgerMenu />
+        </div>
+      </nav>
     </header>
   );
-}
+});
+
+export default Navbar;

@@ -3,49 +3,20 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import dynamic from "next/dynamic";
-import { FaCloudDownloadAlt } from "react-icons/fa";
+import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import Title from "@/components/Title/Title";
 import CustomButton from "@/components/CustomButton/CustomButton";
 import AnimatedAvatar from "@/components/AnimatedAvatar/AnimatedAvatar";
+import SocialIconButton from "@/components/SocialIconButton/SocialIconButton";
 import { SOCIAL_LINKS, EXTERNAL_URLS } from "@/lib/constants";
-
-// Dynamic import for Lottie to prevent SSR issues
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-
-// Lottie animation data type
-interface LottieData {
-  default: object;
-}
 
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [lottieAnimations, setLottieAnimations] = useState<{
-    github: object | null;
-    linkedin: object | null;
-    facebook: object | null;
-  }>({
-    github: null,
-    linkedin: null,
-    facebook: null,
-  });
 
   useEffect(() => {
     setIsMounted(true);
-    // Dynamic imports for Lottie JSON files to reduce bundle size
-    Promise.all([
-      import("@/assets/github.json") as Promise<LottieData>,
-      import("@/assets/linkedin.json") as Promise<LottieData>,
-      import("@/assets/facebook.json") as Promise<LottieData>,
-    ]).then(([github, linkedin, facebook]) => {
-      setLottieAnimations({
-        github: github.default,
-        linkedin: linkedin.default,
-        facebook: facebook.default,
-      });
-    });
   }, []);
 
   useEffect(() => {
@@ -109,72 +80,76 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center 2xl:pt-0 lg:pt-0 pt-20"
+      className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 gap-8 lg:gap-12"
     >
-      <div className="mt-20 px-4 lg:px-0 w-[60%]">
+      <div className="w-full lg:w-1/2 xl:w-[55%] max-w-2xl">
         <Title> Ishak Qureshee Akib</Title>
-        <p className="absolute text-2xl font-bold text-white mt-4">I&apos;m a </p>
-        <div className="text-wrapper mt-3.5 w-fit" ref={textWrapperRef}>
-          <h5>Web Developer</h5>
-          <h5>Front End Developer</h5>
-          <h5>Mern Stack Developer</h5>
-          <h5>Full Stack Developer</h5>
-          <h5>Javascript Developer</h5>
+        <div className="flex items-center gap-2 mt-3 sm:mt-4">
+          <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
+          <div className="text-wrapper relative inline-block min-w-0" ref={textWrapperRef}>
+            <h5>Web Developer</h5>
+            <h5>Front End Developer</h5>
+            <h5>Mern Stack Developer</h5>
+            <h5>Full Stack Developer</h5>
+            <h5>Javascript Developer</h5>
+          </div>
         </div>
-        <p className="pt-9 font-thin text-white/80 lg:w-[60%] 2xl:text-base text-sm">
+        <p className="pt-6 sm:pt-8 lg:pt-9 font-thin text-white/80 text-sm sm:text-base max-w-xl">
           specializing in creating Full stack web application using MERN stack. Mostly i focused on front end of website to create highly optimized, scalable and fully responsive interfaces for better user experiences with React and Next js.
         </p>
-        <div className="xl:py-8 py-6 flex w-fit gap-4">
-          {isMounted && lottieAnimations.github && lottieAnimations.linkedin && lottieAnimations.facebook && (
-            <>
-              <motion.a
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                href={SOCIAL_LINKS.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Lottie animationData={lottieAnimations.github} className="w-7 cursor-pointer" loop />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                href={SOCIAL_LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Lottie animationData={lottieAnimations.linkedin} className="w-7 cursor-pointer" loop />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.3 }}
-                href={SOCIAL_LINKS.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Lottie animationData={lottieAnimations.facebook} className="w-7 cursor-pointer" loop />
-              </motion.a>
-            </>
-          )}
-        </div>
+        <ul className="py-4 sm:py-6 xl:py-8 flex w-fit gap-3 sm:gap-4">
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <SocialIconButton
+              icon={FaGithub}
+              href={SOCIAL_LINKS.github}
+              variant="github"
+              ariaLabel="Visit GitHub Profile"
+              tooltip="GitHub"
+            />
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <SocialIconButton
+              icon={FaLinkedin}
+              href={SOCIAL_LINKS.linkedin}
+              variant="linkedin"
+              ariaLabel="Visit LinkedIn Profile"
+              tooltip="LinkedIn"
+            />
+          </motion.div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+          >
+            <SocialIconButton
+              icon={FaFacebook}
+              href={SOCIAL_LINKS.facebook}
+              variant="facebook"
+              ariaLabel="Visit Facebook Profile"
+              tooltip="Facebook"
+            />
+          </motion.div>
+        </ul>
 
         <a
           href={EXTERNAL_URLS.resume}
           download
         >
-          <CustomButton
-            variant="primary"
-            before={<FaCloudDownloadAlt className="text-xl" />}
-          >
+          <CustomButton size="sm" before={<FaCloudDownloadAlt className="text-md sm:text-xl" />}>
             Download Resume
           </CustomButton>
         </a>
       </div>
 
-      <div className="scale-[1.7]">
+      <div className="w-full lg:w-1/2 xl:w-[45%] flex justify-center items-center scale-[1.2] sm:scale-[1.4] lg:scale-[1.6] xl:scale-[1.7]">
         <AnimatedAvatar
           src={EXTERNAL_URLS.avatarImage}
           alt="Ishak Qureshee Akib"

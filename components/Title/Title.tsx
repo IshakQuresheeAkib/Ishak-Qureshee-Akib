@@ -15,7 +15,7 @@ export default function Title({ children }: TitleProps): React.ReactElement {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
     >
-      <h1 className="md:text-5xl text-4xl">{children}</h1>
+      <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl">{children}</h1>
     </motion.div>
   );
 }
