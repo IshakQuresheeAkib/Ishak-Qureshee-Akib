@@ -8,7 +8,7 @@ import { FaCloudDownloadAlt } from "react-icons/fa";
 import Title from "@/components/Title/Title";
 import CustomButton from "@/components/CustomButton/CustomButton";
 import AnimatedAvatar from "@/components/AnimatedAvatar/AnimatedAvatar";
-import { SOCIAL_LINKS, EXTERNAL_URLS, ANIMATION_DURATION } from "@/lib/constants";
+import { SOCIAL_LINKS, EXTERNAL_URLS } from "@/lib/constants";
 
 // Dynamic import for Lottie to prevent SSR issues
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
@@ -112,9 +112,7 @@ export default function Banner(): React.ReactElement {
       className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center 2xl:pt-0 lg:pt-0 pt-20"
     >
       <div className="mt-20 px-4 lg:px-0 w-[60%]">
-        <Title>
-          Hi! <br /> I&apos;m Ishak Qureshee Akib
-        </Title>
+        <Title> Ishak Qureshee Akib</Title>
         <p className="absolute text-2xl font-bold text-white mt-4">I&apos;m a </p>
         <div className="text-wrapper mt-3.5 w-fit" ref={textWrapperRef}>
           <h5>Web Developer</h5>

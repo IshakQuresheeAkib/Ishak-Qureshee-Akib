@@ -3,23 +3,30 @@
 import { FaHome } from "react-icons/fa";
 import { RiShareBoxLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
-import { NAV_ITEMS } from "@/lib/constants";
+import { HiOutlineSparkles } from "react-icons/hi";
+import { IoSchoolOutline } from "react-icons/io5";
+import { BsPersonVcard } from "react-icons/bs";
+import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
 
 export default function BurgerMenu(): React.ReactElement {
-  // Map icons to nav items
+  const { scrollToSection, activeSection } = useScrollSnap();
+
+  // Map icons to section titles
   const iconMap: Record<string, React.ReactElement> = {
-    "Home": <FaHome />,
-    "Projects": <RiShareBoxLine />,
-    "Contact Me": <MdAlternateEmail />,
+    Home: <FaHome />,
+    Projects: <RiShareBoxLine />,
+    About: <BsPersonVcard />,
+    Skills: <HiOutlineSparkles />,
+    Education: <IoSchoolOutline />,
+    Contact: <MdAlternateEmail />,
   };
 
-  const handleNavClick = (link: string): void => {
-    if (link.startsWith("#")) {
-      const targetId = link.substring(1) || "banner";
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
+  const handleNavClick = (index: number): void => {
+    scrollToSection(index);
+    // Close the menu by unchecking the toggler
+    const toggler = document.querySelector(".toggler") as HTMLInputElement;
+    if (toggler) {
+      toggler.checked = false;
     }
   };
 
@@ -32,17 +39,18 @@ export default function BurgerMenu(): React.ReactElement {
       <div id="menu">
         <div>
           <ul>
-            {NAV_ITEMS.map((item) => (
-              <li key={item.id}>
+            {SECTIONS.map((section, index) => (
+              <li key={section.id}>
                 <a
-                  href={item.link}
+                  href={`#${section.id}`}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNavClick(item.link);
+                    handleNavClick(index);
                   }}
+                  className={activeSection === index ? "burger-active" : ""}
                 >
-                  {iconMap[item.title]}
-                  {item.title}
+                  {iconMap[section.title]}
+                  {section.title}
                 </a>
               </li>
             ))}

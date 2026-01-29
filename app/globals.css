@@ -345,3 +345,74 @@
   color: rgba(183, 183, 183, 0.622);
   transition-duration: 0.5s;
 }
+
+/* ===== SCROLL SECTION STYLES ===== */
+.scroll-container {
+  position: relative;
+}
+
+.scroll-section {
+  position: relative;
+  scroll-margin-top: 80px; /* Offset for fixed navbar */
+}
+
+/* Section entrance animations */
+.scroll-section {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Active section indicator styling for burger menu */
+.burger-active {
+  color: #65c1ff !important;
+  position: relative;
+}
+
+.burger-active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2396fb;
+  box-shadow: 0 0 8px rgba(35, 150, 251, 0.8);
+}
+
+/* Section reveal animation with Intersection Observer */
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-section.revealed {
+  animation: sectionFadeIn 0.8s ease forwards;
+}
+
+/* Gradient overlay for section transitions */
+.scroll-section::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(11, 47, 82, 0.1));
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scroll-section:hover::after {
+  opacity: 1;
+}
+

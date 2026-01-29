@@ -1,44 +1,70 @@
 "use client";
 
-import { ReactNode, ButtonHTMLAttributes } from "react";
+import { ReactNode, ButtonHTMLAttributes, forwardRef, memo } from "react";
+import "./CustomButton.css";
+
+type ButtonVariant = "primary" | "secondary" | "danger";
+type ButtonSize = "sm" | "md" | "lg";
 
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   before?: ReactNode;
   after?: ReactNode;
-  variant?: "primary" | "secondary" | "danger";
+  variant?: ButtonVariant;
+  size?: ButtonSize;
 }
 
-export default function CustomButton({
-  children,
-  before,
-  after,
-  variant = "primary",
-  className = "",
-  disabled,
-  ...props
-}: CustomButtonProps): React.ReactElement {
-  const baseStyles =
-    "relative inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100";
+/**
+ * CustomButton - Liquid animation button component
+ * Features animated liquid wave effect on hover
+ * Supports icons before/after text, multiple variants and sizes
+ */
+const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
+  (
+    {
+      children,
+      before,
+      after,
+      variant = "primary",
+      size = "md",
+      className = "",
+      disabled,
+      type = "button",
+      ...props
+    },
+    ref
+  ): React.ReactElement => {
+    const sizeClasses: Record<ButtonSize, string> = {
+      sm: "liquid-btn--sm",
+      md: "liquid-btn--md",
+      lg: "liquid-btn--lg",
+    };
 
-  const variantStyles = {
-    primary:
-      "bg-gradient-to-r from-[#2396fb] to-[#187bd1] hover:from-[#187bd1] hover:to-[#2396fb] shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50",
-    secondary:
-      "bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-600 shadow-lg shadow-gray-500/30",
-    danger:
-      "bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-500 shadow-lg shadow-red-500/30",
-  };
+    const variantClasses: Record<ButtonVariant, string> = {
+      primary: "liquid-btn--primary",
+      secondary: "liquid-btn--secondary",
+      danger: "liquid-btn--danger",
+    };
 
-  return (
-    <button
-      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
-      disabled={disabled}
-      {...props}
-    >
-      {before && <span className="flex items-center">{before}</span>}
-      <span>{children}</span>
-      {after && <span className="flex items-center">{after}</span>}
-    </button>
-  );
-}
+    return (
+      <button
+        ref={ref}
+        type={type}
+        className={`liquid-btn ${variantClasses[variant]} ${sizeClasses[size]} ${disabled ? "liquid-btn--disabled" : ""} ${className}`}
+        disabled={disabled}
+        {...props}
+      >
+        <span className="liquid-btn__content">
+          {before && <span className="liquid-btn__icon">{before}</span>}
+          <span className="liquid-btn__text">{children}</span>
+          {after && <span className="liquid-btn__icon">{after}</span>}
+        </span>
+        <div className="liquid-btn__liquid" aria-hidden="true" />
+      </button>
+    );
+  }
+);
+
+CustomButton.displayName = "CustomButton";
+
+export default memo(CustomButton);
