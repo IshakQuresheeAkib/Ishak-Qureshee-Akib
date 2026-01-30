@@ -1,186 +1,131 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { HiOutlineExternalLink } from "react-icons/hi";
+import { useRef, useState, useEffect } from "react";
 import Title from "@/components/Title/Title";
 import CustomButton from "@/components/CustomButton/CustomButton";
-import { ANIMATION_DURATION } from "@/lib/constants";
+import { HiOutlineExternalLink } from "react-icons/hi";
+import { PROJECTS_DATA, type Project } from "@/lib/projects";
+import { ProjectContent } from "./ProjectContent";
+import { ProjectImage } from "./ProjectImage";
 
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  features: string[];
-  image: string;
-  liveUrl: string;
-  imagePosition: "left" | "right";
-}
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Concord",
-    description:
-      "Concord is a modern matrimony platform designed for seamless connections. With a user-friendly interface and advanced features, Concord simplifies the search for the perfect life partner.",
-    features: [
-      "Users can add and find biodata for a perfect match, and request contact information by paying a fee by Stripe.",
-      "Created different user dashboards based on their roles, like admins and regular users.",
-      "Allow users to filter biodatas based on location, age, and gender",
-    ],
-    image: "https://i.ibb.co/jkHS0LD/IMG-20240227-WA0020-01-jpeg.jpg",
-    liveUrl: "https://assignment-12-847d7.web.app/",
-    imagePosition: "left",
-  },
-  {
-    id: 2,
-    title: "NourishNet",
-    description:
-      "NourishNet is a Community Food Sharing and Surplus Reduction Platform,it offers a user-friendly interface where users can view their donation and request history, manage their profile, and track ongoing donation or request statuses.",
-    features: [
-      "Empower users to add surplus food for donation, edit or delete their listings as needed",
-      "Allow users to request food, view all requests, and cancel their request if the status is pending.",
-      "Donors can view and mark all food requests as delivered on the platform.",
-    ],
-    image:
-      "https://i.ibb.co/Z8BTdK4/Whats-App-Image-2024-02-27-at-23-19-30-a5c82f45.jpg",
-    liveUrl: "https://nourish-net.web.app/",
-    imagePosition: "right",
-  },
-  {
-    id: 3,
-    title: "Car Canvas",
-    description:
-      "Car Canvas is a project where user can see a Wide Array of Cars from Leading Global Brands: Visitors can easily browse and explore a diverse selection of cars from renowned automobile manufacturers worldwide.",
-    features: [
-      "Users can add cars with specific details and explore cars based on their brand names.",
-      "View car details, add to cart, and easily manage added cars in cart.",
-      "Users will experience responsive design across various devices",
-    ],
-    image:
-      "https://i.ibb.co/myZqSvL/Whats-App-Image-2024-02-28-at-00-13-23-c0f74721.jpg",
-    liveUrl: "https://car-canvas.web.app/",
-    imagePosition: "left",
-  },
-  {
-    id: 4,
-    title: "Occasion Alchemy",
-    description:
-      "Occasion Alchemy is your partner in transforming ordinary events into extraordinary memories. With an alchemical blend of creativity, meticulous planning, and personalized touches, we specialize in weddings, birthdays, anniversaries, engagement parties, baby showers etc.",
-    features: [
-      "User authentication is implemented using Firebase.",
-      "Implemented pagination to enhance user experience with smooth navigation.",
-      "Users will experience responsive design across various devices.",
-    ],
-    image:
-      "https://i.ibb.co/T1sX87M/Whats-App-Image-2024-02-28-at-00-31-51-253c595c.jpg",
-    liveUrl: "https://occasion-alchemy-40dfe.web.app/",
-    imagePosition: "right",
-  },
-];
+const projects = PROJECTS_DATA;
 
 export default function Projects(): React.ReactElement {
-  const animationVariants = {
-    initial: { opacity: 0, scale: 0.8 },
-    animate: { opacity: 1, scale: 1 },
-    transition: { duration: ANIMATION_DURATION },
-  };
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = (): void => {
+      if (!containerRef.current) return;
+
+      const scrollPosition = window.scrollY;
+      const containerTop = containerRef.current.offsetTop;
+      const windowHeight = window.innerHeight;
+      
+      // Adjust scroll distance per section (increased for smoother transitions)
+      const scrollDistancePerSection = windowHeight + 550;
+      const relativeScroll = scrollPosition - containerTop + windowHeight;
+
+      const lastSectionIndex = projects.length - 1;
+
+      projects.forEach((_: Project, index: number) => {
+        const sectionStart = index * scrollDistancePerSection;
+        const sectionEnd = (index + 1) * scrollDistancePerSection;
+
+        if (relativeScroll >= sectionStart && relativeScroll < sectionEnd) {
+          setActiveIndex(index);
+        }
+      });
+
+      // Keep last section active when scrolled past
+      if (relativeScroll > lastSectionIndex * scrollDistancePerSection) {
+        setActiveIndex(lastSectionIndex);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Calculate height based on number of projects
+  const scrollHeight = typeof window !== "undefined" 
+    ? (window.innerHeight + 550) * projects.length
+    : 2500 * projects.length;
 
   return (
-    <section className="py-12 sm:py-16 lg:py-28 px-4 sm:px-6 lg:px-8" id="projects">
-      <div className="mx-auto w-fit mb-6 sm:mb-8 lg:mb-0">
-        <Title>Projects</Title>
+    <section className="relative" id="projects">
+      {/* Title Section */}
+      <div className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
+        <div className="mx-auto w-fit">
+          <Title>Projects</Title>
+        </div>
       </div>
-      <div className="grid lg:grid-cols-2 grid-cols-1 mx-auto place-items-center gap-4 sm:gap-6 max-w-7xl">
-        {projects.map((project, index) => (
-          <ProjectItem
-            key={project.id}
-            project={project}
-            isReversed={index % 2 !== 0}
-            animationVariants={animationVariants}
-          />
-        ))}
+
+      {/* Main Tabs Container */}
+      <div
+        ref={containerRef}
+        className="relative z-10 rounded-t-[2rem] lg:rounded-t-[3rem]"
+        style={{ 
+          height: `${scrollHeight}px`,
+          backgroundColor: ""
+        }}
+      >
+        {/* Sticky Wrapper */}
+        <div className="sticky top-[5vh] h-[90vh] pt-8 sm:pt-12 lg:pt-16 pb-8 sm:pb-12 lg:pb-16">
+          <div className="max-w-[120rem] mx-auto h-full px-4 sm:px-6 lg:px-12">
+            {/* Grid Container */}
+            <div className="grid lg:grid-cols-[0.6fr_0.7fr] grid-cols-1 gap-8 h-full">
+              {/* Left Content Panel */}
+              <div className="bg-[#05126744] rounded-2xl lg:rounded-3xl p-4 sm:p-6 flex flex-col justify-end h-full">
+                <div className="relative flex-1 mb-4 sm:mb-6">
+                  {projects.map((project: Project, index: number) => (
+                    <ProjectContent
+                      key={project.id}
+                      project={project}
+                      index={index}
+                      totalProjects={projects.length}
+                      isActive={activeIndex === index}
+                    />
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <div className="w-full">
+                  <a
+                    href={projects[activeIndex].liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    <CustomButton
+                      variant="primary"
+                      before={
+                        <HiOutlineExternalLink className="text-base sm:text-lg font-bold" />
+                      }
+                    >
+                      Live Site
+                    </CustomButton>
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Image Panel */}
+              <div className="relative h-[300px] lg:h-full rounded-2xl lg:rounded-3xl overflow-hidden">
+                {projects.map((project: Project, index: number) => (
+                  <ProjectImage
+                    key={project.id}
+                    project={project}
+                    index={index}
+                    isActive={activeIndex === index}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-  );
-}
-
-interface ProjectItemProps {
-  project: Project;
-  isReversed: boolean;
-  animationVariants: {
-    initial: { opacity: number; scale: number };
-    animate: { opacity: number; scale: number };
-    transition: { duration: number };
-  };
-}
-
-function ProjectItem({
-  project,
-  isReversed,
-  animationVariants,
-}: ProjectItemProps): React.ReactElement {
-  const imageElement = (
-    <motion.div
-      initial={animationVariants.initial}
-      whileInView={animationVariants.animate}
-      transition={animationVariants.transition}
-      viewport={{ once: true }}
-      className="lg:mt-28 mt-6 sm:mt-8 w-full"
-    >
-      <Image
-        src={project.image}
-        alt={project.title}
-        width={600}
-        height={400}
-        className="rounded-xl sm:rounded-2xl w-full h-auto max-w-full"
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 600px"
-      />
-    </motion.div>
-  );
-
-  const contentElement = (
-    <motion.div
-      className="text-white lg:mt-28 mt-4 sm:mt-6 w-full"
-      initial={animationVariants.initial}
-      whileInView={animationVariants.animate}
-      transition={animationVariants.transition}
-      viewport={{ once: true }}
-    >
-      <h1 className="mb-1.5 sm:mb-2 text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold">{project.title}</h1>
-      <p className="2xl:text-base text-white/90 text-xs sm:text-sm font-thin leading-relaxed">
-        {project.description}
-      </p>
-      <h3 className="mt-3 sm:mt-4 font-bold text-sm sm:text-base">Core Features:</h3>
-      <ul className="mb-4 sm:mb-5 lg:mb-7 list-inside list-disc 2xl:text-base text-white/90 text-xs sm:text-sm font-thin space-y-0.5">
-        {project.features.map((feature, idx) => (
-          <li key={idx}>{feature}</li>
-        ))}
-      </ul>
-      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-        <CustomButton
-          variant="primary"
-          before={<HiOutlineExternalLink className="text-base sm:text-lg font-bold" />}
-        >
-          Live Site
-        </CustomButton>
-      </a>
-    </motion.div>
-  );
-
-  if (isReversed) {
-    return (
-      <>
-        {contentElement}
-        {imageElement}
-      </>
-    );
-  }
-
-  return (
-    <>
-      {imageElement}
-      {contentElement}
-    </>
   );
 }

@@ -105,13 +105,13 @@ html {
   background: hsl(0 0% 0% / 0.8);
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px);
-  
+     
   @supports (corner-shape: squircle) {
     border-radius: 24px;
     border-shape: squircle;
   }
 }
-
+  
 /* Set anchor on ul when no hover */
 .navbar-links[data-no-hover="true"] {
   anchor-name: --nav-hover;
