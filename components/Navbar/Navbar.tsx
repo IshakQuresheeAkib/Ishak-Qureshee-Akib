@@ -4,13 +4,13 @@ import { useState, useEffect, useCallback, memo } from "react";
 import { FaHome } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
-import { HiOutlineSparkles } from "react-icons/hi";
 import { IoSchoolOutline } from "react-icons/io5";
 import { BsPersonVcard } from "react-icons/bs";
 import BurgerMenu from "./BurgerMenu";
 import { SCROLL_THRESHOLD } from "@/lib/constants";
 import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
 import "./Navbar.css";
+import { TbUserCode } from "react-icons/tb";
 
 const Navbar = memo(function Navbar(): React.ReactElement {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -33,7 +33,7 @@ const Navbar = memo(function Navbar(): React.ReactElement {
     Home: <FaHome className="nav-icon" />,
     Projects: <RiShareBoxLine className="nav-icon" />,
     About: <BsPersonVcard className="nav-icon" />,
-    Skills: <HiOutlineSparkles className="nav-icon" />,
+    Skills: <TbUserCode className="nav-icon" />,
     Education: <IoSchoolOutline className="nav-icon" />,
     Contact: <MdAlternateEmail className="nav-icon" />,
   };
