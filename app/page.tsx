@@ -4,16 +4,31 @@ import About from "@/components/About/About";
 import MySkills from "@/components/MySkills/MySkills";
 import Education from "@/components/Education/Education";
 import ContactUs from "@/components/ContactUs/ContactUs";
+import SectionIndicator from "@/components/SectionIndicator/SectionIndicator";
 
 export default function HomePage(): React.ReactElement {
   return (
-    <div className="xl:mx-10 md:mx-8 mx-5">
-      <Banner />
-      <Projects />
-      <About />
-      <MySkills />
-      <Education />
-      <ContactUs />
-    </div>
+    <>
+      {/* Section Indicator - Fixed position scroll navigation */}
+      <SectionIndicator />
+
+      <div className="scroll-container xl:mx-10 md:mx-8 mx-5 relative">
+        <Banner />
+        <Projects />          
+        <About />
+
+        <section id="skills" className="scroll-section">
+          <MySkills />
+        </section>
+
+        <section id="education" className="scroll-section">
+          <Education />
+        </section>
+
+        <section id="contactUs" className="scroll-section">
+          <ContactUs />
+        </section>
+      </div>
+    </>
   );
 }

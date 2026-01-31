@@ -1,0 +1,196 @@
+
+/* ===== BURGER MENU STYLES ===== */
+.toggler {
+  z-index: 20;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+#hamburger {
+  position: absolute;
+  top: -14px;
+  right: 0;
+  height: 80px;
+  width: 60px;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+#hamburger > div {
+  position: relative;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  height: 2px;
+  width: 60%;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 4px rgba(35, 150, 251, 0.3);
+}
+
+#hamburger > div::before,
+#hamburger > div::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  background: rgba(255, 255, 255, 0.9);
+  width: 100%;
+  height: 2px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 4px rgba(35, 150, 251, 0.3);
+}
+
+#hamburger > div::after {
+  top: 10px;
+}
+
+.toggler:checked + #hamburger > div {
+  background: rgba(255, 255, 255, 0);
+}
+
+.toggler:checked + #hamburger > div::before {
+  top: 0;
+  transform: rotate(45deg);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(35, 150, 251, 0.6);
+}
+
+.toggler:checked + #hamburger > div::after {
+  top: 0;
+  transform: rotate(135deg);
+  background: #fff;
+  box-shadow: 0 0 8px rgba(35, 150, 251, 0.6);
+}
+
+#menu {
+  width: 0;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: -100px;
+  z-index: 5;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  
+  /* Glassmorphism background */
+  background: linear-gradient(
+    135deg,
+    rgba(11, 47, 82, 0.95) 0%,
+    rgba(24, 123, 209, 0.9) 50%,
+    rgba(35, 150, 251, 0.85) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: -4px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.toggler:checked ~ #menu {
+  width: clamp(250px, 60vw, 320px);
+  right: 0;
+}
+
+#menu > div > ul {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 80px;
+  padding-left: clamp(1rem, 3vw, 1.5rem);
+  padding-right: clamp(1rem, 3vw, 1.5rem);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  width: clamp(250px, 60vw, 320px);
+}
+
+#menu > div > ul > li {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0;
+}
+
+#menu > div > ul > li > a {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+#menu > div > ul > li > a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.15),
+    rgba(101, 193, 255, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#menu > div > ul > li > a:hover::before {
+  opacity: 1;
+}
+
+#menu > div > ul > li > a:hover {
+  color: #fff;
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(35, 150, 251, 0.2);
+}
+
+#menu > div > ul > li > a.burger-active {
+  color: #65c1ff;
+  background: rgba(35, 150, 251, 0.2);
+  box-shadow: 0 0 16px rgba(35, 150, 251, 0.3);
+}
+
+#menu > div > ul > li > a svg {
+  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
+  transition: transform 0.3s ease;
+}
+
+#menu > div > ul > li > a:hover svg {
+  transform: translateY(-2px) scale(1.1);
+  color: #2396fb;
+}
+
+.toggler:checked ~ #menu > div > ul {
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+}
+
+
+/* Active section indicator styling for burger menu */
+.burger-active {
+  color: #65c1ff !important;
+  position: relative;
+}
+
+.burger-active::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #2396fb;
+  box-shadow: 0 0 8px rgba(35, 150, 251, 0.8);
+}

@@ -6,10 +6,10 @@ export default function Footer(): React.ReactElement {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="hero mt-24 backdrop-blur-md bg-black/20 py-3">
-      <div className="flex justify-center sm:justify-between flex-wrap sm:gap-0 gap-10 text-white/40 items-center">
-        <div className="tracking-widest text-center text-sm">
-          <FaRegCopyright className="inline mb-1" /> All rights reserved by Ishak
+    <footer className="hero mt-12 sm:mt-16 lg:mt-24 backdrop-blur-md bg-black/20 py-3 sm:py-4 px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-center sm:justify-between flex-wrap gap-4 sm:gap-0 text-white/40 items-center max-w-7xl mx-auto">
+        <div className="tracking-wider sm:tracking-widest text-center text-xs sm:text-sm">
+          <FaRegCopyright className="inline mb-0.5 sm:mb-1" /> All rights reserved by Ishak
           Qureshee Akib {currentYear}
         </div>
       </div>

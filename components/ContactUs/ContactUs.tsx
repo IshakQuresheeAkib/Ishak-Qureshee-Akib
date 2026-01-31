@@ -63,20 +63,20 @@ export default function ContactUs(): React.ReactElement {
   };
 
   return (
-    <section className="pt-52 mx-auto" id="contactUs">
-      <div className="w-fit mx-auto mb-16">
+    <section className="pt-16 sm:pt-24 lg:pt-40 xl:pt-52 mx-auto px-4 sm:px-6 lg:px-8" id="contactUs">
+      <div className="w-fit mx-auto mb-8 sm:mb-12 lg:mb-16">
         <Title>Contact Me</Title>
       </div>
-      <div className="flex lg:flex-row flex-col justify-center items-center max-w-6xl mx-auto px-4">
+      <div className="flex lg:flex-row flex-col justify-center items-center max-w-6xl mx-auto gap-6 lg:gap-8">
         <motion.div
           initial={{ x: -150, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: ANIMATION_DURATION }}
           viewport={{ once: true }}
-          className="text-white flex-1"
+          className="text-white flex-1 w-full max-w-sm sm:max-w-md lg:max-w-xl"
         >
           {isMounted && contactLottie && (
-            <Lottie animationData={contactLottie} className="max-w-xl" loop />
+            <Lottie animationData={contactLottie} className="w-full max-w-xs sm:max-w-sm lg:max-w-xl mx-auto" loop />
           )}
         </motion.div>
         <motion.div
@@ -86,11 +86,11 @@ export default function ContactUs(): React.ReactElement {
           viewport={{ once: true }}
           className="flex-1 md:w-3/4 w-full"
         >
-          <form className="space-y-8" ref={formRef} onSubmit={sendEmail}>
+          <form className="space-y-5 sm:space-y-6 lg:space-y-8" ref={formRef} onSubmit={sendEmail}>
             <div>
               <label
                 htmlFor="from_name"
-                className="block mb-2 text-lg mt-10 font-medium text-white px-1"
+                className="block mb-1.5 sm:mb-2 text-base sm:text-lg mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
               >
                 Name
               </label>
@@ -98,7 +98,7 @@ export default function ContactUs(): React.ReactElement {
                 type="text"
                 id="from_name"
                 name="from_name"
-                className="border-b text-white/80 border-white/90 bg-transparent text-sm focus:ring-primary-500 focus:border-primary-500 block w-full py-2.5 px-1 outline-none"
+                className="border-b text-white/80 border-white/90 bg-transparent text-sm sm:text-base focus:ring-primary-500 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none"
                 placeholder="Name"
                 required
               />
@@ -106,7 +106,7 @@ export default function ContactUs(): React.ReactElement {
             <div className="text-white/80">
               <label
                 htmlFor="from_email"
-                className="block mb-2 text-lg mt-10 font-medium text-white px-1"
+                className="block mb-1.5 sm:mb-2 text-base sm:text-lg mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
               >
                 Your email
               </label>
@@ -114,7 +114,7 @@ export default function ContactUs(): React.ReactElement {
                 type="email"
                 id="from_email"
                 name="from_email"
-                className="border-b border-white/90 bg-transparent text-sm block w-full py-2.5 px-1 outline-none"
+                className="border-b border-white/90 bg-transparent text-sm sm:text-base block w-full py-2 sm:py-2.5 px-1 outline-none"
                 placeholder="name@gmail.com"
                 required
               />
@@ -123,15 +123,15 @@ export default function ContactUs(): React.ReactElement {
             <div className="sm:col-span-2">
               <label
                 htmlFor="message"
-                className="block mb-2 text-lg mt-10 font-medium text-white px-1"
+                className="block mb-1.5 sm:mb-2 text-base sm:text-lg mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
               >
                 Your message
               </label>
               <textarea
                 id="message"
                 name="message"
-                rows={6}
-                className="border-b border-white/90 bg-transparent text-sm focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2.5 px-1 outline-none resize-none"
+                rows={4}
+                className="border-b border-white/90 bg-transparent text-sm sm:text-base focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none resize-none sm:rows-5 lg:rows-6"
                 placeholder="Leave a comment..."
                 required
               ></textarea>
@@ -139,7 +139,7 @@ export default function ContactUs(): React.ReactElement {
             <CustomButton
               type="submit"
               variant="primary"
-              before={<RiSendPlaneFill className="text-xl" />}
+              before={<RiSendPlaneFill className="text-lg sm:text-xl" />}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Send"}

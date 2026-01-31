@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { LOADING_DURATION_MS } from "@/lib/constants";
+import "./loading.css";
 
 export default function InitialLoading(): React.ReactElement | null {
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -9,7 +9,7 @@ export default function InitialLoading(): React.ReactElement | null {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, LOADING_DURATION_MS);
+    }, 800);
 
     return () => clearTimeout(timer);
   }, []);
@@ -21,7 +21,7 @@ export default function InitialLoading(): React.ReactElement | null {
       <div className="loading-container">
         <div className="loading-upper">Loading</div>
         <div className="loading-lower">Loading</div>
-        <div className="loading-inside">Nice to see you!</div>
+        <div className="loading-inside">Welcome to my portfolio!</div>
       </div>
     </div>
   );

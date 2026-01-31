@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import InitialLoading from "@/components/InitialLoading/InitialLoading";
+import { ScrollSnapProvider } from "@/lib/ScrollSnapContext";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const recursive = Recursive({
   subsets: ["latin"],
@@ -53,22 +55,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>): React.ReactElement {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body className={`${recursive.variable} font-sans antialiased`}>
-        <InitialLoading />
-        <div className="banner bg-cover min-h-screen max-w-screen overflow-hidden">
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </div>
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          closeOnClick
-          pauseOnHover
-          theme="dark"
-        />
+        <SmoothScroll>
+          <ScrollSnapProvider>
+            <InitialLoading />
+            <div className="bg-cover bg-fixed bg-[url('/pattern.svg')] min-h-screen w-full">
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+            </div>
+            <ToastContainer
+              position="top-right"
+              autoClose={3000}
+              hideProgressBar={false}
+              closeOnClick
+              pauseOnHover
+              theme="dark"
+            />
+          </ScrollSnapProvider>
+        </SmoothScroll>
       </body>
     </html>
   );

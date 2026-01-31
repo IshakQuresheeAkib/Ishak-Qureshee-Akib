@@ -1,5 +1,4 @@
 // ===== TIMING CONSTANTS =====
-export const LOADING_DURATION_MS = 3000;
 export const ANIMATION_DURATION = 1;
 export const SCROLL_THRESHOLD = 100;
 
@@ -27,6 +26,7 @@ export const SOCIAL_LINKS = {
 export const EXTERNAL_URLS = {
   resume: "https://www.dropbox.com/scl/fi/a6czqdsc6oxtmzxfj05yq/Resume-of-Akib-1.pdf?rlkey=1nbo4mpf4u24jp2z28r6d9z1s&st=rzdv6dcq&dl=1",
   profileImage: "https://i.ibb.co.com/XNmZQD8/Untitled-design.png",
+  avatarImage: "https://i.ibb.co.com/zWwY1Fjq/IMG-sm.jpg",
   logoImage: "https://i.ibb.co/wKR0hV6/Akib.png",
   aboutImage: "https://i.ibb.co/PmsK1JR/2edb14e9-2798-40d5-a762-c57f5ed0c92f.jpg",
 } as const;
@@ -34,10 +34,10 @@ export const EXTERNAL_URLS = {
 // ===== PERSONAL INFO =====
 export const PERSONAL_INFO = {
   name: "Ishak Qureshee Akib",
-  email: "Akibquresheeakib11@gmail.com",
+  email: "Akibqureshee11@gmail.com",
   location: "Sylhet, Bangladesh",
   passion: "Traveling & Hiking",
-  age: "24 years",
+  age: "26 years",
 } as const;
 
 // ===== EMAILJS CONFIG =====

@@ -89,13 +89,15 @@ const skills: Skill[] = [
 
 export default function MySkills(): React.ReactElement {
   return (
-    <section className="py-36" id="skills">
-      <div className="mx-auto w-fit pb-16">
+    <section className="py-16 sm:py-24 lg:py-36 px-4 sm:px-6 lg:px-8" id="skills">
+      <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
         <Title>SkillSet</Title>
       </div>
       <div className="flex flex-col justify-center">
         <div className="lg:max-w-4xl md:mx-auto w-full">
           <div className="relative text-gray-700 antialiased text-sm font-semibold">
+            {/* Timeline line - hidden on mobile */}
+            <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-white/20" />
             {skills.map((skill) => (
               <SkillItem key={skill.id} skill={skill} />
             ))}
@@ -114,38 +116,65 @@ function SkillItem({ skill }: SkillItemProps): React.ReactElement {
   const isLeft = skill.position === "left";
 
   return (
-    <div className="sm:mt-0 sm:mb-12">
+    <div className="mb-8 sm:mb-12">
       <motion.div
         initial={{ y: 150, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="flex flex-col sm:flex-row items-center"
+        className="flex flex-col sm:flex-row items-center relative"
       >
-        <div
-          className={`flex ${
-            isLeft ? "justify-start" : "justify-end"
-          } w-full mx-auto items-center sm:my-0 my-8`}
-        >
-          <div
-            className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-8" : "sm:pl-8"}`}
-          >
-            <div className="p-4 bg-white/25 text-white/90 rounded shadow">
+        {/* Mobile layout: icon on top, text below */}
+        <div className="sm:hidden flex flex-col items-center gap-4 w-full">
+          <div className="flex items-center justify-center w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-[#0B2F52]/50 p-2">
+            {skill.iconType === "component" ? (
+              <SiExpress className="w-8 h-8 text-white" />
+            ) : (
+              <div className="w-8 h-8 relative">
+                <Image
+                  src={skill.icon as string}
+                  alt={skill.name}
+                  fill
+                  className="object-contain"
+                  sizes="32px"
+                />
+              </div>
+            )}
+          </div>
+          <div className="w-full px-2">
+            <div className="p-3 sm:p-4 bg-white/25 text-white/90 rounded shadow text-center text-sm">
               {skill.description}
             </div>
           </div>
         </div>
-        <div className="rounded-full absolute left-1/2 -translate-y-4 sm:translate-y-0 transform -translate-x-1/2 flex items-center justify-center">
+
+        {/* Desktop layout: alternating left/right */}
+        <div
+          className={`hidden sm:flex ${
+            isLeft ? "justify-start" : "justify-end"
+          } w-full mx-auto items-center`}
+        >
+          <div
+            className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-8" : "sm:pl-8"}`}
+          >
+            <div className="p-4 bg-white/25 text-white/90 rounded shadow text-sm lg:text-base">
+              {skill.description}
+            </div>
+          </div>
+        </div>
+        
+        {/* Desktop timeline icon */}
+        <div className="hidden sm:flex rounded-full absolute left-1/2 transform -translate-x-1/2 items-center justify-center bg-[#0B2F52] p-1">
           {skill.iconType === "component" ? (
-            <SiExpress className="w-10 h-10 text-white" />
+            <SiExpress className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
           ) : (
-            <div className="w-10 h-10 relative">
+            <div className="w-8 h-8 lg:w-10 lg:h-10 relative">
               <Image
                 src={skill.icon as string}
                 alt={skill.name}
                 fill
                 className="object-contain"
-                sizes="40px"
+                sizes="(max-width: 1024px) 32px, 40px"
               />
             </div>
           )}

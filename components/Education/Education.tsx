@@ -43,12 +43,12 @@ const educationData: EducationItem[] = [
 
 export default function Education(): React.ReactElement {
   return (
-    <section className="max-w-6xl mx-auto py-20" id="education">
-      <div className="mx-auto w-fit pb-16">
+    <section className="max-w-6xl mx-auto py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8" id="education">
+      <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
         <Title>Education</Title>
       </div>
       <motion.div
-        className="flex flex-wrap gap-20 justify-center text-white"
+        className="flex flex-wrap gap-6 sm:gap-10 lg:gap-16 xl:gap-20 justify-center text-white"
         initial={{ y: 50, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ duration: 1 }}
@@ -69,15 +69,15 @@ interface EducationCardProps {
 function EducationCard({ item }: EducationCardProps): React.ReactElement {
   return (
     <div
-      className={`border-b pb-4 lg:w-1/3 md:w-3/4 w-full ${
+      className={`border-b border-white/30 pb-3 sm:pb-4 lg:w-[45%] xl:w-1/3 md:w-3/4 w-full ${
         item.id === 4 ? "self-start" : ""
       }`}
     >
-      <small className="text-white/60">{item.period}</small>
-      <h3 className="text-xl font-bold">{item.title}</h3>
-      <p className="text-white/80">- {item.institution}</p>
+      <small className="text-white/60 text-xs sm:text-sm">{item.period}</small>
+      <h3 className="text-base sm:text-lg lg:text-xl font-bold leading-snug">{item.title}</h3>
+      <p className="text-white/80 text-sm sm:text-base">- {item.institution}</p>
       {item.grade && (
-        <small className="text-white/60">{item.grade}</small>
+        <small className="text-white/60 text-xs sm:text-sm">{item.grade}</small>
       )}
     </div>
   );
