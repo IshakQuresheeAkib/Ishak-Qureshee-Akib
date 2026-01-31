@@ -48,12 +48,7 @@ export default function About(): React.ReactElement {
             >
               <h2 className="py-2 sm:py-3 mb-3 sm:mb-4 text-xl sm:text-2xl font-bold">So, Who Am I?</h2>
               <p className="font-thin mb-6 sm:mb-8 lg:mb-10 text-white/90 text-sm sm:text-base leading-relaxed">
-                I&apos;m a Front-end Developer with a strong passion for mastering
-                the MERN stack. Despite pursuing Zoology in undergrad, my true love
-                is software development. Recently, I completed a complete web
-                development course at Programming Hero and now, I&apos;m actively
-                exploring job or internship opportunities to apply and further grow
-                my expertise in a professional setting.
+                I&apos;m a MERN Stack Developer with a expertise in building dynamic and responsive web applications. I have 1.5 years+ experience working in a software agency located in NY, USA. I worked remotely as a front end developer, having hands on experience creating custom wordpress theme. Created multiple real world projects using React.js, Next.js, Typescript and Supabase etc. I keen to learn new technologies and explore new things in the tech world.
               </p>
               <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-10">
                 {infoItems.map((item) => (

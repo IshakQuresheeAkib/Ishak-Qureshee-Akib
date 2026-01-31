@@ -34,10 +34,10 @@ export const EXTERNAL_URLS = {
 // ===== PERSONAL INFO =====
 export const PERSONAL_INFO = {
   name: "Ishak Qureshee Akib",
-  email: "Akibquresheeakib11@gmail.com",
+  email: "Akibqureshee11@gmail.com",
   location: "Sylhet, Bangladesh",
   passion: "Traveling & Hiking",
-  age: "24 years",
+  age: "26 years",
 } as const;
 
 // ===== EMAILJS CONFIG =====
