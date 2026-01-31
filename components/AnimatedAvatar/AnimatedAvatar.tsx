@@ -10,10 +10,6 @@ interface AnimatedAvatarProps {
   priority?: boolean;
 }
 
-/**
- * SVG Glow Filter Component
- * Hidden SVG that provides the glow effect filter for the avatar
- */
 function GlowFilterSVG(): React.ReactElement {
   return (
     <svg
@@ -42,11 +38,6 @@ function GlowFilterSVG(): React.ReactElement {
   );
 }
 
-/**
- * AnimatedAvatar Component
- * Displays a profile image with animated rotating gradient glow border
- * Uses CSS animations + SVG filter for enhanced glow effect
- */
 function AnimatedAvatarComponent({
   src,
   alt,
@@ -61,7 +52,6 @@ function AnimatedAvatarComponent({
             src={src}
             alt={alt}
             fill
-            sizes="(max-width: 374px) 160px, (max-width: 639px) 200px, (max-width: 767px) 220px, (max-width: 1023px) 250px, (max-width: 1279px) 280px, (max-width: 1535px) 300px, 350px"
             className="animated-avatar-image"
             priority={priority}
           />

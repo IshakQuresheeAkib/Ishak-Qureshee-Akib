@@ -9,7 +9,6 @@ interface SocialIconButtonProps {
   href: string;
   variant: "github" | "linkedin" | "facebook";
   ariaLabel: string;
-  tooltip: string;
 }
 
 const variantStyles = {
@@ -28,7 +27,7 @@ const variantStyles = {
 };
 
 const SocialIconButton = memo<SocialIconButtonProps>(
-  ({ icon: Icon, href, variant, ariaLabel, tooltip }) => {
+  ({ icon: Icon, href, variant, ariaLabel }) => {
     const [isMounted, setIsMounted] = useState<boolean>(false);
     const colors = variantStyles[variant];
 

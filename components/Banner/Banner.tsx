@@ -90,7 +90,7 @@ export default function Banner(): React.ReactElement {
       id="banner"
       className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 gap-8 lg:gap-12"
     >
-      <div className="w-full lg:w-1/2 xl:w-[55%] max-w-2xl">
+      <div className="w-full lg:w-1/2 xl:w-[55%] 2xl:w-[65%] max-w-2xl">
         <Title> Ishak Qureshee Akib</Title>
         <div className="flex items-center gap-2 mt-3 sm:mt-4">
           <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
@@ -116,7 +116,6 @@ export default function Banner(): React.ReactElement {
               href={SOCIAL_LINKS.github}
               variant="github"
               ariaLabel="Visit GitHub Profile"
-              tooltip="GitHub"
             />
           </motion.div>
           <motion.div
@@ -129,7 +128,6 @@ export default function Banner(): React.ReactElement {
               href={SOCIAL_LINKS.linkedin}
               variant="linkedin"
               ariaLabel="Visit LinkedIn Profile"
-              tooltip="LinkedIn"
             />
           </motion.div>
           <motion.div
@@ -142,7 +140,6 @@ export default function Banner(): React.ReactElement {
               href={SOCIAL_LINKS.facebook}
               variant="facebook"
               ariaLabel="Visit Facebook Profile"
-              tooltip="Facebook"
             />
           </motion.div>
         </ul>
@@ -151,13 +148,13 @@ export default function Banner(): React.ReactElement {
           href={EXTERNAL_URLS.resume}
           download
         >
-          <CustomButton size="sm" before={<FaCloudDownloadAlt className="text-md sm:text-xl" />}>
+          <CustomButton size="sm" before={<FaCloudDownloadAlt className="text-base sm:text-xl" />}>
             Download Resume
           </CustomButton>
         </a>
       </div>
 
-      <div className="w-full lg:w-1/2 xl:w-[45%] flex justify-center items-center scale-[1.2] sm:scale-[1.4] lg:scale-[1.6] xl:scale-[1.7]">
+      <div className="w-full lg:w-1/2 xl:w-[20%] flex justify-center items-center scale-[1.2] sm:scale-[1.4] lg:scale-[1.6] 2xl:scale-[1.7]">
         <AnimatedAvatar
           src={EXTERNAL_URLS.avatarImage}
           alt="Ishak Qureshee Akib"
