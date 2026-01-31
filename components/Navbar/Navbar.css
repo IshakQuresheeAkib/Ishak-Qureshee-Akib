@@ -1,11 +1,11 @@
-/* Navbar Styles - Advanced hover effects with CSS anchor positioning */
-
-/* Enable smooth size interpolation for modern animations */
-html {
-  interpolate-size: allow-keywords;
+:root {
+  --c-glass: #004484;
+  --c-light: #ffffff59;
+  --c-dark: #002951;
+  --glass-reflex-dark: 5;
+  --glass-reflex-light: 1;
+  --saturation: 90%;
 }
-
-/* Site header - always fixed/sticky */
 .site-header {
   position: fixed;
   top: 0;
@@ -17,7 +17,6 @@ html {
   justify-content: center;
   padding: clamp(0.75rem, 2vw, 1.5rem) clamp(1rem, 3vw, 2rem);
 }
-
 .navbar-container {
   display: flex;
   width: fit-content;
@@ -27,372 +26,181 @@ html {
   padding: 8px;
   gap: clamp(1rem, 2vw, 2rem);
   position: relative;
-  border-radius: 8px;
-  
-  @supports (corner-shape: squircle) {
-    border-radius: 24px;
-    border-shape: squircle;
-  }
+  border-radius: 99em;
+  background-color: rgba(90, 176, 255, 0.25);
+  backdrop-filter: blur(5px) saturate(var(--saturation));
+  box-shadow: 
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+    inset 1.8px 3px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), 
+    inset -2px -2px 0px -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), 
+    inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), 
+    inset -0.3px -1px 4px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), 
+    inset -1.5px 2.5px 0px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), 
+    inset 0px 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), 
+    inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 
+    0px 1px 5px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 
+    0px 6px 16px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    
+  transition: background-color 0.4s cubic-bezier(1, 0.0, 0.4, 1), box-shadow 0.4s cubic-bezier(1, 0.0, 0.4, 1);
+  will-change: backdrop-filter, background-color;
 }
 
-/* Background image layer */
+.navbar-scrolled {
+  background-color: rgba(90, 176, 255, 0.25);
+  backdrop-filter: blur(12px) saturate(var(--saturation));
+  will-change: backdrop-filter, background-color;
+}
+
 .navbar-container::before {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: -2;
-  border-radius: 8px;
-  background-image: linear-gradient(
-    135deg,
-    #0B2F52 0%,
-    #187bd1 50%,
-    #2396fb 100%
-  );
-  background-attachment: fixed;
+  z-index: 0;
+  border-radius: 99em;
+  pointer-events: none;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(90, 176, 255, 0.25); /* #5ab0ff at 25% opacity */
+  box-shadow: 
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 20%), transparent),
+    inset 2px 1px 0px -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), 
+    inset -1.5px -1px 0px -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), 
+    inset 0px -4px 1px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 
+    0px 3px 6px 0px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   
-  @supports (corner-shape: squircle) {
-    border-radius: 24px;
-    border-shape: squircle;
+  transition: 
+    opacity 0.3s ease,
+    top 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    left 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    width 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+    translate 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.navbar-container.has-hover::before {
+  opacity: 1;
+}
+
+/* Advanced Anchor Positioning for the Hover Pill */
+@supports (position-anchor: --nav-hover) {
+  .navbar-container.has-hover::before {
+    position-anchor: --nav-hover;
+    top: anchor(top);
+    left: anchor(left);
+    width: anchor-size(width);
+    height: anchor-size(height);
+    translate: 0 0;
   }
 }
-
-/* Glass blur overlay */
-.navbar-container::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  background-color: hsl(210 100% 10% / 0.15);
-  border-radius: 8px;
-  
-  @supports (corner-shape: squircle) {
-    border-radius: 24px;
-    border-shape: squircle;
-  }
-}
-
-.navbar-scrolled::after {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  background-color: hsl(210 100% 10% / 0.3);
-}
-
-/* Logo */
-.navbar-logo {
-  flex-shrink: 0;
-  cursor: pointer;
-  z-index: 1;
-}
-
-/* Desktop Navigation Links */
 .navbar-links {
-  display: none;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
-
-/* Background container for nav links with dark overlay */
-.navbar-links::after {
-  content: "";
-  position: absolute;
-  z-index: -3;
-  inset: -8px;
-  border-radius: 8px;
-  background: hsl(0 0% 0% / 0.8);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-     
-  @supports (corner-shape: squircle) {
-    border-radius: 24px;
-    border-shape: squircle;
-  }
-}
-  
-/* Set anchor on ul when no hover */
 .navbar-links[data-no-hover="true"] {
   anchor-name: --nav-hover;
 }
-
-@media (min-width: 1024px) {
-  .navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 0;
-  }
-}
-
-/* Nav item wrapper */
-.nav-item {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Individual Nav Link */
 .nav-link {
   position: relative;
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: clamp(0.6rem, 1.5vw, 1rem) clamp(0.8rem, 2vw, 1.2rem);
+  padding: clamp(0.75rem, 1.5vw, 1rem) clamp(1rem, 2vw, 1.5rem);
   background: transparent;
   border: none;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   font-weight: 500;
   cursor: pointer;
-  border-radius: 0;
+  border-radius: 99em;
   transition: color 0.3s ease;
   white-space: nowrap;
   z-index: 1;
 }
 
-/* Set anchor on hovered link */
 .nav-link.hovered {
   anchor-name: --nav-hover;
   color: #fff;
 }
 
 .nav-link.active {
-  color: #65c1ff;
-}
-
-/* Animated background indicator - shows behind hovered link */
-.navbar-container::before {
-  transition: 500ms;
-  transition-timing-function: linear(
-    0, 0.008 1.1%, 0.031 2.2%, 0.129 4.8%, 0.257 7.2%,
-    0.671 14.2%, 0.789 16.5%, 0.881 18.6%, 0.957 20.7%,
-    1.019 22.9%, 1.063 25.1%, 1.094 27.4%, 1.114 30.7%,
-    1.112 34.5%, 1.018 49.9%, 0.99 59.1%, 1
-  );
-}
-
-.navbar-container::after {
-  transition: 500ms;
-  transition-timing-function: linear(
-    0, 0.008 1.1%, 0.031 2.2%, 0.129 4.8%, 0.257 7.2%,
-    0.671 14.2%, 0.789 16.5%, 0.881 18.6%, 0.957 20.7%,
-    1.019 22.9%, 1.063 25.1%, 1.094 27.4%, 1.114 30.7%,
-    1.112 34.5%, 1.018 49.9%, 0.99 59.1%, 1
-  );
-}
-
-/* Position background layers using anchor positioning */
-@supports (position-anchor: --nav-hover) {
-  .navbar-container::before,
-  .navbar-container::after {
-    position-anchor: --nav-hover;
-    top: calc(anchor(bottom) - 4px);
-    left: calc(anchor(left) + 1rem);
-    right: calc(anchor(right) + 1rem);
-    bottom: anchor(bottom);
-  }
-
-  /* Expand to hovered item */
-  .navbar-container.has-hover::before,
-  .navbar-container.has-hover::after {
-    top: anchor(top);
-    left: anchor(left);
-    right: anchor(right);
-    
-    @supports (corner-shape: squircle) {
-      corner-shape: squircle;
-      border-radius: 50%;
-    }
-  }
-
-  /* First item - rounded left */
-  .nav-item:first-of-type .nav-link.hovered ~ .navbar-container::before,
-  .nav-item:first-of-type .nav-link.hovered ~ .navbar-container::after {
-    @supports (corner-shape: squircle) {
-      border-radius: 32px 50% 50% 32px;
-    }
-  }
-
-  /* Last item - rounded right */
-  .nav-item:last-of-type .nav-link.hovered ~ .navbar-container::before,
-  .nav-item:last-of-type .nav-link.hovered ~ .navbar-container::after {
-    @supports (corner-shape: squircle) {
-      border-radius: 50% 32px 32px 50%;
-    }
-  }
+  color: #2da7ff;
+  text-shadow: #ffffff;
 }
 
 /* Fallback hover effect for browsers without anchor positioning */
 @supports not (position-anchor: --nav-hover) {
-  .nav-link::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(35, 150, 251, 0.2),
-      rgba(101, 193, 255, 0.1)
-    );
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 8px;
+  .nav-link {
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
-
-  .nav-link:hover::before,
-  .nav-link.hovered::before {
-    opacity: 1;
+  
+  .nav-link:hover {
+    background-color: color-mix(in srgb, var(--c-glass) 20%, transparent);
+    color: #fff;
   }
 }
-
-/* Nav icon styling */
 .nav-icon {
-  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
   transition: transform 0.3s ease, color 0.3s ease;
   flex-shrink: 0;
 }
-
 .nav-link:hover .nav-icon,
 .nav-link.hovered .nav-icon {
-  transform: translateY(-2px) scale(1.05);
-  color: #65c1ff;
+  transform: scale(1.1);
+  color: #fff;
 }
-
 .nav-link.active .nav-icon {
-  color: #2396fb;
+  color: #2da7ff;
+  text-shadow: #001eff;
 }
-
-/* Nav text */
 .nav-text {
   position: relative;
   z-index: 1;
   font-size: inherit;
 }
-
-/* Active indicator (subtle glow) */
-.nav-link.active::after {
-  content: "";
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70%;
-  height: 2px;
-  background: linear-gradient(90deg, #2396fb, #65c1ff);
-  border-radius: 2px;
-  box-shadow: 0 0 8px rgba(35, 150, 251, 0.6);
-}
-
-/* Mobile menu toggle */
 .navbar-mobile {
-  display: block;
-  z-index: 1;
+  display: none;
 }
 
-@media (min-width: 1024px) {
-  .navbar-mobile {
-    display: none;
-  }
-}
 
-/* Responsive adjustments */
 @media (max-width: 1280px) {
-  .navbar-links {
-    gap: 0;
-  }
-
   .nav-link {
-    padding: clamp(0.5rem, 1.2vw, 0.75rem) clamp(0.6rem, 1.5vw, 0.9rem);
-    font-size: clamp(0.8rem, 1.3vw, 0.88rem);
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
   }
   
   .nav-icon {
-    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    font-size: 1.1rem;
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1032px) {
   .site-header {
-    padding: 0.5rem 1rem;
+    padding: 1rem;
   }
-  
   .navbar-container {
     width: 100%;
     justify-content: space-between;
-    padding: 0.5rem 1rem;
-    border-radius: 0;
+    padding: 0.75rem 1.25rem;
+    backdrop-filter: none;
+    background: transparent;
+    box-shadow: none;
   }
-  
-  .navbar-container::before,
-  .navbar-container::after {
-    border-radius: 0;
+  .navbar-mobile {
+    display: block;
+    z-index: 1;
   }
-}
-
-@media (max-width: 768px) {
-  .site-header {
-    padding: 0.5rem 0.75rem;
-  }
-
-  .logo-image {
-    width: 60px;
+  .navbar-links {
+    display: none;
+    position: relative;
   }
 }
 
-@media (max-width: 480px) {
-  .logo-image {
-    width: 50px;
-  }
-  
-  .site-header {
-    padding: 0.4rem 0.5rem;
-  }
-}
-
-/* Small height devices */
-@media (max-height: 700px) and (min-width: 1024px) {
-  .nav-link {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.85rem;
-  }
-  
-  .nav-icon {
-    font-size: 1rem;
-  }
-}
-
-/* Accessibility - focus states */
+/* Accessibility */
 .nav-link:focus-visible {
-  outline: 2px solid #2396fb;
+  outline: 2px solid var(--c-glass);
   outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.navbar-logo:focus-visible {
-  outline: 2px solid #2396fb;
-  outline-offset: 4px;
-  border-radius: 4px;
-}
-
-/* Smooth transitions for keyboard navigation */
-.nav-link:focus-visible .nav-icon {
-  transform: translateY(-2px) scale(1.05);
-  color: #65c1ff;
-}
-
-/* Performance optimization */
-.nav-link,
-.navbar-container::before,
-.navbar-container::after {
-  will-change: transform, opacity;
-}
-
-/* Reduce motion for accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .nav-link,
-  .nav-icon,
-  .navbar-container::before,
-  .navbar-container::after {
-    transition: none;
-  }
 }
