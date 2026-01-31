@@ -12,19 +12,10 @@ export default function HomePage(): React.ReactElement {
       {/* Section Indicator - Fixed position scroll navigation */}
       <SectionIndicator />
 
-      <div className="scroll-container xl:mx-10 md:mx-8 mx-5">
-        {/* Each section wrapped with id for scroll detection */}
-        <section id="banner" className="scroll-section">
-          <Banner />
-        </section>
-
-        <section id="projects" className="scroll-section">
-          <Projects />
-        </section>
-
-        <section id="about" className="scroll-section">
-          <About />
-        </section>
+      <div className="scroll-container xl:mx-10 md:mx-8 mx-5 relative">
+        <Banner />
+        <Projects />          
+        <About />
 
         <section id="skills" className="scroll-section">
           <MySkills />

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Title from "@/components/Title/Title";
 import { PERSONAL_INFO, ANIMATION_DURATION } from "@/lib/constants";
+import "./aboutImage.css";
+
 
 interface InfoItem {
   label: string;
@@ -19,7 +21,7 @@ const infoItems: InfoItem[] = [
 
 export default function About(): React.ReactElement {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-0" id="aboutUs">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-0 scroll-section" id="about">
       <div className="flex items-center xl:min-h-screen">
         <div className="justify-center flex-1">
           <div className="mb-8 sm:mb-10 md:text-center">
@@ -73,15 +75,18 @@ export default function About(): React.ReactElement {
 
 function AboutImage(): React.ReactElement {
   return (
-    <div className="w-full">
-      <Image
-        className="aboutImage w-full h-auto"
-        src="https://i.ibb.co.com/hJbS7G9G/Untitled-design-1.png"
-        alt="Ishak Qureshee Akib"
-        width={400}
-        height={500}
-        sizes="(max-width: 480px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 400px"
-      />
+    <div className="w-full flex justify-center">
+      <div className="about-image-wrapper">
+        <Image
+          className="about-image"
+          src="https://i.ibb.co.com/hJbS7G9G/Untitled-design-1.png"
+          alt="Ishak Qureshee Akib"
+          width={400}
+          height={400}
+          sizes="(max-width: 480px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 400px"
+          priority
+        />
+      </div>
     </div>
   );
 }

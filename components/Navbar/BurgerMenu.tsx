@@ -7,6 +7,7 @@ import { HiOutlineSparkles } from "react-icons/hi";
 import { IoSchoolOutline } from "react-icons/io5";
 import { BsPersonVcard } from "react-icons/bs";
 import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
+import './burgerMenu.css';
 
 export default function BurgerMenu(): React.ReactElement {
   const { scrollToSection, activeSection } = useScrollSnap();

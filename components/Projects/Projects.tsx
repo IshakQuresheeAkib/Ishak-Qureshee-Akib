@@ -55,7 +55,7 @@ export default function Projects(): React.ReactElement {
     : 2500 * projects.length;
 
   return (
-    <section className="relative" id="projects">
+    <section className="relative scroll-section" id="projects">
       {/* Title Section */}
       <div className="py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8 bg-transparent">
         <div className="mx-auto w-fit">

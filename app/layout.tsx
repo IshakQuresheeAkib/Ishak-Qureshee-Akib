@@ -60,7 +60,7 @@ export default function RootLayout({
         <SmoothScroll>
           <ScrollSnapProvider>
             <InitialLoading />
-            <div className="banner bg-cover min-h-screen w-full">
+            <div className="bg-cover bg-fixed bg-[url('/pattern.svg')] min-h-screen w-full">
               <Navbar />
               <main>{children}</main>
               <Footer />

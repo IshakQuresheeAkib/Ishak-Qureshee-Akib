@@ -1,5 +1,4 @@
 // ===== TIMING CONSTANTS =====
-export const LOADING_DURATION_MS = 3000;
 export const ANIMATION_DURATION = 1;
 export const SCROLL_THRESHOLD = 100;
 

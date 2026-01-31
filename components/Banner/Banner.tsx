@@ -77,21 +77,29 @@ export default function Banner(): React.ReactElement {
     };
   }, [isMounted]);
 
+  const roles : string[] = [
+    "Web Developer",
+    "Front End Developer",
+    "Mern Stack Developer",
+    "Full Stack Developer",
+    "Javascript Developer",
+  ];
+
   return (
     <section
       id="banner"
-      className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 gap-8 lg:gap-12"
+      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center px-4 sm:px-6 lg:px-8 pt-20 lg:pt-0 gap-8 lg:gap-12"
     >
       <div className="w-full lg:w-1/2 xl:w-[55%] max-w-2xl">
         <Title> Ishak Qureshee Akib</Title>
         <div className="flex items-center gap-2 mt-3 sm:mt-4">
           <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
-          <div className="text-wrapper relative inline-block min-w-0" ref={textWrapperRef}>
-            <h5>Web Developer</h5>
-            <h5>Front End Developer</h5>
-            <h5>Mern Stack Developer</h5>
-            <h5>Full Stack Developer</h5>
-            <h5>Javascript Developer</h5>
+          <div className="relative inline-flex min-h-[1.5em] min-w-0 items-baseline" ref={textWrapperRef}>
+            {roles.map((role) => (
+              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-[16px] font-bold leading-none text-[#65c1ff] xs:text-[18px] sm:text-[20px] lg:text-[24px]">
+                {role}
+              </h5>
+            ))}
           </div>
         </div>
         <p className="pt-6 sm:pt-8 lg:pt-9 font-thin text-white/80 text-sm sm:text-base max-w-xl">
