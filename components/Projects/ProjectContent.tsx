@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HiOutlineExternalLink } from "react-icons/hi";
 import type { Project } from "@/lib/projects";
 
 interface ProjectContentProps {

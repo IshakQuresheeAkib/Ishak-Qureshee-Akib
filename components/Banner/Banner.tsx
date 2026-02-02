@@ -106,7 +106,7 @@ export default function Banner(): React.ReactElement {
           </div>
         </div>
           <p className="pt-6 sm:pt-8 lg:pt-9 font-thin text-white/80 text-sm sm:text-base max-w-xl 2xl:max-w-2xl">
-            specializing in creating Full stack web application using MERN stack. Mostly i focused on front end of website to create highly optimized, scalable and fully responsive interfaces for better user experiences with React and Next js.
+            passionate developer focused on building scalable and performant applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.
           </p>
           <ul className="py-4 sm:py-6 xl:py-8 flex w-fit gap-3 sm:gap-4">
             <motion.div
