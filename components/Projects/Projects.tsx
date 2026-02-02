@@ -69,7 +69,6 @@ export default function Projects(): React.ReactElement {
         className="relative z-10 rounded-t-[2rem] lg:rounded-t-[3rem]"
         style={{ 
           height: `${scrollHeight}px`,
-          backgroundColor: ""
         }}
       >
         {/* Sticky Wrapper */}

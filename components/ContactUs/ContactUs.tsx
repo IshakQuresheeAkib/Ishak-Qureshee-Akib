@@ -131,7 +131,7 @@ export default function ContactUs(): React.ReactElement {
                 id="message"
                 name="message"
                 rows={4}
-                className="border-b border-white/90 bg-transparent text-sm sm:text-base focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none resize-none sm:rows-5 lg:rows-6"
+                className="border-b border-white/90 bg-transparent text-sm sm:text-base focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none resize-none"
                 placeholder="Leave a comment..."
                 required
               ></textarea>

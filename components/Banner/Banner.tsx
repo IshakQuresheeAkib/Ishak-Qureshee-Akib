@@ -4,11 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
-import Title from "@/components/Title/Title";
 import CustomButton from "@/components/CustomButton/CustomButton";
 import AnimatedAvatar from "@/components/AnimatedAvatar/AnimatedAvatar";
 import SocialIconButton from "@/components/SocialIconButton/SocialIconButton";
 import { SOCIAL_LINKS, EXTERNAL_URLS } from "@/lib/constants";
+
+const ROLES: string[] = [
+  "Web Developer",
+  "Front End Developer",
+  "Mern Stack Developer",
+  "Full Stack Developer",
+  "Javascript Developer",
+];
 
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
@@ -77,14 +84,6 @@ export default function Banner(): React.ReactElement {
     };
   }, [isMounted]);
 
-  const roles : string[] = [
-    "Web Developer",
-    "Front End Developer",
-    "Mern Stack Developer",
-    "Full Stack Developer",
-    "Javascript Developer",
-  ];
-
   return (
     <section
       id="banner"
@@ -98,7 +97,7 @@ export default function Banner(): React.ReactElement {
         <div className="flex items-center gap-2 mt-3 sm:mt-4">
           <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
           <div className="relative inline-flex min-h-[1.5em] min-w-0 items-baseline" ref={textWrapperRef}>
-            {roles.map((role) => (
+            {ROLES.map((role) => (
               <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-[16px] font-bold leading-none text-[#65c1ff] xs:text-[18px] sm:text-[20px] lg:text-[24px]">
                 {role}
               </h5>
