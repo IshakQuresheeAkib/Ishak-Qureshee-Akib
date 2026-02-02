@@ -3,53 +3,27 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import { FaCloudDownloadAlt } from "react-icons/fa";
-import Title from "@/components/Title/Title";
+import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import CustomButton from "@/components/CustomButton/CustomButton";
-import { SOCIAL_LINKS, EXTERNAL_URLS, ANIMATION_DURATION } from "@/lib/constants";
+import AnimatedAvatar from "@/components/AnimatedAvatar/AnimatedAvatar";
+import SocialIconButton from "@/components/SocialIconButton/SocialIconButton";
+import { SOCIAL_LINKS, EXTERNAL_URLS } from "@/lib/constants";
 
-// Dynamic import for Lottie to prevent SSR issues
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-
-// Lottie animation data type
-interface LottieData {
-  default: object;
-}
+const ROLES: string[] = [
+  "Web Developer",
+  "Front End Developer",
+  "Mern Stack Developer",
+  "Full Stack Developer",
+  "Javascript Developer",
+];
 
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [lottieAnimations, setLottieAnimations] = useState<{
-    bloob: object | null;
-    github: object | null;
-    linkedin: object | null;
-    facebook: object | null;
-  }>({
-    bloob: null,
-    github: null,
-    linkedin: null,
-    facebook: null,
-  });
 
   useEffect(() => {
     setIsMounted(true);
-    // Dynamic imports for Lottie JSON files to reduce bundle size
-    Promise.all([
-      import("@/assets/Animation - 1708466125666.json") as Promise<LottieData>,
-      import("@/assets/github.json") as Promise<LottieData>,
-      import("@/assets/linkedin.json") as Promise<LottieData>,
-      import("@/assets/facebook.json") as Promise<LottieData>,
-    ]).then(([bloob, github, linkedin, facebook]) => {
-      setLottieAnimations({
-        bloob: bloob.default,
-        github: github.default,
-        linkedin: linkedin.default,
-        facebook: facebook.default,
-      });
-    });
   }, []);
 
   useEffect(() => {
@@ -113,104 +87,82 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="flex flex-col-reverse lg:flex-row min-h-screen justify-center items-center 2xl:pt-0 lg:pt-0 pt-20 gap-5"
+      className="scroll-section flex flex-col lg:flex-row min-h-screen 2xl:max-w-7xl mx-auto justify-center items-center "
     >
-      <motion.div
-        className="mt-20 px-4 lg:px-0"
-        initial={{ x: -150, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: ANIMATION_DURATION }}
-        viewport={{ once: true }}
-      >
-        <Title>
-          Hi! <br /> I&apos;m Ishak Qureshee Akib
-        </Title>
+      <div className="w-full">
+        <p className="text-2xl font-bold text-white mt-4"> Hi! I&apos;m </p>
+        <p style={{fontFamily: "var(--font-auto_wide)"}} className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase text-white mt-2">Ishak Qureshee Akib</p>
+          
         <p className="absolute text-2xl font-bold text-white mt-4">I&apos;m a </p>
-        <div className="text-wrapper mt-3.5" ref={textWrapperRef}>
-          <h5>Web Developer</h5>
-          <h5>Front End Developer</h5>
-          <h5>Mern Stack Developer</h5>
-          <h5>Full Stack Developer</h5>
-          <h5>Javascript Developer</h5>
+        <div className="flex items-center gap-2 mt-3 sm:mt-4">
+          <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
+          <div className="relative inline-flex min-h-[1.5em] min-w-0 items-baseline" ref={textWrapperRef}>
+            {ROLES.map((role) => (
+              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-[16px] font-bold leading-none text-[#65c1ff] xs:text-[18px] sm:text-[20px] lg:text-[24px]">
+                {role}
+              </h5>
+            ))}
+          </div>
         </div>
-        <p className="pt-9 font-thin text-white/80 lg:w-4/5 2xl:text-base text-sm">
-          specializing in making attractive and dynamic websites using HTML, CSS,
-          and JavaScript. I specialize in Tailwind CSS and React to create modern,
-          scalable interfaces for better user experiences.
-        </p>
-        <div className="xl:py-8 py-6 flex w-fit gap-4">
-          {isMounted && lottieAnimations.github && lottieAnimations.linkedin && lottieAnimations.facebook && (
-            <>
-              <motion.a
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+          <p className="pt-6 sm:pt-8 lg:pt-9 font-thin text-white/80 text-sm sm:text-base max-w-xl 2xl:max-w-2xl">
+            passionate developer focused on building scalable and performant applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.
+          </p>
+          <ul className="py-4 sm:py-6 xl:py-8 flex w-fit gap-3 sm:gap-4">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <SocialIconButton
+                icon={FaGithub}
                 href={SOCIAL_LINKS.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Lottie animationData={lottieAnimations.github} className="w-7 cursor-pointer" loop />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.3 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                variant="github"
+                ariaLabel="Visit GitHub Profile"
+              />
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <SocialIconButton
+                icon={FaLinkedin}
                 href={SOCIAL_LINKS.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Lottie animationData={lottieAnimations.linkedin} className="w-7 cursor-pointer" loop />
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                variant="linkedin"
+                ariaLabel="Visit LinkedIn Profile"
+              />
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+            >
+              <SocialIconButton
+                icon={FaFacebook}
                 href={SOCIAL_LINKS.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Lottie animationData={lottieAnimations.facebook} className="w-7 cursor-pointer" loop />
-              </motion.a>
-            </>
-          )}
-        </div>
+                variant="facebook"
+                ariaLabel="Visit Facebook Profile"
+              />
+            </motion.div>
+          </ul>
 
-        <a
-          href={EXTERNAL_URLS.resume}
-          download
-        >
-          <CustomButton
-            variant="primary"
-            before={<FaCloudDownloadAlt className="text-xl" />}
+          <a
+            href={EXTERNAL_URLS.resume}
+            download
           >
-            Download Resume
-          </CustomButton>
-        </a>
-      </motion.div>
+            <CustomButton size="sm" before={<FaCloudDownloadAlt className="text-base sm:text-xl" />}>
+              Download Resume
+            </CustomButton>
+          </a>
+      </div>
 
-      <motion.div
-        initial={{ x: 150, opacity: 0 }}
-        whileInView={{ x: 0, opacity: 1 }}
-        transition={{ duration: ANIMATION_DURATION }}
-        viewport={{ once: true }}
-        className="relative"
-      >
-        {isMounted && lottieAnimations.bloob && (
-          <Lottie
-            animationData={lottieAnimations.bloob}
-            className="absolute xl:-bottom-24 -bottom-20 2xl:-left-64 xl:-left-28 md:-left-20 -left-14 2xl:w-[550px] w-[450px]"
-            loop
-          />
-        )}
-        <Image
-          src="https://i.ibb.co.com/XNmZQD8/Untitled-design.png"
+      <div className="w-full lg:w-1/2 xl:w-fit flex justify-center items-center scale-[1.2] sm:scale-[1.4] lg:scale-[1.6] 2xl:scale-[1.7]">
+        <AnimatedAvatar
+          src={EXTERNAL_URLS.avatarImage}
           alt="Ishak Qureshee Akib"
-          width={384}
-          height={384}
-          className="2xl:max-w-sm max-w-xs sm:-left-5 relative lg:-left-4 xl:-left-10 2xl:-left-40 lg:-bottom-7 rounded-full"
           priority
         />
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,0 +1,153 @@
+/* ===== ANIMATED GLOW BORDER AVATAR STYLES ===== */
+
+/* CSS Custom Property for animating angle */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.animated-avatar-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Hide SVG filter from layout */
+.glow-filter-svg {
+  position: fixed;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.animated-avatar {
+  --border-width: 2px;
+  --glow-multiplier: 1;
+  box-sizing: border-box;
+  border: solid var(--border-width) transparent;
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: calc(1 * var(--border-width));
+  background: 
+    repeating-conic-gradient(
+      from var(--glow-angle, 0deg), 
+      transparent 0%, 
+      rgba(35, 150, 251, 0.13) 20%, 
+      rgba(24, 123, 209, 0.25) 40%, 
+      rgba(11, 47, 82, 0.38) 60%, 
+      rgba(101, 193, 255, 0.5) 80%,
+      transparent 100%
+    ) border-box;
+  filter: url(#avatar-glow-filter);
+  animation: rotateGlowAngle 6s linear infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-avatar-image-wrapper {
+  position: absolute;
+  top: var(--border-width);
+  left: var(--border-width);
+  right: var(--border-width);
+  bottom: var(--border-width);
+  border-radius: var(--border-width);
+  overflow: hidden;
+}
+
+.animated-avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+@keyframes rotateGlowAngle {
+  to {
+    --glow-angle: 0.5turn;
+  }
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+/* Large desktop (1536px+) */
+@media (min-width: 1536px) {
+  .animated-avatar {
+    width: 300px;
+    height: 300px;
+    --border-width: 5px;
+  }
+}
+
+/* Desktop (1280px - 1535px) */
+@media (min-width: 1280px) and (max-width: 1535px) {
+  .animated-avatar {
+    width: 300px;
+    height: 300px;
+    --border-width: 5px;
+  }
+}
+
+/* Large tablet / Small laptop (1024px - 1279px) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+  .animated-avatar {
+    width: 280px;
+    height: 280px;
+    --border-width: 5px;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .animated-avatar {
+    width: 250px;
+    height: 250px;
+    --border-width: 5px;
+  }
+}
+
+/* Large mobile (640px - 767px) */
+@media (min-width: 640px) and (max-width: 767px) {
+  .animated-avatar {
+    width: 220px;
+    height: 220px;
+    --border-width: 5px;
+  }
+}
+
+/* Mobile (< 640px) */
+@media (max-width: 639px) {
+  .animated-avatar {
+    width: 200px;
+    height: 200px;
+    --border-width: 4px;
+  }
+}
+
+/* Small mobile (< 375px) */
+@media (max-width: 374px) {
+  .animated-avatar {
+    width: 160px;
+    height: 160px;
+    --border-width: 4px;
+  }
+}
+
+/* Small height screens */
+@media (max-height: 700px) and (min-width: 1024px) {
+  .animated-avatar {
+    width: 220px;
+    height: 220px;
+    --border-width: 5px;
+  }
+}
+
+@media (max-height: 600px) and (min-width: 1024px) {
+  .animated-avatar {
+    width: 180px;
+    height: 180px;
+    --border-width: 4px;
+  }
+}

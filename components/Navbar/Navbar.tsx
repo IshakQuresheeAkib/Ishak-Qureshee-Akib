@@ -1,117 +1,97 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-import { usePathname } from "next/navigation";
-import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState, useEffect, useCallback, memo } from "react";
 import { FaHome } from "react-icons/fa";
 import { MdAlternateEmail } from "react-icons/md";
 import { RiShareBoxLine } from "react-icons/ri";
+import { IoSchoolOutline } from "react-icons/io5";
+import { BsPersonVcard } from "react-icons/bs";
 import BurgerMenu from "./BurgerMenu";
-import { NAV_ITEMS, SCROLL_THRESHOLD } from "@/lib/constants";
+import { SCROLL_THRESHOLD } from "@/lib/constants";
+import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
+import "./Navbar.css";
+import { TbUserCode } from "react-icons/tb";
 
-export default function Navbar(): React.ReactElement {
+const Navbar = memo(function Navbar(): React.ReactElement {
   const [scrolled, setScrolled] = useState<boolean>(false);
-  const [isVisible, setIsVisible] = useState<boolean>(true);
-  const [lastScrollY, setLastScrollY] = useState<number>(0);
-  const pathname = usePathname();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { activeSection, scrollToSection } = useScrollSnap();
 
-  // Consolidated scroll handler for both visibility and scroll state
+  // Scroll handler for background state only (header is always visible)
   const handleScroll = useCallback((): void => {
     const currentScrollY = window.scrollY;
-    
-    // Update scrolled state
     setScrolled(currentScrollY > SCROLL_THRESHOLD);
-    
-    // Update headroom visibility
-    if (currentScrollY < SCROLL_THRESHOLD) {
-      setIsVisible(true);
-    } else if (currentScrollY > lastScrollY) {
-      setIsVisible(false);
-    } else {
-      setIsVisible(true);
-    }
-    
-    setLastScrollY(currentScrollY);
-  }, [lastScrollY]);
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Map icons to nav items
+  // Map icons to section titles
   const iconMap: Record<string, React.ReactElement> = {
-    "Home": <FaHome />,
-    "Projects": <RiShareBoxLine />,
-    "Contact Me": <MdAlternateEmail />,
+    Home: <FaHome className="nav-icon" />,
+    Projects: <RiShareBoxLine className="nav-icon" />,
+    About: <BsPersonVcard className="nav-icon" />,
+    Skills: <TbUserCode className="nav-icon" />,
+    Education: <IoSchoolOutline className="nav-icon" />,
+    Contact: <MdAlternateEmail className="nav-icon" />,
   };
 
-  const handleNavClick = (link: string): void => {
-    if (link.startsWith("#")) {
-      const targetId = link.substring(1) || "banner";
-      const element = document.getElementById(targetId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }
+  const handleNavClick = (index: number): void => {
+    scrollToSection(index);
+  };
+
+  const handleMouseEnter = (index: number): void => {
+    setHoveredIndex(index);
+  };
+
+  const handleMouseLeave = (): void => {
+    setHoveredIndex(null);
   };
 
   return (
-    <motion.div
-      className="fixed top-0 text-white/70 text-lg z-10 w-full"
-      initial={{ y: 0 }}
-      animate={{ y: isVisible ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-    >
-      <AnimatePresence initial={true} mode="wait">
-        <nav
-          key={pathname}
-          className={`flex w-full lg:pl-9 lg:pr-28 pl-3 justify-between lg:py-3 py-2 ${
-            scrolled ? "backdrop-blur-md bg-black/20" : ""
-          }`}
+    <header className="site-header">
+      <nav
+        className={`navbar-container ${scrolled ? "navbar-scrolled" : ""} ${
+          hoveredIndex !== null ? "has-hover" : ""
+        }`}
+      >
+
+        {/* Desktop Navigation */}
+        <ul
+          className="navbar-links"
+          data-no-hover={hoveredIndex === null ? "true" : "false"}
         >
-          <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 1.5 }}
-            >
-              <Image
-                src="https://i.ibb.co/wKR0hV6/Akib.png"
-                alt="Logo"
-                width={96}
-                height={96}
-                className="w-24"
-                unoptimized
-              />
-            </motion.div>
+          {SECTIONS.map((section, index) => (
+            <li key={section.id} className="nav-item">
+              <button
+                className={`nav-link ${
+                  activeSection === index ? "active" : ""
+                } ${
+                  hoveredIndex === index ? "hovered" : ""
+                }`}
+                onClick={() => handleNavClick(index)}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={handleMouseLeave}
+                type="button"
+                aria-label={`Navigate to ${section.title}`}
+                aria-current={activeSection === index ? "page" : undefined}
+              >
+                {iconMap[section.title]}
+                <span className="nav-text">{section.title}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
 
-            <div className="lg:gap-24 gap-10 lg:flex hidden">
-              {NAV_ITEMS.map((navItem) => (
-                <span
-                  key={navItem.id}
-                  className="group items-center bg-transparent cursor-default hover:cursor-pointer flex gap-1 text-white hover:text-white/80 transition-colors duration-400"
-                >
-                  {iconMap[navItem.title]}
-                  <a
-                    href={navItem.link}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(navItem.link);
-                    }}
-                    className="text-center relative after:transition-transform after:duration-700 after:ease-in-out after:absolute after:-bottom-[3.1px] after:left-0 after:block after:h-[3px] after:w-full after:scale-x-0 after:bg-[#2282ff] after:content-[''] after:group-hover:scale-x-100 transition-colors"
-                  >
-                    {navItem.title}
-                  </a>
-                </span>
-              ))}
-            </div>
-
-            <div className="lg:hidden block">
-              <BurgerMenu />
-            </div>
-          </nav>
-      </AnimatePresence>
-    </motion.div>
+        {/* Mobile menu */}
+        <div className="navbar-mobile">
+          <BurgerMenu />
+        </div>
+      </nav>
+    </header>
   );
-}
+});
+
+export default Navbar;
