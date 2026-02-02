@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { FaHome } from "react-icons/fa";
 import { RiShareBoxLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
@@ -11,6 +12,7 @@ import './burgerMenu.css';
 
 export default function BurgerMenu(): React.ReactElement {
   const { scrollToSection, activeSection } = useScrollSnap();
+  const togglerRef = useRef<HTMLInputElement>(null);
 
   // Map icons to section titles
   const iconMap: Record<string, React.ReactElement> = {
@@ -25,15 +27,19 @@ export default function BurgerMenu(): React.ReactElement {
   const handleNavClick = (index: number): void => {
     scrollToSection(index);
     // Close the menu by unchecking the toggler
-    const toggler = document.querySelector(".toggler") as HTMLInputElement;
-    if (toggler) {
-      toggler.checked = false;
+    if (togglerRef.current) {
+      togglerRef.current.checked = false;
     }
   };
 
   return (
     <div>
-      <input type="checkbox" className="toggler" aria-label="Toggle menu" />
+      <input 
+        ref={togglerRef}
+        type="checkbox" 
+        className="toggler" 
+        aria-label="Toggle menu" 
+      />
       <div id="hamburger">
         <div></div>
       </div>
