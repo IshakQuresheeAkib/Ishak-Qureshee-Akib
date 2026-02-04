@@ -74,7 +74,7 @@ function AboutImage(): React.ReactElement {
       <div className="about-image-wrapper">
         <Image
           className="about-image"
-          src="https://i.ibb.co.com/hJbS7G9G/Untitled-design-1.png"
+          src="https://i.ibb.co/hJbS7G9G/Untitled-design-1.png"
           alt="Ishak Qureshee Akib"
           width={400}
           height={400}

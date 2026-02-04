@@ -17,9 +17,6 @@ const config: Config = {
         secondary: "#187bd1",
         accent: "#3996ff",
       },
-      fontFamily: {
-        recursive: ["Recursive", "sans-serif"],
-      },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.5s ease-out",
@@ -53,6 +50,6 @@ const config: Config = {
     styled: true,
     utils: true,
   },
-};
+} as Config;
 
 export default config;

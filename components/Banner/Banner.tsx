@@ -91,7 +91,7 @@ export default function Banner(): React.ReactElement {
     >
       <div className="w-full">
         <p className="text-2xl font-bold text-white mt-4"> Hi! I&apos;m </p>
-        <p style={{fontFamily: "var(--font-auto_wide)"}} className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase text-white mt-2">Ishak Qureshee Akib</p>
+        <p className="text-2xl font-auto_wide xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase text-white mt-2">Ishak Qureshee Akib</p>
           
         <p className="absolute text-2xl font-bold text-white mt-4">I&apos;m a </p>
         <div className="flex items-center gap-2 mt-3 sm:mt-4">
