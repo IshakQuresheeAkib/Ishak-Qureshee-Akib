@@ -150,8 +150,8 @@ export default function Banner(): React.ReactElement {
             href={EXTERNAL_URLS.resume}
             download
           >
-            <CustomButton size="sm" before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />}>
-              Download Resume
+            <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />}>
+               Resume
             </CustomButton>
           </a>
       </div>
