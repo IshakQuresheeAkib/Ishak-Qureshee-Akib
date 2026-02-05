@@ -101,7 +101,7 @@ export default function Projects(): React.ReactElement {
                     <CustomButton
                       variant="primary"
                       before={
-                        <HiOutlineExternalLink className="text-base sm:text-lg font-bold" />
+                        <HiOutlineExternalLink className="text-base sm:text-lg 3xl:text-xl font-bold" />
                       }
                     >
                       Live Site

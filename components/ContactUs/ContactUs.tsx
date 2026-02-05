@@ -90,7 +90,7 @@ export default function ContactUs(): React.ReactElement {
             <div>
               <label
                 htmlFor="from_name"
-                className="block mb-1.5 sm:mb-2 text-base sm:text-lg mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
+                className="block mb-1.5 sm:mb-2 text-base sm:text-lg 3xl:text-xl mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
               >
                 Name
               </label>
@@ -98,7 +98,7 @@ export default function ContactUs(): React.ReactElement {
                 type="text"
                 id="from_name"
                 name="from_name"
-                className="border-b text-white/80 border-white/90 bg-transparent text-sm sm:text-base focus:ring-primary-500 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none"
+                className="border-b text-white/80 border-white/90 bg-transparent text-sm sm:text-base 3xl:text-lg focus:ring-primary-500 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none"
                 placeholder="Name"
                 required
               />
@@ -106,7 +106,7 @@ export default function ContactUs(): React.ReactElement {
             <div className="text-white/80">
               <label
                 htmlFor="from_email"
-                className="block mb-1.5 sm:mb-2 text-base sm:text-lg mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
+                className="block mb-1.5 sm:mb-2 text-base sm:text-lg 3xl:text-xl mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
               >
                 Your email
               </label>
@@ -114,7 +114,7 @@ export default function ContactUs(): React.ReactElement {
                 type="email"
                 id="from_email"
                 name="from_email"
-                className="border-b border-white/90 bg-transparent text-sm sm:text-base block w-full py-2 sm:py-2.5 px-1 outline-none"
+                className="border-b border-white/90 bg-transparent text-sm sm:text-base 3xl:text-lg block w-full py-2 sm:py-2.5 px-1 outline-none"
                 placeholder="name@gmail.com"
                 required
               />
@@ -123,7 +123,7 @@ export default function ContactUs(): React.ReactElement {
             <div className="sm:col-span-2">
               <label
                 htmlFor="message"
-                className="block mb-1.5 sm:mb-2 text-base sm:text-lg mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
+                className="block mb-1.5 sm:mb-2 text-base sm:text-lg 3xl:text-xl mt-4 sm:mt-6 lg:mt-10 font-medium text-white px-1"
               >
                 Your message
               </label>
@@ -131,7 +131,7 @@ export default function ContactUs(): React.ReactElement {
                 id="message"
                 name="message"
                 rows={4}
-                className="border-b border-white/90 bg-transparent text-sm sm:text-base focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none resize-none"
+                className="border-b border-white/90 bg-transparent text-sm sm:text-base 3xl:text-lg focus:ring-primary-500 text-white/80 focus:border-primary-500 block w-full py-2 sm:py-2.5 px-1 outline-none resize-none"
                 placeholder="Leave a comment..."
                 required
               ></textarea>
@@ -139,7 +139,7 @@ export default function ContactUs(): React.ReactElement {
             <CustomButton
               type="submit"
               variant="primary"
-              before={<RiSendPlaneFill className="text-lg sm:text-xl" />}
+              before={<RiSendPlaneFill className="text-lg sm:text-xl 3xl:text-2xl" />}
               disabled={isSubmitting}
             >
               {isSubmitting ? "Sending..." : "Send"}

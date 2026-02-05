@@ -51,7 +51,7 @@ const Navbar = memo(function Navbar(): React.ReactElement {
   };
 
   return (
-    <header className="site-header">
+    <header className="site-header fixed top-0 left-0 right-0 z-1000 text-base 2xl:text-xl 3xl:text-2xl flex justify-center py-[clamp(0.75rem,2vw,1.5rem)] px-[clamp(1rem,1vw,2rem)]">
       <nav
         className={`navbar-container ${scrolled ? "navbar-scrolled" : ""} ${
           hoveredIndex !== null ? "has-hover" : ""

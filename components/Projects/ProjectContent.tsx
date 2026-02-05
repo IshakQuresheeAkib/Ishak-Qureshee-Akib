@@ -31,10 +31,10 @@ export function ProjectContent({
         transition={{ duration: 0.6, delay: 0.1 }}
         className="mb-1"
       >
-        <span className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white/10">
+        <span className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 3xl:text-6xl font-bold text-white/10">
           {String(index + 1).padStart(2, "0")}
         </span>
-        <span className="text-sm sm:text-base lg:text-lg text-white/30 ml-2">
+        <span className="text-sm sm:text-base lg:text-lg 3xl:text-xl text-white/30 ml-2">
           / {String(totalProjects).padStart(2, "0")}
         </span>
       </motion.div>
@@ -44,7 +44,7 @@ export function ProjectContent({
         initial={{ opacity: 0, y: 20 }}
         animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium text-white/95 leading-tight mb-3 sm:mb-4"
+        className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 3xl:text-6xl font-medium text-white/95 leading-tight mb-3 sm:mb-4"
       >
         {project.title}
       </motion.h2>
@@ -62,7 +62,7 @@ export function ProjectContent({
         initial={{ opacity: 0, y: 20 }}
         animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, delay: 0.4 }}
-        className="text-xs sm:text-sm lg:text-base text-white/70 leading-relaxed mb-4 sm:mb-6"
+        className="text-xs sm:text-sm lg:text-base 3xl:text-lg text-white/70 leading-relaxed mb-4 sm:mb-6"
       >
         {project.description}
       </motion.p>
@@ -73,10 +73,10 @@ export function ProjectContent({
         animate={isActive ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, delay: 0.5 }}
       >
-        <h3 className="text-sm sm:text-base lg:text-lg font-semibold text-white/90 mb-2 sm:mb-3">
+        <h3 className="text-sm sm:text-base lg:text-lg 3xl:text-xl font-semibold text-white/90 mb-2 sm:mb-3">
           Core Features:
         </h3>
-        <ul className="text-xs sm:text-sm text-white/70 space-y-1 sm:space-y-1.5 text-left px-4 sm:px-6 lg:px-8">
+        <ul className="text-xs sm:text-sm 3xl:text-base text-white/70 space-y-1 sm:space-y-1.5 text-left px-4 sm:px-6 lg:px-8">
           {project.features.map((feature: string, idx: number) => (
             <motion.li
               key={idx}
