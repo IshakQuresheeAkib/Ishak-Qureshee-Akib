@@ -108,9 +108,9 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="scroll-section flex flex-col lg:flex-row min-h-screen 2xl:max-w-7xl mx-auto justify-center items-center 3xl:pt-20"
+      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[95%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[6vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)]"
     >
-      <div className="w-8/12 3xl:w-full">
+      <div>
         <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
         <p className="text-4xl font-auto_wide md:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5">Ishak Qureshee Akib</p>
         <div className="flex items-center gap-2 3xl:gap-4 mt-6 xl:mt-9 3xl:mt-11">
@@ -156,7 +156,7 @@ export default function Banner(): React.ReactElement {
           </a>
       </div>
 
-      <div className="flex justify-center items-center scale-[1.2] sm:scale-[1.2] 2xl:scale-[1.6] 3xl:scale-[1.7]">
+      <div className="flex justify-center items-center scale-90 sm:scale-[1] lg:scale-125 xl:scale-[1.4] 3xl:scale-[1.7]">
         <AnimatedAvatar
           src={EXTERNAL_URLS.avatarImage}
           alt="Ishak Qureshee Akib"

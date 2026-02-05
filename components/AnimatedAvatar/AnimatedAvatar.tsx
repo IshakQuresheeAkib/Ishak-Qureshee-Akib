@@ -16,7 +16,7 @@ function GlowFilterSVG(): React.ReactElement {
       width="0"
       height="0"
       aria-hidden="true"
-      className="glow-filter-svg"
+      className="fixed w-0 h-0 pointer-none:"
     >
       <filter id="avatar-glow-filter" x="-.25" y="-.25" width="1.5" height="1.5">
         <feComponentTransfer>
@@ -44,7 +44,7 @@ function AnimatedAvatarComponent({
   priority = false,
 }: AnimatedAvatarProps): React.ReactElement {
   return (
-    <div className="animated-avatar-wrapper">
+    <div className="animated-avatar-wrapper flex justify-center items-center shrink-0">
       <GlowFilterSVG />
       <div className="animated-avatar">
         <div className="animated-avatar-image-wrapper">
@@ -53,7 +53,7 @@ function AnimatedAvatarComponent({
             alt={alt}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="animated-avatar-image"
+            className="w-full h-full object-cover rounded-xl object-center"
             priority={priority}
           />
         </div>
