@@ -26,7 +26,7 @@ function GlowFilterSVG(): React.ReactElement {
         <feComponentTransfer result="rond">
           <feFuncA type="table" tableValues="-2 3" />
         </feComponentTransfer>
-        <feMorphology operator="dilate" radius="1" />
+        <feMorphology operator="dilate" radius="3" />
         <feGaussianBlur stdDeviation="10" />
         <feBlend in="rond" result="glow" />
         <feComponentTransfer in="SourceGraphic">
@@ -46,15 +46,16 @@ function AnimatedAvatarComponent({
   return (
     <div className="animated-avatar-wrapper flex justify-center items-center shrink-0">
       <GlowFilterSVG />
-      <div className="animated-avatar">
+      <div className="animated-avatar w-75 h-75 md:w-96 md:h-96 object-cover rounded-full relative">
         <div className="animated-avatar-image-wrapper">
           <Image
             src={src}
             alt={alt}
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="w-full h-full object-cover rounded-xl object-center"
+            sizes="(max-width: 768px) 30vw, (max-width: 1200px) 40vw, 40vw"
+            className="w-full h-full object-cover rounded-full"
             priority={priority}
+            quality={100}
           />
         </div>
       </div>

@@ -108,7 +108,7 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[95%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[6vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)]"
+      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[95%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)]"
     >
       <div>
         <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
@@ -117,14 +117,14 @@ export default function Banner(): React.ReactElement {
           <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
           <div className="relative inline-flex min-h-7 sm:min-h-9 3xl:min-h-12 min-w-0 items-baseline" ref={textWrapperRef}>
             {ROLES.map((role) => (
-              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-7 sm:leading-9 3xl:leading-12 text-[#65c1ff]">
+              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-9 3xl:leading-12 text-[#65c1ff]">
                 {role}
               </h5>
             ))}
           </div>
         </div>
-          <p className="mt-2 3xl:mt-5 font-thin text-white/90 text-base sm:text-xl 3xl:text-2xl sm:max-w-4/5 leading-7 sm:leading-9 3xl:leading-10">
-            who is passionate about building scalable and performant applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.
+          <p className="mt-2 3xl:mt-5 font-thin text-white/90 text-base 2xl:text-lg 3xl:text-2xl sm:max-w-4/5 leading-7 3xl:leading-10">
+            passionate about building scalable and performant web applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.
           </p>
           <ul className="flex w-fit gap-3 sm:gap-5 my-7">
             {SOCIAL_ICONS.map((social, index) => (
@@ -156,7 +156,7 @@ export default function Banner(): React.ReactElement {
           </a>
       </div>
 
-      <div className="flex justify-center items-center scale-90 sm:scale-[1] lg:scale-125 xl:scale-[1.4] 3xl:scale-[1.7]">
+      <div className="flex justify-center items-center shrink-0">
         <AnimatedAvatar
           src={EXTERNAL_URLS.avatarImage}
           alt="Ishak Qureshee Akib"

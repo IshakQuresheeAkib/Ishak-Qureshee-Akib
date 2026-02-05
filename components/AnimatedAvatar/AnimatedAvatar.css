@@ -5,13 +5,9 @@
   inherits: false;
 }
 .animated-avatar {
-  --border-width: 3px;
+  --border-width: 4px;
   box-sizing: border-box;
   border: solid var(--border-width) transparent;
-  width: 280px;
-  height: 280px;
-  object-fit: cover;
-  border-radius: calc(5 * var(--border-width));
   background: 
     repeating-conic-gradient(
       from var(--glow-angle, 0deg), 
@@ -34,7 +30,7 @@
   left: var(--border-width);
   right: var(--border-width);
   bottom: var(--border-width);
-  border-radius: calc(5 * var(--border-width));
+  border-radius: 50%;
   overflow: hidden;
 }
 @keyframes rotateGlowAngle {
