@@ -54,7 +54,7 @@ export function ProjectContent({
         initial={{ scaleX: 0 }}
         animate={isActive ? { scaleX: 1 } : { scaleX: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
-        className="w-full h-[1px] bg-white/30 mb-3 sm:mb-4"
+        className="w-full h-1 bg-white/30 mb-3 sm:mb-4"
       ></motion.div>
 
       {/* Project Description */}

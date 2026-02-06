@@ -79,7 +79,7 @@
   anchor-name: --nav-hover;
 }
 .nav-link.active {
-  text-shadow: #ffffff;
+  color: #2da7ff;
 }
 /* Fallback hover effect for browsers without anchor positioning */
 @supports not (position-anchor: --nav-hover) {
@@ -87,11 +87,13 @@
     background-color: color-mix(in srgb, var(--c-glass) 20%, transparent);
   }
 }
-.nav-link.active .nav-icon {
-  text-shadow: #001eff;
-}
 @media (max-width: 1024px) {
   .navbar-container {
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+  .navbar-scrolled {
+    background-color: transparent !important;
     backdrop-filter: none;
     box-shadow: none;
   }

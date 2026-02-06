@@ -1,6 +1,8 @@
 "use client";
-
-import { useRef, useState, useEffect } from "react";
+ 
+import { useRef, useState, useLayoutEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Title from "@/components/Title/Title";
 import CustomButton from "@/components/CustomButton/CustomButton";
 import { HiOutlineExternalLink } from "react-icons/hi";
@@ -10,49 +12,49 @@ import { ProjectImage } from "./ProjectImage";
 
 const projects = PROJECTS_DATA;
 
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
+
 export default function Projects(): React.ReactElement {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [scrollHeight, setScrollHeight] = useState<number>(2500 * projects.length);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleScroll = (): void => {
-      if (!containerRef.current) return;
-
-      const scrollPosition = window.scrollY;
-      const containerTop = containerRef.current.offsetTop;
-      const windowHeight = window.innerHeight;
-      
-      // Adjust scroll distance per section (increased for smoother transitions)
-      const scrollDistancePerSection = windowHeight + 550;
-      const relativeScroll = scrollPosition - containerTop + windowHeight;
-
-      const lastSectionIndex = projects.length - 1;
-
-      projects.forEach((_: Project, index: number) => {
-        const sectionStart = index * scrollDistancePerSection;
-        const sectionEnd = (index + 1) * scrollDistancePerSection;
-
-        if (relativeScroll >= sectionStart && relativeScroll < sectionEnd) {
-          setActiveIndex(index);
-        }
-      });
-
-      // Keep last section active when scrolled past
-      if (relativeScroll > lastSectionIndex * scrollDistancePerSection) {
-        setActiveIndex(lastSectionIndex);
-      }
+  useLayoutEffect(() => {
+    const updateScrollHeight = (): void => {
+      const base = window.innerHeight + 550;
+      setScrollHeight(base * projects.length);
+      ScrollTrigger.refresh();
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initial check
+    updateScrollHeight();
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    const ctx = gsap.context(() => {
+      if (!containerRef.current) return;
+      const base = window.innerHeight + 550;
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top top",
+        end: () => `+=${base * projects.length}`,
+        onUpdate: (self) => {
+          const total = projects.length;
+          const index = Math.min(
+            total - 1,
+            Math.max(0, Math.floor(self.progress * total))
+          );
+          setActiveIndex(index);
+        },
+      });
+    }, containerRef);
+
+    window.addEventListener("resize", updateScrollHeight);
+
+    return () => {
+      window.removeEventListener("resize", updateScrollHeight);
+      ctx.revert();
+    };
   }, []);
-
-  // Calculate height based on number of projects
-  const scrollHeight = typeof window !== "undefined" 
-    ? (window.innerHeight + 550) * projects.length
-    : 2500 * projects.length;
 
   return (
     <section className="relative scroll-section" id="projects">
@@ -66,14 +68,14 @@ export default function Projects(): React.ReactElement {
       {/* Main Tabs Container */}
       <div
         ref={containerRef}
-        className="relative z-10 rounded-t-[2rem] lg:rounded-t-[3rem]"
+        className="relative z-10 rounded-t-4xl lg:rounded-t-[3rem]"
         style={{ 
           height: `${scrollHeight}px`,
         }}
       >
         {/* Sticky Wrapper */}
         <div className="sticky top-[5vh] h-[90vh] pt-8 sm:pt-12 lg:pt-16 pb-8 sm:pb-12 lg:pb-16">
-          <div className="max-w-[120rem] mx-auto h-full px-4 sm:px-6 lg:px-12">
+          <div className="max-w-480 mx-auto h-full px-4 sm:px-6 lg:px-12">
             {/* Grid Container */}
             <div className="grid lg:grid-cols-[0.6fr_0.7fr] grid-cols-1 gap-8 h-full">
               {/* Left Content Panel */}
@@ -111,7 +113,7 @@ export default function Projects(): React.ReactElement {
               </div>
 
               {/* Right Image Panel */}
-              <div className="relative h-[300px] lg:h-full rounded-2xl lg:rounded-3xl overflow-hidden">
+              <div className="relative h-75 lg:h-full rounded-2xl lg:rounded-3xl overflow-hidden">
                 {projects.map((project: Project, index: number) => (
                   <ProjectImage
                     key={project.id}
