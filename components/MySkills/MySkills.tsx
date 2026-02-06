@@ -157,7 +157,7 @@ function SkillItem({ skill }: SkillItemProps): React.ReactElement {
           <div
             className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-8" : "sm:pl-8"}`}
           >
-            <div className="p-4 bg-white/25 text-white/90 rounded shadow text-sm lg:text-base">
+            <div className="p-4 bg-white/25 text-white/90 rounded shadow text-sm lg:text-base 3xl:text-lg">
               {skill.description}
             </div>
           </div>

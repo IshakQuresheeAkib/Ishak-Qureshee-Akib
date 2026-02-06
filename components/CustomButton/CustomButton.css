@@ -1,67 +1,18 @@
-/* ===== LIQUID BUTTON STYLES ===== */
-
-/* Base button styles */
-.liquid-btn {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  overflow: hidden;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  background: transparent;
-  transition: transform 2s ease, box-shadow 2s ease;
+/* ===== LIQUID ANIMATION KEYFRAMES ===== */
+@keyframes liquidWave {
+  0% { transform: translate(-50%, -75%) rotate(0deg); }
+  100% { transform: translate(-50%, -75%) rotate(360deg); }
 }
 
-.liquid-btn:hover {
-  transform: translateY(-2px);
-}
-
-.liquid-btn:active {
-  transform: translateY(0) scale(0.98);
-}
-
-/* Button content wrapper */
-.liquid-btn__content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 2px;
-  z-index: 2;
-}
-
-.liquid-btn__text {
-  white-space: nowrap;
-}
-
-.liquid-btn__icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ===== LIQUID ANIMATION ===== */
-.liquid-btn__liquid {
-  position: absolute;
-  top: -80px;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: var(--liquid-color, #2396fb89);
+/* ===== LIQUID EFFECT STRUCTURE ===== */
+/* Positioning and transitions handled by Tailwind in CustomButton.tsx */
+.liquid-effect {
+  background: var(--liquid-bg-gradient);
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
-  transition: top 1s ease;
 }
 
-.liquid-btn__liquid::before,
-.liquid-btn__liquid::after {
+.liquid-effect::before,
+.liquid-effect::after {
   content: "";
   width: 200%;
   height: 200%;
@@ -71,237 +22,21 @@
   transform: translate(-50%, -75%);
 }
 
-.liquid-btn__liquid::before {
+.liquid-effect::before {
   border-radius: 45%;
-  background: var(--liquid-bg, rgba(11, 47, 82, 0.644));
+  background: var(--liquid-bg);
   animation: liquidWave 40s linear infinite;
 }
 
-.liquid-btn__liquid::after {
+.liquid-effect::after {
   border-radius: 40%;
-  background: var(--liquid-bg-transparent, rgba(11, 47, 82, 0.208));
+  background: var(--liquid-bg-transparent);
   animation: liquidWave 20s linear infinite;
 }
 
-/* Hover effect - liquid rises */
-.liquid-btn:hover .liquid-btn__liquid {
-  top: -120px;
-}
-
-/* ===== KEYFRAMES ===== */
-@keyframes liquidWave {
-  0% {
-    transform: translate(-50%, -75%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -75%) rotate(360deg);
-  }
-}
-
-/* ===== SIZE VARIANTS ===== */
-.liquid-btn--sm {
-  padding: 12px 28px;
-  min-width: 140px;
-}
-
-.liquid-btn--sm .liquid-btn__content {
-  font-size: 12px;
-  letter-spacing: 1.5px;
-  gap: 6px;
-}
-
-.liquid-btn--sm .liquid-btn__liquid {
-  top: -90px;
-  height: 180px;
-}
-
-.liquid-btn--sm:hover .liquid-btn__liquid {
-  top: -130px;
-}
-
-.liquid-btn--md {
-  padding: 16px 40px;
-  min-width: 180px;
-}
-
-.liquid-btn--md .liquid-btn__content {
-  font-size: 14px;
-  letter-spacing: 2px;
-}
-
-.liquid-btn--lg {
-  padding: 20px 50px;
-  min-width: 220px;
-}
-
-.liquid-btn--lg .liquid-btn__content {
-  font-size: 16px;
-  letter-spacing: 3px;
-  gap: 10px;
-}
-
-.liquid-btn--lg .liquid-btn__liquid {
-  top: -70px;
-  height: 220px;
-}
-
-.liquid-btn--lg:hover .liquid-btn__liquid {
-  top: -110px;
-}
-
-/* ===== COLOR VARIANTS ===== */
-
-/* Primary - Blue theme */
-.liquid-btn--primary {
-  --liquid-color: #2396fbb6;
-  --liquid-bg: rgba(11, 47, 82, 1);
-  --liquid-bg-transparent: rgba(11, 47, 82, 0.216);
-  box-shadow: 0 4px 20px rgba(35, 150, 251, 0.3);
-}
-
-.liquid-btn--primary:hover {
-  box-shadow: 0 6px 30px rgba(35, 150, 251, 0.5);
-}
-
-.liquid-btn--primary .liquid-btn__liquid {
-  background: linear-gradient(135deg, #2396fb9c 0%, #187bd1c7 50%, #65c1ffd3 100%);
-}
-
-/* Secondary - Gray theme */
-.liquid-btn--secondary {
-  --liquid-color: #4a5568a3;
-  --liquid-bg: rgba(26, 32, 44, 1);
-  --liquid-bg-transparent: rgba(26, 32, 44, 0.5);
-  box-shadow: 0 4px 20px rgba(74, 85, 104, 0.3);
-}
-
-.liquid-btn--secondary:hover {
-  box-shadow: 0 6px 30px rgba(74, 85, 104, 0.5);
-}
-
-.liquid-btn--secondary .liquid-btn__liquid {
-  background: linear-gradient(135deg, #4a5568 0%, #2d3748 50%, #718096 100%);
-}
-
-/* Danger - Red theme */
-.liquid-btn--danger {
-  --liquid-color: #e53e3e;
-  --liquid-bg: rgba(74, 20, 20, 1);
-  --liquid-bg-transparent: rgba(74, 20, 20, 0.5);
-  box-shadow: 0 4px 20px rgba(229, 62, 62, 0.3);
-}
-
-.liquid-btn--danger:hover {
-  box-shadow: 0 6px 30px rgba(229, 62, 62, 0.5);
-}
-
-.liquid-btn--danger .liquid-btn__liquid {
-  background: linear-gradient(135deg, #e53e3e 0%, #c53030 50%, #fc8181 100%);
-}
-
-/* ===== DISABLED STATE ===== */
-.liquid-btn--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.liquid-btn--disabled:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.liquid-btn--disabled .liquid-btn__liquid {
+/* Adjust animation state for disabled */
+.group-disabled .liquid-effect,
+.group-disabled .liquid-effect::before,
+.group-disabled .liquid-effect::after {
   animation: none;
-}
-
-.liquid-btn--disabled .liquid-btn__liquid::before,
-.liquid-btn--disabled .liquid-btn__liquid::after {
-  animation: none;
-}
-
-/* ===== FOCUS STATE ===== */
-.liquid-btn:focus-visible {
-  outline: 2px solid #65c1ff;
-  outline-offset: 3px;
-}
-
-/* ===== RESPONSIVE STYLES ===== */
-
-/* Large desktop */
-@media (min-width: 1536px) {
-  .liquid-btn--md {
-    padding: 18px 45px;
-    min-width: 200px;
-  }
-  
-  .liquid-btn--md .liquid-btn__content {
-    font-size: 15px;
-  }
-}
-
-/* Tablet and below */
-@media (max-width: 768px) {
-  .liquid-btn--md {
-    padding: 14px 32px;
-    min-width: 160px;
-  }
-  
-  .liquid-btn--md .liquid-btn__content {
-    font-size: 13px;
-    letter-spacing: 1.5px;
-  }
-  
-  .liquid-btn--lg {
-    padding: 16px 40px;
-    min-width: 180px;
-  }
-  
-  .liquid-btn--lg .liquid-btn__content {
-    font-size: 14px;
-  }
-}
-
-/* Mobile */
-@media (max-width: 480px) {
-  .liquid-btn--sm {
-    padding: 10px 22px;
-    min-width: 120px;
-  }
-  
-  .liquid-btn--sm .liquid-btn__content {
-    font-size: 11px;
-    letter-spacing: 1px;
-  }
-  
-  .liquid-btn--md {
-    padding: 12px 26px;
-    min-width: 140px;
-  }
-  
-  .liquid-btn--md .liquid-btn__content {
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
-  
-  .liquid-btn--lg {
-    padding: 14px 32px;
-    min-width: 160px;
-  }
-  
-  .liquid-btn--lg .liquid-btn__content {
-    font-size: 13px;
-    letter-spacing: 1.5px;
-  }
-}
-
-/* Small height screens */
-@media (max-height: 700px) and (min-width: 1024px) {
-  .liquid-btn--md {
-    padding: 12px 32px;
-  }
-  
-  .liquid-btn--lg {
-    padding: 14px 40px;
-  }
 }
