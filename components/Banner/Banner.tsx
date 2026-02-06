@@ -112,7 +112,15 @@ export default function Banner(): React.ReactElement {
     >
       <div>
         <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
-        <p className="text-4xl font-auto_wide md:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5">Ishak Qureshee Akib</p>
+        <p
+          className="text-4xl font-auto_wide md:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5"
+          style={{
+            textShadow:
+              "0 .2ch 10px oklch(10% .2 320), 0 -2px 0 oklch(98% .05 320)",
+          }}
+        >
+          Ishak Qureshee Akib
+        </p>
         <div className="flex items-center gap-2 3xl:gap-4 mt-6 xl:mt-9 3xl:mt-11">
           <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
           <div className="relative inline-flex min-h-7 sm:min-h-9 3xl:min-h-12 min-w-0 items-baseline" ref={textWrapperRef}>
