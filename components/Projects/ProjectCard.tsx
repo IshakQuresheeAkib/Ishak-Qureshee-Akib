@@ -53,138 +53,97 @@ export default function ProjectCard({
     >
       <div 
         data-theme={theme} 
-        className="relative h-auto max-h-[85vh] w-auto max-w-[95vw] mx-auto flex items-center justify-center"
+        className="relative"
       >
         <section className="font-sans text-black">
-          <div className="fancy-corners fancy-corners--large fancy-corners--top-left fancy-corners--bottom-right flex flex-col lg:flex-row lg:items-stretch shadow-2xl lg:h-[75vh] w-full lg:w-auto rounded-xl">
-            
-            {/* --- Image Section --- 
-                Constraint: Height driven on desktop implies width is auto. 
-            */}
-            <div className="relative w-full lg:w-auto h-[35vh] lg:h-full shrink-0 bg-gray-50 flex items-center justify-center">
-               <div className="h-full w-auto relative group">
-                 <Image
-                  src={project.image}
-                  alt={project.title}
-                  width={1200}
-                  height={800}
-                  className="h-full w-auto object-contain transition-transform duration-700"
-                  style={{ width: 'auto', height: '100%' }}
-                  sizes="(max-width: 1024px) 100vw, 80vw"
-                  priority={isActive}
-                />
-               </div>
-            </div>
+          <div className="fancy-corners fancy-corners--large fancy-corners--top-left fancy-corners--bottom-right flex flex-col lg:flex-row lg:items-stretch shadow-2xl lg:h-[65vh] w-[90vw]">
+              <Image
+              src={project.image}
+              alt={project.title}
+              width={1200}
+              height={800}
+              className="h-auto w-[60vw] object-cover transition-transform duration-700"
+              priority={isActive}
+            />
+            <div className="h-full flex-1 flex flex-col justify-between pb-4 bg-gray-50 sm:px-2 lg:px-6 overflow-hidden">
+                <div className="">
 
-            {/* --- Content Section --- 
-                Constraint: Fluid width with mins/maxs to adapt to image
-            */}
-            <div className="w-full lg:flex-1 lg:min-w-[350px] lg:max-w-[500px] shrink-0 bg-grey px-6 py-6 sm:px-10 lg:px-12 flex flex-col overflow-y-auto">
-              <div className="leading-relaxed h-full flex flex-col justify-center">
-                {/* Header */}
+                  <div className="">
 
-          <div className="mb-6">
+                      <span className="text-4xl sm:text-5xl font-bold text-gray-300 select-none">
 
-             <div className="flex items-center gap-3 mb-2">
+                        {String(index + 1).padStart(2, "0")}
 
-                <span className="text-4xl sm:text-5xl font-bold text-gray-100 select-none">
+                      </span>
+                      <div className="h-px bg-gray-400 flex-1" />
+                  </div>
 
-                  {String(index + 1).padStart(2, "0")}
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
 
-                </span>
+                    {project.title}
 
-                <div className="h-px bg-gray-200 flex-1" />
+                  </h2>
 
-             </div>
+                </div>
+                <div className="">
 
-             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
+                  <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg">
 
-               {project.title}
+                    {project.description}
 
-             </h2>
+                  </p>
 
-          </div>
+                </div>
+                <div className="">
 
+                  <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Core Features</h3>
 
+                  <ul className="space-y-2">
 
-          {/* Description */}
+                    {project.features.map((feature, i) => (
 
-          <div className="mb-8">
+                      <li key={i} className="flex items-start gap-2 text-sm sm:text-base text-gray-600">
 
-            <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
 
-              {project.description}
+                        {feature}
 
-            </p>
+                      </li>
 
-          </div>
+                    ))}
 
+                  </ul>
 
+                </div>
+                <div className="grid grid-cols-2 gap-y-6 gap-x-4 border-t border-gray-100">
 
-          {/* Core Features */}
+                  {project.techStack.frontend.length > 0 && renderTechIcons(project.techStack.frontend, "Frontend")}
 
-           <div className="mb-8">
+                  {project.techStack.backend.length > 0 && renderTechIcons(project.techStack.backend, "Backend")}
 
-            <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Core Features</h3>
+                  {project.techStack.database.length > 0 && renderTechIcons(project.techStack.database, "Database")}
 
-            <ul className="space-y-2">
+                </div>
+                <div className="">
 
-              {project.features.map((feature, i) => (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
 
-                <li key={i} className="flex items-start gap-2 text-sm sm:text-base text-gray-600">
+                      <CustomButton
 
-                  <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+                        variant="primary"
 
-                  {feature}
+                        before={<HiOutlineExternalLink className="text-lg" />}
 
-                </li>
+                      >
 
-              ))}
+                        Explore Live
 
-            </ul>
+                      </CustomButton>
 
-          </div>
+                  </a>
 
-
-
-          {/* Tech Stack Grid */}
-
-          <div className="grid grid-cols-2 gap-y-6 gap-x-4 mb-8 pt-6 border-t border-gray-100">
-
-            {project.techStack.frontend.length > 0 && renderTechIcons(project.techStack.frontend, "Frontend")}
-
-            {project.techStack.backend.length > 0 && renderTechIcons(project.techStack.backend, "Backend")}
-
-            {project.techStack.database.length > 0 && renderTechIcons(project.techStack.database, "Database")}
-
-          </div>
-
-
-
-          {/* Action Button */}
-
-          <div className="mt-auto pt-4">
-
-             <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
-
-                <CustomButton
-
-                  variant="primary"
-
-                  before={<HiOutlineExternalLink className="text-lg" />}
-
-                >
-
-                  Explore Live
-
-                </CustomButton>
-
-             </a>
-
-          </div>
+                </div>
               </div>
-            </div>
-
           </div>
         </section>
       </div>

@@ -43,14 +43,13 @@ export default function Projects(): React.ReactElement {
 
   return (
     <section id="projects" className="relative">
-      <div ref={containerRef} className="relative h-screen w-full flex flex-col justify-end overflow-hidden" style={{paddingBottom: '0'}}>
-        <div className="absolute top-16 left-0 w-full z-20 pt-8 sm:pt-12 px-4 sm:px-8 pointer-events-none">
-          <div className="mx-auto w-fit pointer-events-auto">
+      <div ref={containerRef} className="relative h-screen w-full flex flex-col overflow-hidden">
+        <div className="w-full pt-24 sm:pt-28 md:pt-32 pb-4 z-20 shrink-0">
+          <div className="mx-auto w-fit">
             <Title>Projects</Title>
           </div>
         </div>
-        {/* Cards Stack Container */}
-        <div className="relative w-full h-[85vh] sm:h-[90vh] mt-10 lg:mt-0 flex items-center justify-center">
+        <div className="relative w-full flex-[0.9]">
           {PROJECTS_DATA.map((project, index) => (
             <ProjectCard
               key={project.id}
