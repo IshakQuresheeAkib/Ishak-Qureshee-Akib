@@ -21,9 +21,7 @@ const infoItems: InfoItem[] = [
 
 export default function About(): React.ReactElement {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-0 scroll-section" id="about">
-      <div className="flex items-center xl:min-h-screen">
-        <div className="justify-center flex-1">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-section" id="about">
           <div className="mb-8 sm:mb-10 md:text-center">
             <div className="w-fit mx-auto">
               <Title>About Me</Title>
@@ -62,8 +60,6 @@ export default function About(): React.ReactElement {
               </div>
             </motion.div>
           </div>
-        </div>
-      </div>
     </section>
   );
 }
