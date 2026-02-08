@@ -55,17 +55,17 @@ export default function ProjectCard({
         data-theme={theme} 
         className="relative"
       >
-        <section className="font-sans text-black w-[90vw]">
-          <div className="fancy-corners fancy-corners--large fancy-corners--top-left fancy-corners--bottom-right flex flex-col lg:flex-row shadow-2xl h-[65vh]">
+        <section className="font-sans text-black flex items-center justify-center h-full w-[90%] mx-auto">
+          <div className="fancy-corners rounded-3xl fancy-corners--large fancy-corners--top-left fancy-corners--bottom-right flex flex-col lg:flex-row shadow-2xl h-[60vh]">
             <Image
               src={project.image}
               alt={project.title}
               width={1200}
               height={800}
-              className="h-auto w-full flex-1 object-cover transition-transform duration-700"
+              className="h-auto w-full flex-1 object-cover transition-transform duration-700 rounded-tl-2xl rounded-bl-2xl"
               priority={isActive}
             />
-            <div className="h-full w-[30vw] flex flex-col justify-around pb-4 bg-gray-50 sm:px-2 lg:px-6 overflow-hidden">
+            <div className="h-full rounded-3xl w-[30vw] flex flex-col justify-around pb-4 bg-gray-50 sm:px-2 lg:px-6 overflow-hidden">
                 <div className="">
 
                   <div className="">
