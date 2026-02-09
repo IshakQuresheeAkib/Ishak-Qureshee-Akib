@@ -17,6 +17,27 @@ const ROLES: string[] = [
   "Javascript Developer",
 ];
 
+const SOCIAL_ICONS = [
+  {
+    icon: FaGithub,
+    href: SOCIAL_LINKS.github,
+    variant: "github" as const,
+    ariaLabel: "Visit GitHub Profile",
+  },
+  {
+    icon: FaLinkedin,
+    href: SOCIAL_LINKS.linkedin,
+    variant: "linkedin" as const,
+    ariaLabel: "Visit LinkedIn Profile",
+  },
+  {
+    icon: FaFacebook,
+    href: SOCIAL_LINKS.facebook,
+    variant: "facebook" as const,
+    ariaLabel: "Visit Facebook Profile",
+  },
+];
+
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
@@ -87,76 +108,63 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="scroll-section flex flex-col lg:flex-row min-h-screen 2xl:max-w-7xl mx-auto justify-center items-center "
+      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
     >
-      <div className="w-full">
-        <p className="text-2xl font-bold text-white mt-4"> Hi! I&apos;m </p>
-        <p style={{fontFamily: "var(--font-auto_wide)"}} className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase text-white mt-2">Ishak Qureshee Akib</p>
-          
-        <p className="absolute text-2xl font-bold text-white mt-4">I&apos;m a </p>
-        <div className="flex items-center gap-2 mt-3 sm:mt-4">
-          <p className="text-lg sm:text-xl lg:text-2xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
-          <div className="relative inline-flex min-h-[1.5em] min-w-0 items-baseline" ref={textWrapperRef}>
+      <div>
+        <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
+        <p
+          className="text-3xl font-auto_wide sm:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5"
+          style={{
+            textShadow:
+              "0 .2ch 10px oklch(10% .2 320), 0 -2px 0 oklch(98% .05 320)",
+          }}
+        >
+          Ishak Qureshee Akib
+        </p>
+        <div className="flex items-center gap-2 3xl:gap-4 xl:mt-9 3xl:mt-11">
+          <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
+          <div className="relative inline-flex min-w-0 items-baseline" ref={textWrapperRef}>
             {ROLES.map((role) => (
-              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-[16px] font-bold leading-none text-[#65c1ff] xs:text-[18px] sm:text-[20px] lg:text-[24px]">
+              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]">
                 {role}
               </h5>
             ))}
           </div>
         </div>
-          <p className="pt-6 sm:pt-8 lg:pt-9 font-thin text-white/80 text-sm sm:text-base max-w-xl 2xl:max-w-2xl">
-            passionate developer focused on building scalable and performant applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.
+          <p className="mt-2 3xl:mt-5 font-thin text-white/90 text-base 2xl:text-lg 3xl:text-2xl sm:max-w-4/5 leading-7 3xl:leading-10">
+            passionate about building scalable and performant web applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.
           </p>
-          <ul className="py-4 sm:py-6 xl:py-8 flex w-fit gap-3 sm:gap-4">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              <SocialIconButton
-                icon={FaGithub}
-                href={SOCIAL_LINKS.github}
-                variant="github"
-                ariaLabel="Visit GitHub Profile"
-              />
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              <SocialIconButton
-                icon={FaLinkedin}
-                href={SOCIAL_LINKS.linkedin}
-                variant="linkedin"
-                ariaLabel="Visit LinkedIn Profile"
-              />
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.2 }}
-            >
-              <SocialIconButton
-                icon={FaFacebook}
-                href={SOCIAL_LINKS.facebook}
-                variant="facebook"
-                ariaLabel="Visit Facebook Profile"
-              />
-            </motion.div>
+          <ul className="flex w-fit gap-3 sm:gap-5 my-7">
+            {SOCIAL_ICONS.map((social, index) => (
+              <motion.div
+                key={social.variant}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.2, delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <SocialIconButton
+                  icon={social.icon}
+                  href={social.href}
+                  variant={social.variant}
+                  ariaLabel={social.ariaLabel}
+                />
+              </motion.div>
+            ))}
           </ul>
 
           <a
             href={EXTERNAL_URLS.resume}
             download
           >
-            <CustomButton size="sm" before={<FaCloudDownloadAlt className="text-base sm:text-xl" />}>
-              Download Resume
+            <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />}>
+               Resume
             </CustomButton>
           </a>
       </div>
 
-      <div className="w-full lg:w-1/2 xl:w-fit flex justify-center items-center scale-[1.2] sm:scale-[1.4] lg:scale-[1.6] 2xl:scale-[1.7]">
+      <div className="flex justify-center items-center shrink-0">
         <AnimatedAvatar
           src={EXTERNAL_URLS.avatarImage}
           alt="Ishak Qureshee Akib"

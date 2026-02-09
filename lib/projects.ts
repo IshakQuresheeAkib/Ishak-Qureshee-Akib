@@ -1,3 +1,7 @@
+import type { IconType } from "react-icons";
+import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt } from "react-icons/fa";
+import { SiNextdotjs, SiTypescript, SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiStripe } from "react-icons/si";
+
 export interface Project {
   id: number;
   title: string;
@@ -5,67 +9,96 @@ export interface Project {
   features: string[];
   image: string;
   liveUrl: string;
-  imagePosition: "left" | "right";
+  techStack: {
+    frontend: string[];
+    backend: string[];
+    database: string[];
+  };
 }
+
+// Icon Mapping Helper
+export const TECH_ICONS: Record<string, IconType> = {
+  "React": FaReact,
+  "Next.js": SiNextdotjs,
+  "TypeScript": SiTypescript,
+  "JavaScript": FaReact, // Fallback or separate JS icon
+  "Tailwind CSS": SiTailwindcss,
+  "Node.js": FaNodeJs,
+  "Express.js": SiExpress,
+  "MongoDB": SiMongodb,
+  "Firebase": SiFirebase,
+  "Stripe": SiStripe,
+  "HTML": FaHtml5,
+  "CSS": FaCss3Alt
+};
 
 export const PROJECTS_DATA: Project[] = [
   {
     id: 1,
     title: "Concord",
-    description:
-      "Concord is a modern matrimony platform designed for seamless connections. With a user-friendly interface and advanced features, Concord simplifies the search for the perfect life partner.",
+    description: "Concord is a modern matrimony platform designed for seamless connections. With a user-friendly interface and advanced features, Concord simplifies the search for the perfect life partner.",
     features: [
-      "Users can add and find biodata for a perfect match, and request contact information by paying a fee by Stripe.",
-      "Created different user dashboards based on their roles, like admins and regular users.",
-      "Allow users to filter biodatas based on location, age, and gender",
+      "Stripe payment integration for contact requests",
+      "Role-based dashboards (Admin vs User)",
+      "Advanced filtering by location, age, gender"
     ],
     image: "https://i.ibb.co/jkHS0LD/IMG-20240227-WA0020-01-jpeg.jpg",
     liveUrl: "https://assignment-12-847d7.web.app/",
-    imagePosition: "left",
+    techStack: {
+      frontend: ["React", "Tailwind CSS"],
+      backend: ["Node.js", "Express.js"],
+      database: ["MongoDB"]
+    }
   },
   {
     id: 2,
     title: "NourishNet",
-    description:
-      "NourishNet is a Community Food Sharing and Surplus Reduction Platform,it offers a user-friendly interface where users can view their donation and request history, manage their profile, and track ongoing donation or request statuses.",
+    description: "NourishNet is a Community Food Sharing and Surplus Reduction Platform offering a user-friendly interface for donation tracking and profile management.",
     features: [
-      "Empower users to add surplus food for donation, edit or delete their listings as needed",
-      "Allow users to request food, view all requests, and cancel their request if the status is pending.",
-      "Donors can view and mark all food requests as delivered on the platform.",
+      "Surplus food listing and management",
+      "Food request system with status tracking",
+      "Donor dashboard for delivery confirmation"
     ],
-    image:
-      "https://i.ibb.co/Z8BTdK4/Whats-App-Image-2024-02-27-at-23-19-30-a5c82f45.jpg",
+    image: "https://i.ibb.co/Z8BTdK4/Whats-App-Image-2024-02-27-at-23-19-30-a5c82f45.jpg",
     liveUrl: "https://nourish-net.web.app/",
-    imagePosition: "right",
+    techStack: {
+      frontend: ["React", "TypeScript"],
+      backend: ["Node.js", "Express.js"],
+      database: ["MongoDB"]
+    }
   },
   {
     id: 3,
     title: "Car Canvas",
-    description:
-      "Car Canvas is a project where user can see a Wide Array of Cars from Leading Global Brands: Visitors can easily browse and explore a diverse selection of cars from renowned automobile manufacturers worldwide.",
+    description: "Car Canvas allows visitors to easily browse and explore a diverse selection of cars from renowned automobile manufacturers worldwide.",
     features: [
-      "Users can add cars with specific details and explore cars based on their brand names.",
-      "View car details, add to cart, and easily manage added cars in cart.",
-      "Users will experience responsive design across various devices",
+      "Add cars with specific details",
+      "Shopping cart management functionality",
+      "Fully responsive design across devices"
     ],
-    image:
-      "https://i.ibb.co/myZqSvL/Whats-App-Image-2024-02-28-at-00-13-23-c0f74721.jpg",
+    image: "https://i.ibb.co/myZqSvL/Whats-App-Image-2024-02-28-at-00-13-23-c0f74721.jpg",
     liveUrl: "https://car-canvas.web.app/",
-    imagePosition: "left",
+    techStack: {
+      frontend: ["React", "Tailwind CSS"],
+      backend: ["Node.js", "Express.js"],
+      database: ["MongoDB"]
+    }
   },
   {
     id: 4,
     title: "Occasion Alchemy",
-    description:
-      "Occasion Alchemy is your partner in transforming ordinary events into extraordinary memories. With an alchemical blend of creativity, meticulous planning, and personalized touches, we specialize in weddings, birthdays, anniversaries, engagement parties, baby showers etc.",
+    description: "Occasion Alchemy transforms ordinary events into extraordinary memories, specializing in weddings, birthdays, and anniversaries.",
     features: [
-      "User authentication is implemented using Firebase.",
-      "Implemented pagination to enhance user experience with smooth navigation.",
-      "Users will experience responsive design across various devices.",
+      "Firebase Authentication",
+      "Pagination for event listings",
+      "Responsive event management interface"
     ],
-    image:
-      "https://i.ibb.co/T1sX87M/Whats-App-Image-2024-02-28-at-00-31-51-253c595c.jpg",
+    image: "https://i.ibb.co/T1sX87M/Whats-App-Image-2024-02-28-at-00-31-51-253c595c.jpg",
     liveUrl: "https://occasion-alchemy-40dfe.web.app/",
-    imagePosition: "right",
-  },
+    techStack: {
+      frontend: ["React", "Tailwind CSS"],
+      backend: ["Firebase"],
+      database: ["Firebase"]
+    }
+  }
 ];

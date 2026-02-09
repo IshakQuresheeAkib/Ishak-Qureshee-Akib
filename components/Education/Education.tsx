@@ -73,11 +73,11 @@ function EducationCard({ item }: EducationCardProps): React.ReactElement {
         item.id === 4 ? "self-start" : ""
       }`}
     >
-      <small className="text-white/60 text-xs sm:text-sm">{item.period}</small>
-      <h3 className="text-base sm:text-lg lg:text-xl font-bold leading-snug">{item.title}</h3>
-      <p className="text-white/80 text-sm sm:text-base">- {item.institution}</p>
+      <small className="text-white/60 text-xs sm:text-sm 3xl:text-base">{item.period}</small>
+      <h3 className="text-base sm:text-lg lg:text-xl 3xl:text-2xl font-bold leading-snug">{item.title}</h3>
+      <p className="text-white/80 text-sm sm:text-base 3xl:text-lg">- {item.institution}</p>
       {item.grade && (
-        <small className="text-white/60 text-xs sm:text-sm">{item.grade}</small>
+        <small className="text-white/60 text-xs sm:text-sm 3xl:text-base">{item.grade}</small>
       )}
     </div>
   );

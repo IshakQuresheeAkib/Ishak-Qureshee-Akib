@@ -116,7 +116,7 @@ function SkillItem({ skill }: SkillItemProps): React.ReactElement {
   const isLeft = skill.position === "left";
 
   return (
-    <div className="mb-8 sm:mb-12">
+    <div className="mb-4 sm:mb-8">
       <motion.div
         initial={{ y: 150, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -142,7 +142,7 @@ function SkillItem({ skill }: SkillItemProps): React.ReactElement {
             )}
           </div>
           <div className="w-full px-2">
-            <div className="p-3 sm:p-4 bg-white/25 text-white/90 rounded shadow text-center text-sm">
+            <div className="p-3 sm:p-4 bg-white/25 text-white/90 rounded shadow text-center text-[10px] 2xl:text-sm">
               {skill.description}
             </div>
           </div>
@@ -157,7 +157,7 @@ function SkillItem({ skill }: SkillItemProps): React.ReactElement {
           <div
             className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-8" : "sm:pl-8"}`}
           >
-            <div className="p-4 bg-white/25 text-white/90 rounded shadow text-sm lg:text-base">
+            <div className="p-2 bg-white/25 text-white/90 rounded shadow text-[12px] 3xl:text-lg">
               {skill.description}
             </div>
           </div>

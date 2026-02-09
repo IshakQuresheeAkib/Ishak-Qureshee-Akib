@@ -1,15 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+@import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-:root {
-  --font-auto_wide: "Audiowide", sans-serif;
+@theme {
+  --color-teal: #00857d;
+  --color-purple: #782b8f;
+  --color-blue: #334982;
+  --color-grey: #f3f3f3;
+  --color-orange: #fdb913;
+  --color-pink: #e40087;
+  --color-red: #dd372f;
+  --font-auto_wide: var(--font-auto_wide);
+  --breakpoint-3xl: 121rem;
 }
 
-* {
-  font-family: "Recursive", sans-serif;
+@layer components {
+  /* --- FANCY CORNERS LOGIC --- */
+  .fancy-corners {
+    @apply relative bg-white;
+    transform-style: preserve-3d; /* Key for placing pseudo-elements behind */
+  }
+
+  .fancy-corners::before,
+  .fancy-corners::after {
+    @apply absolute w-[8em] h-[8em] -z-10;
+    content: "";
+    background-size: 100% 100%;
+    transform: translateZ(-1px); /* Pushes behind the card */
+  }
+
+  /* Theme Coloring */
+  [data-theme="teal"] .fancy-corners::before,
+  [data-theme="teal"] .fancy-corners::after { @apply bg-teal; }
+
+  [data-theme="orange"] .fancy-corners::before,
+  [data-theme="orange"] .fancy-corners::after { @apply bg-orange-800; }
+
+  [data-theme="red"] .fancy-corners::before,
+  [data-theme="red"] .fancy-corners::after { @apply bg-red-800; }
+
+  /* Positioning Logic */
+  .fancy-corners--large.fancy-corners--top-left::before {
+    @apply -top-[2.05882em] -left-[2.05882em];
+  }
+
+  .fancy-corners--large.fancy-corners--bottom-right::after {
+    @apply -bottom-[2.05882em] -right-[2.05882em];
+  }
+
+  /* Masking Logic (The Diagonal Cut) */
+  .fancy-corners--top-left::before {
+    mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+    -webkit-mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+  }
+
+  .fancy-corners--bottom-right::after {
+    mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+    -webkit-mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+  }
+
+  /* Responsive Adjustments for Mobile */
+  @media (max-width: 1024px) {
+    .fancy-corners::before,
+    .fancy-corners::after {
+      @apply w-[5em] h-[5em]; /* Smaller corners on mobile */
+    }
+    .fancy-corners--large.fancy-corners--top-left::before {
+      @apply -top-[1.2em] -left-[1.2em];
+    }
+    .fancy-corners--large.fancy-corners--bottom-right::after {
+      @apply -bottom-[1.2em] -right-[1.2em];
+    }
+  }
 }
 
 html {
@@ -18,10 +79,9 @@ html {
   position: relative;
 }
 
+
 ul, li {
   list-style: none;
-  padding: 0;
-  margin: 0;
 }
 
 /* Section entrance animations */

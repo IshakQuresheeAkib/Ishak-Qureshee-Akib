@@ -2,7 +2,7 @@
 
 import { memo, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 
 interface SocialIconButtonProps {
   icon: IconType;
@@ -45,7 +45,7 @@ const SocialIconButton = memo<SocialIconButtonProps>(
             : { opacity: 0, scale: 0.5, y: 20 }
         }
         transition={{
-          duration: 2,
+          duration: 0.7,
           delay: 0.1,
           ease: [0.25, 1, 0.5, 1],
         }}
@@ -56,7 +56,7 @@ const SocialIconButton = memo<SocialIconButtonProps>(
           target="_blank"
           rel="noopener noreferrer"
           aria-label={ariaLabel}
-          className="relative flex justify-center items-center w-[clamp(2rem,2vw,3rem)] aspect-square text-[clamp(1rem,1vw,1rem)] border-2 rounded-full no-underline outline-none overflow-hidden cursor-pointer transition-colors duration-700 -webkit-tap-highlight-color-transparent group/link"
+          className="relative flex justify-center items-center w-[clamp(3rem,2vw,6rem)] aspect-square border-2 rounded-full no-underline outline-none overflow-hidden cursor-pointer transition-colors duration-700 -webkit-tap-highlight-color-transparent group/link"
           style={{
             color: colors.iconColor,
             borderColor: colors.iconColor,
@@ -77,7 +77,7 @@ const SocialIconButton = memo<SocialIconButtonProps>(
             style={{ backgroundColor: colors.fillBg }}
           />
 
-          <Icon className="relative z-[2] w-full h-full max-w-[clamp(1rem,1vw,1rem)] max-h-[clamp(1rem,1vw,1rem)]" />
+          <Icon className="relative z-2 rounded-full w-full h-full max-w-[clamp(2rem,1vw,3rem)] max-h-[clamp(2rem,1vw,3rem)]" />
         </a>
       </motion.li>
     );

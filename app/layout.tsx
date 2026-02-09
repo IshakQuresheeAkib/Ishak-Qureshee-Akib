@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Recursive } from "next/font/google";
+import { Audiowide, Recursive } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,6 +13,13 @@ const recursive = Recursive({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-recursive",
+});
+
+const auto_wide = Audiowide({
+  subsets: ["latin"],
+  display: "swap",
+  weight: "400",
+  variable: "--font-auto_wide",
 });
 
 export const metadata: Metadata = {
@@ -56,7 +63,7 @@ export default function RootLayout({
 }>): React.ReactElement {
   return (
     <html lang="en">
-      <body className={`${recursive.variable} font-sans antialiased`}>
+      <body className={`${recursive.className} ${auto_wide.variable} antialiased`}>
         <SmoothScroll>
           <ScrollSnapProvider>
             <InitialLoading />

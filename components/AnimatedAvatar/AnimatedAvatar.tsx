@@ -16,7 +16,7 @@ function GlowFilterSVG(): React.ReactElement {
       width="0"
       height="0"
       aria-hidden="true"
-      className="glow-filter-svg"
+      className="fixed w-0 h-0 pointer-events-none"
     >
       <filter id="avatar-glow-filter" x="-.25" y="-.25" width="1.5" height="1.5">
         <feComponentTransfer>
@@ -26,7 +26,7 @@ function GlowFilterSVG(): React.ReactElement {
         <feComponentTransfer result="rond">
           <feFuncA type="table" tableValues="-2 3" />
         </feComponentTransfer>
-        <feMorphology operator="dilate" radius="1" />
+        <feMorphology operator="dilate" radius="3" />
         <feGaussianBlur stdDeviation="10" />
         <feBlend in="rond" result="glow" />
         <feComponentTransfer in="SourceGraphic">
@@ -44,15 +44,16 @@ function AnimatedAvatarComponent({
   priority = false,
 }: AnimatedAvatarProps): React.ReactElement {
   return (
-    <div className="animated-avatar-wrapper">
+    <div className="animated-avatar-wrapper flex justify-center items-center shrink-0">
       <GlowFilterSVG />
-      <div className="animated-avatar">
+      <div className="animated-avatar w-70 h-70 sm:w-80 sm:h-80 xl:w-96 xl:h-96 3xl:w-112.5 3xl:h-112.5 object-cover rounded-full relative">
         <div className="animated-avatar-image-wrapper">
           <Image
             src={src}
             alt={alt}
             fill
-            className="animated-avatar-image"
+            sizes="(max-width: 768px) 30vw, (max-width: 1200px) 40vw, 40vw"
+            className="w-full h-full object-cover rounded-full"
             priority={priority}
           />
         </div>

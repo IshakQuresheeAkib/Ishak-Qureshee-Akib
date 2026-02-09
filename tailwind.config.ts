@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 import daisyui from "daisyui";
 
-const config: Config = {
+const config = {
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -16,9 +16,6 @@ const config: Config = {
         primary: "#2396fb",
         secondary: "#187bd1",
         accent: "#3996ff",
-      },
-      fontFamily: {
-        recursive: ["Recursive", "sans-serif"],
       },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
@@ -53,6 +50,6 @@ const config: Config = {
     styled: true,
     utils: true,
   },
-};
+} as Config;
 
 export default config;
