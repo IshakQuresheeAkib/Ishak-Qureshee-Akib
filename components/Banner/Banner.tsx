@@ -108,7 +108,7 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[95%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)]"
+      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
     >
       <div>
         <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>

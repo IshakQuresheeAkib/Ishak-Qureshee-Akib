@@ -46,7 +46,7 @@ function AnimatedAvatarComponent({
   return (
     <div className="animated-avatar-wrapper flex justify-center items-center shrink-0">
       <GlowFilterSVG />
-      <div className="animated-avatar w-75 h-75 md:w-96 md:h-96 object-cover rounded-full relative">
+      <div className="animated-avatar w-70 h-70 sm:w-80 sm:h-80 xl:w-96 xl:h-96 3xl:w-112.5 3xl:h-112.5 object-cover rounded-full relative">
         <div className="animated-avatar-image-wrapper">
           <Image
             src={src}

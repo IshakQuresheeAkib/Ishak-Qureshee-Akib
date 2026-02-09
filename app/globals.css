@@ -9,9 +9,8 @@
   --color-orange: #fdb913;
   --color-pink: #e40087;
   --color-red: #dd372f;
-
   --font-auto_wide: var(--font-auto_wide);
-  --breakpoint-3xl: 1921px;
+  --breakpoint-3xl: 121rem;
 }
 
 @layer components {

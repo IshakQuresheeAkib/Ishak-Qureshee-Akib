@@ -67,7 +67,7 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
   ): React.ReactElement => {
     // Responsive Size Classes - Mobile First
     const sizeClasses: Record<ButtonSize, string> = {
-      sm: "px-[22px] py-[10px] min-w-[120px] text-[11px] tracking-[1px] sm:px-7 sm:py-3 sm:min-w-[140px] sm:text-xs sm:tracking-[1.5px]",
+      sm: "px-3 py-2.5 min-w-[100px] text-[11px]",
       md: "px-[26px] py-3 min-w-[140px] text-xs tracking-[1px] sm:px-8 sm:py-3.5 sm:min-w-[160px] sm:text-[13px] sm:tracking-[1.5px] md:px-10 md:py-4 md:min-w-[180px] md:text-sm md:tracking-[2px] 2xl:px-[45px] 2xl:py-[18px] 2xl:min-w-[200px] 2xl:text-[15px]",
       lg: "px-8 py-3.5 min-w-[160px] text-[13px] tracking-[1.5px] md:px-[50px] md:py-5 md:min-w-[220px] md:text-base md:tracking-[3px]",
     };

@@ -19,12 +19,12 @@
 .liquid-effect::before {
   border-radius: 45%;
   background: var(--liquid-bg);
-  animation: liquidWave 40s linear infinite;
+  animation: liquidWave 10s linear infinite;
 }
 .liquid-effect::after {
   border-radius: 40%;
   background: var(--liquid-bg-transparent);
-  animation: liquidWave 20s linear infinite;
+  animation: liquidWave 8s linear infinite;
 }
 .group-disabled .liquid-effect,
 .group-disabled .liquid-effect::before,

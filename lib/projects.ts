@@ -1,4 +1,4 @@
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { SiNextdotjs, SiTypescript, SiMongodb, SiExpress, SiTailwindcss, SiFirebase, SiStripe } from "react-icons/si";
 

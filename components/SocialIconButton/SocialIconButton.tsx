@@ -2,7 +2,7 @@
 
 import { memo, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { IconType } from "react-icons";
+import type { IconType } from "react-icons";
 
 interface SocialIconButtonProps {
   icon: IconType;

@@ -3,8 +3,9 @@
 import Image from "next/image";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import CustomButton from "@/components/CustomButton/CustomButton";
-import { Project, TECH_ICONS } from "@/lib/projects";
-import { IconType } from "react-icons";
+import { TECH_ICONS } from "@/lib/projects";
+import type { Project } from "@/lib/projects";
+import type { IconType } from "react-icons";
 
 interface ProjectCardProps {
   project: Project;
@@ -62,19 +63,20 @@ export default function ProjectCard({
               alt={project.title}
               width={1200}
               height={800}
-              className="h-auto w-full max-h-[40vh] lg:max-h-full lg:max-w-[55vw] flex-1 object-cover transition-transform duration-700 rounded-t-2xl lg:rounded-l-2xl"
+              className="h-auto w-full max-h-[40vh] lg:max-h-full lg:max-w-[55vw] flex-1 object-cover transition-transform duration-700 rounded-t-2xl lg:rounded-tr-none lg:rounded-l-2xl"
               priority={isActive}
             />
-            <div className="h-full rounded-b-2xl lg:rounded-r-2xl lg:w-[40vw] xl:w-[40vw] flex flex-col justify-around pb-4 bg-gray-50 px-3 2xl:px-5 overflow-hidden">
+            <div className="h-full rounded-b-2xl lg:rounded-r-2xl lg:w-[40vw] xl:w-[40vw] flex flex-col justify-center gap-[2vh] pb-2 bg-gray-50 px-3 2xl:px-5 overflow-hidden">
                 <div>
-                  <div>
-                      <span className="text-4xl sm:text-5xl font-bold text-gray-300 select-none">{String(index + 1).padStart(2, "0")} </span>
-                      <div className="h-px bg-gray-400 flex-1" />
+                  <div className="mb-[1vh]">
+                      <span className="text-base font-bold font-auto_wide text-gray-400 select-none">{String(index + 1).padStart(2, "0")}  </span>
+                      <span className="text-[12px] text-gray-400 select-none font-auto_wide">/ 04</span>
+                      <div className="h-px bg-gray-300 flex-1" />
                   </div>
                   <h2 className="text-xl lg:text-2xl 3xl:text-4xl font-bold text-gray-900 leading-tight"> {project.title}</h2>
                   <p className="text-gray-600 leading-relaxed text-sm 3xl:text-base pt-[1vh]"> {project.description} </p>
                 </div>
-                <div className="mt-[1vh]">
+                <div>
                   <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Core Features</h3>
                   <ul className="sm:space-y-1">
                     {project.features.map((feature, i) => (
@@ -91,7 +93,7 @@ export default function ProjectCard({
                   {project.techStack.database.length > 0 && renderTechIcons(project.techStack.database, "Database")}
                 </div>
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <CustomButton  variant="primary" size="sm" before={<HiOutlineExternalLink className="text-base" />}>Explore Live </CustomButton>
+                  <CustomButton variant="primary" size="sm" before={<HiOutlineExternalLink className="text-base" />}> Live Site</CustomButton>
                 </a>
               </div>
           </div>

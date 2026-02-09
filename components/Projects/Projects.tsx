@@ -44,7 +44,7 @@ export default function Projects(): React.ReactElement {
   return (
     <section id="projects" className="relative">
       <div ref={containerRef}className="h-screen w-full flex flex-col">
-        <div className="w-full pt-[3vh] lg:pt-24 3xl:pt-32 z-20 shrink-0">
+        <div className="w-full py-[3vh] lg:pb-0 lg:pt-24 3xl:pt-32 z-20 shrink-0">
           <div className="mx-auto w-fit">
             <Title>Projects</Title>
           </div>
