@@ -16,7 +16,7 @@ export default function Title({ children }: TitleProps): React.ReactElement {
       transition={{ duration: 1.5 }}
     >
       <h1
-        className="text-[6vw] sm:text-4xl md:text-5xl 3xl:text-6xl font-medium uppercase text-white before:content-[''] before:block before:w-20.5 before:h-2 before:rounded-4xl font-auto_wide before:bg-[#2282ff] before:mb-2 text-center sm:text-left"
+        className="text-[5vw] sm:text-3xl lg:text-4xl 3xl:text-6xl font-medium uppercase text-white before:content-[''] before:block before:w-20.5 before:h-2 before:rounded-4xl font-auto_wide before:bg-[#2282ff] before:mb-2 text-center sm:text-left"
         style={{
           textShadow:
             "0 .2ch 10px oklch(10% .2 320), 0 -2px 0 oklch(98% .05 320)",

@@ -26,9 +26,9 @@ export default function ProjectCard({
 
   // Helper to render icon list
   const renderTechIcons = (techs: string[], label: string) => (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col">
       <span className="text-[10px] sm:text-xs uppercase tracking-wider font-bold text-gray-500">{label}</span>
-      <div className="flex flex-wrap gap-3">
+      <div className="flex flex-wrap gap-1">
         {techs.map((tech) => {
           const Icon: IconType = TECH_ICONS[tech] || TECH_ICONS["React"]; 
           return (
@@ -56,57 +56,42 @@ export default function ProjectCard({
         className="relative"
       >
         <section className="font-sans text-black flex items-center justify-center h-full w-[90%] mx-auto">
-          <div className="fancy-corners rounded-3xl fancy-corners--large fancy-corners--top-left fancy-corners--bottom-right flex flex-col lg:flex-row shadow-2xl h-[60vh]">
+          <div className="fancy-corners rounded-3xl fancy-corners--large fancy-corners--top-left fancy-corners--bottom-right flex flex-col lg:flex-row shadow-2xl h-[85vh] mb-4 lg:h-[68vh]">
             <Image
               src={project.image}
               alt={project.title}
               width={1200}
               height={800}
-              className="h-auto w-full flex-1 object-cover transition-transform duration-700 rounded-tl-2xl rounded-bl-2xl"
+              className="h-auto w-full max-h-[40vh] lg:max-h-full lg:max-w-[55vw] flex-1 object-cover transition-transform duration-700 rounded-t-2xl lg:rounded-l-2xl"
               priority={isActive}
             />
-            <div className="h-full rounded-3xl w-[30vw] flex flex-col justify-around pb-4 bg-gray-50 sm:px-2 lg:px-6 overflow-hidden">
-                <div className="">
-                  <div className="">
+            <div className="h-full rounded-b-2xl lg:rounded-r-2xl lg:w-[40vw] xl:w-[40vw] flex flex-col justify-around pb-4 bg-gray-50 px-3 2xl:px-5 overflow-hidden">
+                <div>
+                  <div>
                       <span className="text-4xl sm:text-5xl font-bold text-gray-300 select-none">{String(index + 1).padStart(2, "0")} </span>
                       <div className="h-px bg-gray-400 flex-1" />
                   </div>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight"> {project.title}</h2>
+                  <h2 className="text-xl lg:text-2xl 3xl:text-4xl font-bold text-gray-900 leading-tight"> {project.title}</h2>
+                  <p className="text-gray-600 leading-relaxed text-sm 3xl:text-base pt-[1vh]"> {project.description} </p>
                 </div>
-                <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg">
-
-                  {project.description}
-
-                </p>
-                <div className="">
+                <div className="mt-[1vh]">
                   <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Core Features</h3>
-                  <ul className="space-y-2">
-
+                  <ul className="sm:space-y-1">
                     {project.features.map((feature, i) => (
-
-                      <li key={i} className="flex items-start gap-2 text-sm sm:text-base text-gray-600">
-
-                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
-
+                      <li key={i} className="flex items-start gap-2 text-gray-600 leading-relaxed text-sm 3xl:text-base">
+                        <span className="mt-2 w-2 h-2 rounded-full bg-blue-500 shrink-0" />
                         {feature}
-
                       </li>
-
                     ))}
-
                   </ul>
                 </div>
-                <div className="grid grid-cols-3 gap-y-6 gap-x-4 border-t border-gray-100">
-
+                <div className="grid grid-cols-3 gap-y-6 gap-x-2">
                   {project.techStack.frontend.length > 0 && renderTechIcons(project.techStack.frontend, "Frontend")}
-
                   {project.techStack.backend.length > 0 && renderTechIcons(project.techStack.backend, "Backend")}
-
                   {project.techStack.database.length > 0 && renderTechIcons(project.techStack.database, "Database")}
-
                 </div>
                 <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <CustomButton  variant="primary" before={<HiOutlineExternalLink className="text-lg" />}>Explore Live </CustomButton>
+                  <CustomButton  variant="primary" size="sm" before={<HiOutlineExternalLink className="text-base" />}>Explore Live </CustomButton>
                 </a>
               </div>
           </div>

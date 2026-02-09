@@ -177,6 +177,9 @@
   .indicator-label {
     display: none;
   }
+  .indicator-item {
+    top: -1px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -187,6 +190,9 @@
     --indicator-size: 8px;
     --indicator-gap: 10px;
     border-radius: 16px;
+  }
+  .indicator-item {
+    top: 1px;
   }
 }
 

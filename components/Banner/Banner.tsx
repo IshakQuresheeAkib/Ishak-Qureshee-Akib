@@ -121,11 +121,11 @@ export default function Banner(): React.ReactElement {
         >
           Ishak Qureshee Akib
         </p>
-        <div className="flex items-center gap-2 3xl:gap-4 mt-6 xl:mt-9 3xl:mt-11">
+        <div className="flex items-center gap-2 3xl:gap-4 xl:mt-9 3xl:mt-11">
           <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
-          <div className="relative inline-flex min-h-7 sm:min-h-9 3xl:min-h-12 min-w-0 items-baseline" ref={textWrapperRef}>
+          <div className="relative inline-flex sm:min-h-9 3xl:min-h-12 min-w-0 items-baseline" ref={textWrapperRef}>
             {ROLES.map((role) => (
-              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-9 3xl:leading-12 text-[#65c1ff]">
+              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 3xl:leading-12 text-[#65c1ff]">
                 {role}
               </h5>
             ))}
