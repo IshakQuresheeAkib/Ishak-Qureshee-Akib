@@ -21,7 +21,7 @@ const infoItems: InfoItem[] = [
 
 export default function About(): React.ReactElement {
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-section" id="about">
+    <section className="max-w-7xl mt-10 mx-auto px-4 sm:px-6 lg:px-8 scroll-section" id="about">
           <div className="mb-8 sm:mb-10 md:text-center">
             <div className="w-fit mx-auto">
               <Title>About Me</Title>
