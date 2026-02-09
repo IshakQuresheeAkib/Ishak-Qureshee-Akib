@@ -11,7 +11,7 @@
   --color-red: #dd372f;
 
   --font-auto_wide: var(--font-auto_wide);
-  --breakpoint-3xl: 121rem;
+  --breakpoint-3xl: 1921px;
 }
 
 @layer components {

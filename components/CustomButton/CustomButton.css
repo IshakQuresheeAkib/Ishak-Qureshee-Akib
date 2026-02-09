@@ -1,16 +1,11 @@
-/* ===== LIQUID ANIMATION KEYFRAMES ===== */
 @keyframes liquidWave {
   0% { transform: translate(-50%, -75%) rotate(0deg); }
   100% { transform: translate(-50%, -75%) rotate(360deg); }
 }
-
-/* ===== LIQUID EFFECT STRUCTURE ===== */
-/* Positioning and transitions handled by Tailwind in CustomButton.tsx */
 .liquid-effect {
   background: var(--liquid-bg-gradient);
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
 }
-
 .liquid-effect::before,
 .liquid-effect::after {
   content: "";
@@ -21,20 +16,16 @@
   left: 50%;
   transform: translate(-50%, -75%);
 }
-
 .liquid-effect::before {
   border-radius: 45%;
   background: var(--liquid-bg);
   animation: liquidWave 40s linear infinite;
 }
-
 .liquid-effect::after {
   border-radius: 40%;
   background: var(--liquid-bg-transparent);
   animation: liquidWave 20s linear infinite;
 }
-
-/* Adjust animation state for disabled */
 .group-disabled .liquid-effect,
 .group-disabled .liquid-effect::before,
 .group-disabled .liquid-effect::after {

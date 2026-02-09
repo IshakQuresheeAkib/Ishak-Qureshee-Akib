@@ -113,7 +113,7 @@ export default function Banner(): React.ReactElement {
       <div>
         <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
         <p
-          className="text-4xl font-auto_wide md:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5"
+          className="text-3xl font-auto_wide sm:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5"
           style={{
             textShadow:
               "0 .2ch 10px oklch(10% .2 320), 0 -2px 0 oklch(98% .05 320)",
@@ -123,9 +123,9 @@ export default function Banner(): React.ReactElement {
         </p>
         <div className="flex items-center gap-2 3xl:gap-4 xl:mt-9 3xl:mt-11">
           <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
-          <div className="relative inline-flex sm:min-h-9 3xl:min-h-12 min-w-0 items-baseline" ref={textWrapperRef}>
+          <div className="relative inline-flex min-w-0 items-baseline" ref={textWrapperRef}>
             {ROLES.map((role) => (
-              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 3xl:leading-12 text-[#65c1ff]">
+              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]">
                 {role}
               </h5>
             ))}

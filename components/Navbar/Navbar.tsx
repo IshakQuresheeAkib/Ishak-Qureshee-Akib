@@ -53,13 +53,13 @@ const Navbar = memo(function Navbar(): React.ReactElement {
   };
 
   return (
-    <header className="site-header fixed top-0 left-0 right-0 z-1000 text-sm 3xl:text-2xl flex justify-center pt-[3vh] max-lg:p-4">
+    <header className="site-header fixed top-0 left-0 right-0 z-1000 text-sm 3xl:text-2xl flex justify-center pt-[2vh] max-lg:p-4">
       <nav className={`navbar-container flex w-fit max-w-full items-center justify-between relative rounded-full bg-[#1e4a736e] transition-colors duration-400 ease-[cubic-bezier(1,0,0.4,1)] max-lg:w-full max-lg:justify-between max-lg:p-3 max-lg:bg-transparent max-lg:shadow-none max-lg:backdrop-none ${scrolled ? "navbar-scrolled" : ""} ${hoveredIndex !== null ? "has-hover" : ""}`}>
         <ul className="navbar-links flex items-center gap-0 max-lg:hidden" data-no-hover={hoveredIndex === null ? "true" : "false"}>
           {SECTIONS.map((section, index) => (
             <li key={section.id} className="nav-item">
               <button
-                className={`nav-link group relative flex items-center gap-2 px-[clamp(1rem,1.5vw,2rem)] py-[clamp(0.75rem,1.5vw,1.5rem)] bg-transparent border-none text-white/80 text-sm cursor-pointer rounded-full whitespace-nowrap z-10 transition-colors duration-300 ${
+                className={`nav-link group relative flex items-center gap-2 px-[clamp(1rem,1.5vw,2rem)] py-[clamp(0.75rem,1.5vw,1rem)] bg-transparent border-none text-white/80 text-sm cursor-pointer rounded-full whitespace-nowrap z-10 transition-colors duration-300 ${
                   activeSection === index ? "active text-[#2da7ff]" : ""
                 } ${
                   hoveredIndex === index ? "hovered text-white" : ""
