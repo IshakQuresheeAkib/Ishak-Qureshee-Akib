@@ -13,7 +13,7 @@ interface ProjectCardProps {
   index: number;
 }
 
-const THEMES = ["teal", "purple", "blue"] as const;
+const THEMES = ["teal", "orange", "red"] as const;
 
 export default function ProjectCard({
   project,
@@ -21,7 +21,7 @@ export default function ProjectCard({
   index,
 }: ProjectCardProps): React.ReactElement {
   
-  // Cycle themes based on index (0=teal, 1=purple, 2=blue)
+  // Cycle themes based on index (0=teal, 1=orange, 2=red)
   const theme = THEMES[index % THEMES.length];
 
   // Helper to render icon list
@@ -67,37 +67,19 @@ export default function ProjectCard({
             />
             <div className="h-full rounded-3xl w-[30vw] flex flex-col justify-around pb-4 bg-gray-50 sm:px-2 lg:px-6 overflow-hidden">
                 <div className="">
-
                   <div className="">
-
-                      <span className="text-4xl sm:text-5xl font-bold text-gray-300 select-none">
-
-                        {String(index + 1).padStart(2, "0")}
-
-                      </span>
+                      <span className="text-4xl sm:text-5xl font-bold text-gray-300 select-none">{String(index + 1).padStart(2, "0")} </span>
                       <div className="h-px bg-gray-400 flex-1" />
                   </div>
-
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight">
-
-                    {project.title}
-
-                  </h2>
-
+                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 leading-tight"> {project.title}</h2>
                 </div>
+                <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg">
+
+                  {project.description}
+
+                </p>
                 <div className="">
-
-                  <p className="text-gray-600 leading-relaxed text-sm sm:text-base lg:text-lg">
-
-                    {project.description}
-
-                  </p>
-
-                </div>
-                <div className="">
-
                   <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Core Features</h3>
-
                   <ul className="space-y-2">
 
                     {project.features.map((feature, i) => (
@@ -113,9 +95,8 @@ export default function ProjectCard({
                     ))}
 
                   </ul>
-
                 </div>
-                <div className="grid grid-cols-2 gap-y-6 gap-x-4 border-t border-gray-100">
+                <div className="grid grid-cols-3 gap-y-6 gap-x-4 border-t border-gray-100">
 
                   {project.techStack.frontend.length > 0 && renderTechIcons(project.techStack.frontend, "Frontend")}
 
@@ -124,25 +105,9 @@ export default function ProjectCard({
                   {project.techStack.database.length > 0 && renderTechIcons(project.techStack.database, "Database")}
 
                 </div>
-                <div className="">
-
-                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
-
-                      <CustomButton
-
-                        variant="primary"
-
-                        before={<HiOutlineExternalLink className="text-lg" />}
-
-                      >
-
-                        Explore Live
-
-                      </CustomButton>
-
-                  </a>
-
-                </div>
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
+                  <CustomButton  variant="primary" before={<HiOutlineExternalLink className="text-lg" />}>Explore Live </CustomButton>
+                </a>
               </div>
           </div>
         </section>

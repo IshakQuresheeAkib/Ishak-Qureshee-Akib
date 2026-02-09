@@ -33,11 +33,11 @@
   [data-theme="teal"] .fancy-corners::before,
   [data-theme="teal"] .fancy-corners::after { @apply bg-teal; }
 
-  [data-theme="purple"] .fancy-corners::before,
-  [data-theme="purple"] .fancy-corners::after { @apply bg-purple; }
+  [data-theme="orange"] .fancy-corners::before,
+  [data-theme="orange"] .fancy-corners::after { @apply bg-orange-800; }
 
-  [data-theme="blue"] .fancy-corners::before,
-  [data-theme="blue"] .fancy-corners::after { @apply bg-blue; }
+  [data-theme="red"] .fancy-corners::before,
+  [data-theme="red"] .fancy-corners::after { @apply bg-red-800; }
 
   /* Positioning Logic */
   .fancy-corners--large.fancy-corners--top-left::before {
