@@ -56,7 +56,7 @@ const SocialIconButton = memo<SocialIconButtonProps>(
           target="_blank"
           rel="noopener noreferrer"
           aria-label={ariaLabel}
-          className="relative flex justify-center items-center w-[clamp(3rem,2vw,6rem)] aspect-square border-2 rounded-full no-underline outline-none overflow-hidden cursor-pointer transition-colors duration-700 -webkit-tap-highlight-color-transparent group/link"
+          className="relative flex justify-center items-center w-[clamp(2.5rem,2vw,6rem)] aspect-square border-2 rounded-full no-underline outline-none overflow-hidden cursor-pointer transition-colors duration-700 -webkit-tap-highlight-color-transparent group/link"
           style={{
             color: colors.iconColor,
             borderColor: colors.iconColor,

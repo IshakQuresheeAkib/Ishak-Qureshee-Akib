@@ -89,7 +89,7 @@ const skills: Skill[] = [
 
 export default function MySkills(): React.ReactElement {
   return (
-    <section className="py-16 sm:py-24 lg:py-36 px-4 sm:px-6 lg:px-8" id="skills">
+    <section className="scroll-section py-16 sm:py-24 lg:py-36 px-4 sm:px-6 lg:px-8" id="skills">
       <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
         <Title>SkillSet</Title>
       </div>
