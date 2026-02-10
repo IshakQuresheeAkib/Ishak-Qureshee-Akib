@@ -46,9 +46,10 @@
   width: 100%;
   height: 4px;
   background-color: white;
-  margin-bottom: 6px;
+  box-shadow: -5px -5px 10px rgb(2, 62, 99), 5px 5px 15px rgb(1, 59, 113);
+  backdrop-filter: blur(50px);
+  margin-bottom: 4px;
   position: relative;
-  /* THE UI8 DIAGONAL LOOK */
   transform: rotate(-45deg); 
   transition: transform 0.4s var(--ease-power4), opacity 0.4s, width 0.4s;
   transform-origin: center;
