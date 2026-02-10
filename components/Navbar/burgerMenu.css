@@ -1,196 +1,228 @@
-
-/* ===== BURGER MENU STYLES ===== */
-.toggler {
-  z-index: 20;
-  height: 50px;
-  width: 50px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-  opacity: 0;
+:root {
+  --anim-speed: 0.6s;
+  --bg-color-menu: #121212;
+  --color-blue: #6295ca;
+  --ease-in-out: cubic-bezier(0.55, 0, 0.1, 1);
+  --ease-power4: cubic-bezier(0.25, 1, 0.5, 1); /* Similar to Power4.easeOut */
 }
 
-#hamburger {
-  position: absolute;
-  top: -14px;
-  right: 0;
-  height: 80px;
-  width: 60px;
-  padding: 0.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
-#hamburger > div {
-  position: relative;
-  top: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.9);
-  height: 2px;
-  width: 60%;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 4px rgba(35, 150, 251, 0.3);
-}
-
-#hamburger > div::before,
-#hamburger > div::after {
-  content: "";
-  position: absolute;
-  top: -10px;
-  background: rgba(255, 255, 255, 0.9);
-  width: 100%;
-  height: 2px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 4px rgba(35, 150, 251, 0.3);
-}
-
-#hamburger > div::after {
-  top: 10px;
-}
-
-.toggler:checked + #hamburger > div {
-  background: rgba(255, 255, 255, 0);
-}
-
-.toggler:checked + #hamburger > div::before {
-  top: 0;
-  transform: rotate(45deg);
-  background: #fff;
-  box-shadow: 0 0 8px rgba(35, 150, 251, 0.6);
-}
-
-.toggler:checked + #hamburger > div::after {
-  top: 0;
-  transform: rotate(135deg);
-  background: #fff;
-  box-shadow: 0 0 8px rgba(35, 150, 251, 0.6);
-}
-
-#menu {
-  width: 0;
-  height: 100vh;
+/* ===== OVERLAY ===== */
+.menu-overlay {
+  pointer-events: none;
   position: fixed;
-  top: 0;
-  right: -100px;
-  z-index: 5;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  
-  /* Glassmorphism background */
-  background: linear-gradient(
-    135deg,
-    rgba(11, 47, 82, 0.95) 0%,
-    rgba(24, 123, 209, 0.9) 50%,
-    rgba(35, 150, 251, 0.85) 100%
-  );
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: -4px 0 30px rgba(0, 0, 0, 0.3);
-}
-
-.toggler:checked ~ #menu {
-  width: clamp(250px, 60vw, 320px);
-  right: 0;
-}
-
-#menu > div > ul {
-  display: flex;
-  flex-direction: column;
-  position: fixed;
-  top: 80px;
-  padding-left: clamp(1rem, 3vw, 1.5rem);
-  padding-right: clamp(1rem, 3vw, 1.5rem);
-  visibility: hidden;
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  width: clamp(250px, 60vw, 320px);
-}
-
-#menu > div > ul > li {
-  list-style: none;
-  padding: 0;
-  margin: 0.25rem 0;
-}
-
-#menu > div > ul > li > a {
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  font-size: clamp(1rem, 3vw, 1.15rem);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-weight: 500;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-#menu > div > ul > li > a::before {
-  content: "";
-  position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(101, 193, 255, 0.1)
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  z-index: 9998;
+  overflow: hidden;
+}
+.menu-overlay.is-active {
+  pointer-events: auto;
 }
 
-#menu > div > ul > li > a:hover::before {
-  opacity: 1;
+/* ===== TRIGGER BUTTONS CONTAINER ===== */
+.trigger-btn {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 9999;
+  display: block; /* Changed from flex to block for absolute positioning of bars */
 }
 
-#menu > div > ul > li > a:hover {
-  color: #fff;
-  transform: translateX(4px);
-  box-shadow: 0 4px 12px rgba(35, 150, 251, 0.2);
-}
-
-#menu > div > ul > li > a.burger-active {
-  color: #65c1ff;
-  background: rgba(35, 150, 251, 0.2);
-  box-shadow: 0 0 16px rgba(35, 150, 251, 0.3);
-}
-
-#menu > div > ul > li > a svg {
-  font-size: clamp(1.1rem, 3.5vw, 1.3rem);
-  transition: transform 0.3s ease;
-}
-
-#menu > div > ul > li > a:hover svg {
-  transform: translateY(-2px) scale(1.1);
-  color: #2396fb;
-}
-
-.toggler:checked ~ #menu > div > ul {
+/* ===== 1. MENU TRIGGER (Diagonal Hamburger) ===== */
+.menu-trigger {
   visibility: visible;
-  opacity: 1;
+  transition: opacity 0.4s;
+}
+
+/* Hide hamburger when menu is fully open (optional, or let it fly away) */
+.nav-open .menu-trigger {
+  pointer-events: none; 
+}
+
+.menu-trigger-bar {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  margin-bottom: 6px;
+  position: relative;
+  /* THE UI8 DIAGONAL LOOK */
+  transform: rotate(-45deg); 
+  transition: transform 0.4s var(--ease-power4), opacity 0.4s, width 0.4s;
+  transform-origin: center;
+}
+
+/* Fill effect on Hover (From reference code) */
+.menu-trigger-bar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0%;
+  height: 100%;
+  background-color: var(--color-blue); /* Fill with blue on hover */
+  transition: width 0.3s var(--ease-in-out);
+}
+
+.menu-trigger:hover .menu-trigger-bar::before {
+  width: 100%;
+}
+
+/* Specific Bar Positioning/Sizing */
+.menu-trigger-bar.top {
+  width: 50%;
+}
+.menu-trigger-bar.middle {
+  width: 100%;
+}
+.menu-trigger-bar.bottom {
+  width: 50%;
+  margin-left: 50%; /* Offset to create the stepped look */
+}
+
+/* --- ANIMATION: Fly Out (Open State) --- */
+/* Top bar flies top-right */
+.nav-open .menu-trigger-bar.top {
+  transform: translate(80px, -80px) rotate(-45deg);
+  opacity: 0;
+}
+/* Middle bar flies top-right with delay */
+.nav-open .menu-trigger-bar.middle {
+  transform: translate(80px, -80px) rotate(-45deg);
+  opacity: 0;
+  transition-delay: 0.1s;
+}
+/* Bottom bar flies top-right with more delay */
+.nav-open .menu-trigger-bar.bottom {
+  transform: translate(80px, -80px) rotate(-45deg);
+  opacity: 0;
   transition-delay: 0.2s;
 }
 
-
-/* Active section indicator styling for burger menu */
-.burger-active {
-  color: #65c1ff !important;
-  position: relative;
+/* ===== 2. CLOSE TRIGGER (Exploding X) ===== */
+.close-trigger {
+  /* It sits in the same spot, but layers depend on state */
+  z-index: 9999;
 }
 
-.burger-active::before {
+.close-trigger-bar {
+  display: block;
+  width: 100%;
+  height: 4px;
+  background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-top: -2px;
+  transition: transform 0.6s var(--ease-power4), opacity 0.4s;
+}
+
+/* Initial "Exploded" State (Hidden) */
+/* Left bar is up-right and invisible */
+.close-trigger-bar.left {
+  transform: translateX(100px) translateY(-100px) rotate(-45deg);
+  opacity: 0;
+}
+/* Right bar is up-left and invisible */
+.close-trigger-bar.right {
+  transform: translateX(-100px) translateY(-100px) rotate(45deg);
+  opacity: 0;
+}
+
+/* --- ANIMATION: Assemble (Open State) --- */
+.nav-open .close-trigger-bar.left {
+  /* Move to center */
+  transform: translateX(0) translateY(0) rotate(-45deg);
+  opacity: 1;
+  transition-delay: 0.3s; /* Wait for hamburger to leave */
+}
+
+.nav-open .close-trigger-bar.right {
+  /* Move to center */
+  transform: translateX(0) translateY(0) rotate(45deg);
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+
+/* Hover Effect for Close Button */
+.close-trigger-bar::before {
   content: "";
   position: absolute;
-  left: -10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: #2396fb;
-  box-shadow: 0 0 8px rgba(35, 150, 251, 0.8);
+  top: 0;
+  left: 0;
+  display: block;
+  width: 0%;
+  height: 100%;
+  background-color: var(--color-blue);
+  transition: width 0.3s var(--ease-in-out);
+}
+.close-trigger:hover .close-trigger-bar::before {
+  width: 100%;
+}
+
+/* ===== 3. MENU BACKGROUNDS ===== */
+/* (Kept mostly same, adjusted for visual coverage) */
+.menu-bg {
+  position: absolute;
+  width: 250vw;
+  height: 250vh;
+  left: -75%;
+  top: -75%;
+  background-color: var(--bg-color-menu);
+  transition: transform 0.8s var(--ease-in-out);
+  will-change: transform;
+}
+
+.menu-bg.top {
+  transform: rotate(-45deg) translateY(-150%);
+  z-index: 3;
+}
+.menu-bg.middle {
+  transform: rotate(-45deg) scaleY(0);
+  z-index: 2;
+  background-color: #1a1a1a; 
+}
+.menu-bg.bottom {
+  transform: rotate(-45deg) translateY(150%);
+  z-index: 1;
+}
+
+.nav-open .menu-bg.top { transform: rotate(-45deg) translateY(0); }
+.nav-open .menu-bg.middle { transform: rotate(-45deg) scaleY(1); }
+.nav-open .menu-bg.bottom { transform: rotate(-45deg) translateY(0); }
+
+/* ===== 4. MENU CONTENT ===== */
+.menu-content {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.nav-open .menu-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+/* Link underline */
+.menu-link-line {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background-color: #2da7ff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s var(--ease-in-out);
+}
+
+.menu-link:hover .menu-link-line {
+  transform: scaleX(1);
+  transform-origin: left;
 }

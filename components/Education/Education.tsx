@@ -8,7 +8,6 @@ interface EducationItem {
   period: string;
   title: string;
   institution: string;
-  grade?: string;
 }
 
 const educationData: EducationItem[] = [
@@ -17,7 +16,6 @@ const educationData: EducationItem[] = [
     period: "Batch 8",
     title: "Complete Web Development Course",
     institution: "Programming Hero",
-    grade: "Avg Marks: 58.42",
   },
   {
     id: 2,
@@ -30,14 +28,12 @@ const educationData: EducationItem[] = [
     period: "Session 2017-2018",
     title: "Higher Secondary School Certificate Examination",
     institution: "Sylhet Government College, Sylhet.",
-    grade: "GPA-4.75",
   },
   {
     id: 4,
     period: "Session 2016-2017",
     title: "Secondary School Certificate Examination",
     institution: "Shahjalal Jamia Islamia School & College, Sylhet",
-    grade: "GPA-5.00",
   },
 ];
 
@@ -76,9 +72,6 @@ function EducationCard({ item }: EducationCardProps): React.ReactElement {
       <small className="text-white/60 text-xs sm:text-sm 3xl:text-base">{item.period}</small>
       <h3 className="text-base sm:text-lg lg:text-xl 3xl:text-2xl font-bold leading-snug">{item.title}</h3>
       <p className="text-white/80 text-sm sm:text-base 3xl:text-lg">- {item.institution}</p>
-      {item.grade && (
-        <small className="text-white/60 text-xs sm:text-sm 3xl:text-base">{item.grade}</small>
-      )}
     </div>
   );
 }
