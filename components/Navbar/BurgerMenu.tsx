@@ -93,11 +93,11 @@ export default function BurgerMenu(): React.ReactElement | null {
                     e.preventDefault();
                     handleNavClick(index);
                   }}
-                  className={`menu-link text-3xl md:text-5xl font-bold flex items-center gap-4 transition-colors duration-300 ${
+                  className={`menu-link text-2xl md:text-3xl font-bold flex items-center gap-4 transition-colors duration-300 ${
                     activeSection === index ? "text-[#2da7ff]" : "text-white/80"
                   }`}
                 >
-                  <span className="text-2xl md:text-4xl opacity-50 group-hover:opacity-100 transition-opacity">
+                  <span className="text-2xl md:text-3xl opacity-50 group-hover:opacity-100 transition-opacity">
                     {iconMap[section.title]}
                   </span>
                   {section.title}
