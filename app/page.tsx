@@ -15,12 +15,12 @@ export default function HomePage(): React.ReactElement {
 
       <div className="scroll-container xl:mx-10 md:mx-8 mx-5 relative">
         <Banner />
-        <Projects />          
-        <About />
-        <MySkills />
+        <Projects />
+        <About /> 
+        <MySkills /> 
         <Experience />
         <Education />
-        <ContactUs />
+        <ContactUs /> 
       </div>
     </>
   );

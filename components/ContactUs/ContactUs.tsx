@@ -63,7 +63,7 @@ export default function ContactUs(): React.ReactElement {
   };
 
   return (
-    <section className="scroll-section pt-16 sm:pt-24 lg:pt-40 xl:pt-52 mx-auto px-4 sm:px-6 lg:px-8" id="contactUs">
+    <section className="scroll-section pt-16 sm:pt-24 lg:pt-40 xl:pt-52 mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden" id="contactUs">
       <div className="w-fit mx-auto mb-8 sm:mb-12 lg:mb-16">
         <Title>Contact Me</Title>
       </div>

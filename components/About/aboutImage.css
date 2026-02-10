@@ -1,16 +1,7 @@
-/* About Image - Animated Border Reveal Effect */
-
-.about-image-wrapper {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
 .about-image {
   --s: 10px;
   --b: 2px;
   --c: #187bd1;
-
   width: 100%;
   max-width: 400px;
   aspect-ratio: 1;
@@ -41,10 +32,6 @@
 
 /* Responsive about image */
 @media (max-width: 1024px) {
-  .about-image-wrapper {
-    max-width: 350px;
-  }
-  
   .about-image {
     max-width: 350px;
     outline: 175px solid #0009;
@@ -53,10 +40,6 @@
 }
 
 @media (max-width: 768px) {
-  .about-image-wrapper {
-    max-width: 300px;
-  }
-  
   .about-image {
     max-width: 300px;
     outline: 150px solid #0009;
@@ -65,10 +48,6 @@
 }
 
 @media (max-width: 480px) {
-  .about-image-wrapper {
-    max-width: 250px;
-  }
-  
   .about-image {
     max-width: 250px;
     --s: 8px;
