@@ -1,185 +1,167 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import { SiExpress } from "react-icons/si";
+import { 
+  SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiReact, 
+  SiNodedotjs, SiExpress, SiMongodb, SiNextdotjs, 
+  SiTypescript, SiGit, SiFirebase 
+} from "react-icons/si";
 import Title from "@/components/Title/Title";
 
+// --- Types ---
 interface Skill {
-  id: number;
   name: string;
-  description: string;
-  icon: React.ReactElement | string;
-  iconType: "image" | "component";
-  position: "left" | "right";
+  icon: React.ReactElement;
 }
 
-const skills: Skill[] = [
+interface SkillCategory {
+  id: string;
+  title: string;
+  skills: Skill[];
+}
+
+// --- Data ---
+const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    id: 1,
-    name: "HTML5",
-    description: "Started by mastering HTML to structure web content,",
-    icon: "/skills/html.png",
-    iconType: "image",
-    position: "left",
+    id: "frontend",
+    title: "Frontend",
+    skills: [
+      { name: "HTML5", icon: <SiHtml5 className="text-[#E34F26]" /> },
+      { name: "CSS3", icon: <SiCss3 className="text-[#1572B6]" /> },
+      { name: "JavaScript", icon: <SiJavascript className="text-[#F7DF1E]" /> },
+      { name: "TypeScript", icon: <SiTypescript className="text-[#3178C6]" /> },
+      { name: "React", icon: <SiReact className="text-[#61DAFB]" /> },
+      { name: "Next.js", icon: <SiNextdotjs className="text-black" /> },
+      { name: "Tailwind", icon: <SiTailwindcss className="text-[#06B6D4]" /> },
+    ],
   },
   {
-    id: 2,
-    name: "CSS3",
-    description: "Moved on to CSS to style and visually enhance my web pages,",
-    icon: "/skills/css.png",
-    iconType: "image",
-    position: "right",
+    id: "backend",
+    title: "Backend",
+    skills: [
+      { name: "Node.js", icon: <SiNodedotjs className="text-[#339933]" /> },
+      { name: "Express.js", icon: <SiExpress className="text-black" /> },
+    ],
   },
   {
-    id: 3,
-    name: "Tailwind CSS",
-    description:
-      "Explored Tailwind CSS to streamline and simplify the styling process with a utility-first approach.",
-    icon: "/skills/tailwind-css.svg",
-    iconType: "image",
-    position: "left",
+    id: "database",
+    title: "Database",
+    skills: [
+      { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
+      { name: "Firebase", icon: <SiFirebase className="text-[#FFCA28]" /> },
+    ],
   },
   {
-    id: 4,
-    name: "JavaScript",
-    description:
-      "Learnt JavaScript to add interactivity and dynamic behavior to websites.",
-    icon: "/skills/js.png",
-    iconType: "image",
-    position: "right",
-  },
-  {
-    id: 5,
-    name: "React",
-    description:
-      "Dived into React to build dynamic and scalable user interfaces using a component-based architecture.",
-    icon: "/skills/react.png",
-    iconType: "image",
-    position: "left",
-  },
-  {
-    id: 6,
-    name: "Node.js",
-    description:
-      "Commenced with Node.js to understand server-side JavaScript.",
-    icon: "/skills/nodejs.png",
-    iconType: "image",
-    position: "right",
-  },
-  {
-    id: 7,
-    name: "Express.js",
-    description:
-      "Taken on hand Express.js, a minimal and powerful web application framework.",
-    icon: "express",
-    iconType: "component",
-    position: "left",
-  },
-  {
-    id: 8,
-    name: "MongoDB",
-    description:
-      "Went to MongoDB for flexible and scalable data storage in NoSQL format.",
-    icon: "/skills/mongodb.png",
-    iconType: "image",
-    position: "right",
+    id: "tools",
+    title: "Tools",
+    skills: [
+      { name: "Git", icon: <SiGit className="text-[#F05032]" /> },
+      // { name: "VS Code", icon: <SiVisualstudiocode className="text-[#007ACC]" /> },
+    ],
   },
 ];
 
+// --- Animation Variants ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: { 
+    scale: 1, 
+    opacity: 1,
+    transition: { type: "spring", stiffness: 260, damping: 20 }
+  },
+};
+
 export default function MySkills(): React.ReactElement {
   return (
-    <section className="scroll-section py-16 sm:py-24 lg:py-36 px-4 sm:px-6 lg:px-8" id="skills">
-      <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
+    <section 
+      id="skills" className="scroll-section py-16 sm:py-24 lg:py-36 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[90%] 2xl:max-w-7xl 3xl:max-w-[2000px] mx-auto">
+        
+        {/* Title Section - Adjusted color to fit light theme of Neomorphism */}
+        <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
         <Title>SkillSet</Title>
       </div>
-      <div className="flex flex-col justify-center">
-        <div className="lg:max-w-4xl md:mx-auto w-full">
-          <div className="relative text-gray-700 antialiased text-sm font-semibold">
-            {/* Timeline line - hidden on mobile */}
-            <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 w-0.5 h-full bg-white/20" />
-            {skills.map((skill) => (
-              <SkillItem key={skill.id} skill={skill} />
-            ))}
-          </div>
+
+        {/* Categories Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8 3xl:gap-16">
+          {SKILL_CATEGORIES.map((category) => (
+            <motion.div
+              key={category.id}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              variants={containerVariants}
+              className="flex flex-col items-center"
+            >
+              {/* Category Title (Neomorphic Plate) */}
+              <div className="mb-8 px-8 py-3 rounded-full bg-[#dde1e7] shadow-[-5px_-5px_9px_rgba(255,255,255,0.45),5px_5px_9px_rgba(94,104,121,0.3)]">
+                <h3 className="text-lg sm:text-xl 3xl:text-3xl font-bold text-gray-600 tracking-wide">
+                  {category.title}
+                </h3>
+              </div>
+
+              {/* Skills Cluster */}
+              <div className="flex flex-wrap justify-center gap-6 3xl:gap-10">
+                {category.skills.map((skill) => (
+                  <NeoSkillCircle key={skill.name} skill={skill} />
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-interface SkillItemProps {
-  skill: Skill;
-}
-
-function SkillItem({ skill }: SkillItemProps): React.ReactElement {
-  const isLeft = skill.position === "left";
-
+// --- Sub-Component: Neomorphic Circle ---
+function NeoSkillCircle({ skill }: { skill: Skill }): React.ReactElement {
   return (
-    <div className="mb-4 sm:mb-8">
-      <motion.div
-        initial={{ y: 150, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-        className="flex flex-col sm:flex-row items-center relative"
+    <motion.div
+      variants={itemVariants}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      className="group relative flex flex-col items-center justify-center gap-3"
+    >
+      {/* Outer Circle (Convex) */}
+      <div 
+        className="
+          relative flex items-center justify-center 
+          w-20 h-20 sm:w-24 sm:h-24 3xl:w-32 3xl:h-32 
+          rounded-full bg-[#dde1e7] 
+          shadow-[-5px_-5px_9px_rgba(255,255,255,0.45),5px_5px_9px_rgba(94,104,121,0.3)]
+          transition-shadow duration-300
+        "
       >
-        {/* Mobile layout: icon on top, text below */}
-        <div className="sm:hidden flex flex-col items-center gap-4 w-full">
-          <div className="flex items-center justify-center w-12 h-12 sm:w-10 sm:h-10 rounded-full bg-[#0B2F52]/50 p-2">
-            {skill.iconType === "component" ? (
-              <SiExpress className="w-8 h-8 text-white" />
-            ) : (
-              <div className="w-8 h-8 relative">
-                <Image
-                  src={skill.icon as string}
-                  alt={skill.name}
-                  fill
-                  className="object-contain"
-                  sizes="32px"
-                />
-              </div>
-            )}
-          </div>
-          <div className="w-full px-2">
-            <div className="p-3 sm:p-4 bg-white/25 text-white/90 rounded shadow text-center text-[10px] 2xl:text-sm">
-              {skill.description}
-            </div>
-          </div>
-        </div>
-
-        {/* Desktop layout: alternating left/right */}
-        <div
-          className={`hidden sm:flex ${
-            isLeft ? "justify-start" : "justify-end"
-          } w-full mx-auto items-center`}
+        {/* Inner Circle (Concave/Pressed look) */}
+        <div 
+          className="
+            flex items-center justify-center 
+            w-[80%] h-[80%] rounded-full bg-transparent
+            shadow-[inset_-5px_-5px_9px_rgba(255,255,255,0.45),inset_5px_5px_9px_rgba(94,104,121,0.3)]
+          "
         >
-          <div
-            className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-8" : "sm:pl-8"}`}
-          >
-            <div className="p-2 bg-white/25 text-white/90 rounded shadow text-[12px] 3xl:text-lg">
-              {skill.description}
-            </div>
+          {/* Icon */}
+          <div className="text-3xl sm:text-4xl 3xl:text-5xl transition-transform duration-300 group-hover:scale-110">
+            {skill.icon}
           </div>
         </div>
-        
-        {/* Desktop timeline icon */}
-        <div className="hidden sm:flex rounded-full absolute left-1/2 transform -translate-x-1/2 items-center justify-center bg-[#0B2F52] p-1">
-          {skill.iconType === "component" ? (
-            <SiExpress className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
-          ) : (
-            <div className="w-8 h-8 lg:w-10 lg:h-10 relative">
-              <Image
-                src={skill.icon as string}
-                alt={skill.name}
-                fill
-                className="object-contain"
-                sizes="(max-width: 1024px) 32px, 40px"
-              />
-            </div>
-          )}
-        </div>
-      </motion.div>
-    </div>
+      </div>
+
+      {/* Skill Name */}
+      <span className="text-sm 3xl:text-xl font-semibold text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute -bottom-6 whitespace-nowrap">
+        {skill.name}
+      </span>
+    </motion.div>
   );
 }
