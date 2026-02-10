@@ -77,7 +77,7 @@ const SocialIconButton = memo<SocialIconButtonProps>(
             style={{ backgroundColor: colors.fillBg }}
           />
 
-          <Icon className="relative z-2 rounded-full w-full h-full max-w-[clamp(2rem,1vw,3rem)] max-h-[clamp(2rem,1vw,3rem)]" />
+          <Icon className="relative z-2 rounded-3xl w-full h-full max-w-[clamp(1.7rem,1vw,2.5rem)] max-h-[clamp(1.7rem,1vw,2.5rem)]" />
         </a>
       </motion.li>
     );
