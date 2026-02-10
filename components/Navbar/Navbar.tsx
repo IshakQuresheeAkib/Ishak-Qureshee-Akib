@@ -11,6 +11,7 @@ import { SCROLL_THRESHOLD } from "@/lib/constants";
 import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
 import "./Navbar.css";
 import { TbUserCode } from "react-icons/tb";
+import { CgCode } from "react-icons/cg";
 
 const Navbar = memo(function Navbar(): React.ReactElement {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -36,6 +37,7 @@ const Navbar = memo(function Navbar(): React.ReactElement {
     Projects: <RiShareBoxLine className={iconClasses} />,
     About: <BsPersonVcard className={iconClasses} />,
     Skills: <TbUserCode className={iconClasses} />,
+    Experience: <CgCode className={iconClasses} />,
     Education: <IoSchoolOutline className={iconClasses} />,
     Contact: <MdAlternateEmail className={iconClasses} />,
   };

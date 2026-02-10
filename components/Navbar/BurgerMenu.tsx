@@ -5,11 +5,12 @@ import { createPortal } from "react-dom";
 import { FaHome } from "react-icons/fa";
 import { RiShareBoxLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
-import { HiOutlineSparkles } from "react-icons/hi";
 import { IoSchoolOutline } from "react-icons/io5";
 import { BsPersonVcard } from "react-icons/bs";
 import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
 import "./burgerMenu.css";
+import { TbUserCode } from "react-icons/tb";
+import { CgCode } from "react-icons/cg";
 
 type IconMap = Record<string, React.ReactElement>;
 
@@ -45,7 +46,8 @@ export default function BurgerMenu(): React.ReactElement | null {
     Home: <FaHome />,
     Projects: <RiShareBoxLine />,
     About: <BsPersonVcard />,
-    Skills: <HiOutlineSparkles />,
+    Skills: <TbUserCode />,
+    Experience: <CgCode />,
     Education: <IoSchoolOutline />,
     Contact: <MdAlternateEmail />,
   };
