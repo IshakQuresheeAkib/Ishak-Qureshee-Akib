@@ -5,7 +5,7 @@
   inherits: false;
 }
 .animated-avatar {
-  --border-width: 4px;
+  --border-width: 6px;
   box-sizing: border-box;
   border: solid var(--border-width) transparent;
   background: 
