@@ -1,0 +1,48 @@
+@keyframes badgeSpin {
+  0%   { transform: rotate(0deg)   scale(1.2);   }
+  50%  { transform: rotate(180deg) scale(1.8); }
+  100% { transform: rotate(360deg) scale(1);   }
+}
+.skill-badge::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border: 1px solid rgba(255, 255, 255, 0.093);
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  border-radius: 999px;
+}
+.skill-badge__sparkle::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  left: 12px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.916),
+    transparent
+  );
+}
+.skill-badge__sparkle::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  top: 12px;
+  background: linear-gradient(
+    to left,
+    transparent,
+    rgba(255, 255, 255, 0.916),
+    transparent
+  );
+}
+
+/* Fire animation on hover */
+.skill-badge:hover .skill-badge__sparkle::before,
+.skill-badge:hover .skill-badge__sparkle::after {
+  animation: badgeSpin 2s ease-in-out;
+}

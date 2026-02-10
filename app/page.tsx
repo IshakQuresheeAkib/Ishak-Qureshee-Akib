@@ -16,18 +16,9 @@ export default function HomePage(): React.ReactElement {
         <Banner />
         <Projects />          
         <About />
-
-        <section id="skills" className="scroll-section">
-          <MySkills />
-        </section>
-
-        <section id="education" className="scroll-section">
-          <Education />
-        </section>
-
-        <section id="contactUs" className="scroll-section">
-          <ContactUs />
-        </section>
+        <MySkills />
+        <Education />
+        <ContactUs />
       </div>
     </>
   );
