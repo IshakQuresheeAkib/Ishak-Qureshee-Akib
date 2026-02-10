@@ -1,6 +1,6 @@
 :root {
   --anim-speed: 0.6s;
-  --bg-color-menu: #1212120e;
+  --bg-color-menu: #090f8307;
   --color-blue: #65a6eb;
   --ease-in-out: cubic-bezier(0.55, 0, 0.1, 1);
   --ease-power4: cubic-bezier(0.25, 1, 0.5, 1); /* Similar to Power4.easeOut */
@@ -83,31 +83,24 @@
   margin-left: 50%; 
 }
 
-/* --- ANIMATION: Fly Out (Open State) --- */
-/* Top bar flies top-right */
 .nav-open .menu-trigger-bar.top {
-  transform: translate(80px, -80px) rotate(-45deg);
-  opacity: 0;
-}
-/* Middle bar flies top-right with delay */
-.nav-open .menu-trigger-bar.middle {
   transform: translate(80px, -80px) rotate(-45deg);
   opacity: 0;
   transition-delay: 0.1s;
 }
-/* Bottom bar flies top-right with more delay */
-.nav-open .menu-trigger-bar.bottom {
+.nav-open .menu-trigger-bar.middle {
   transform: translate(80px, -80px) rotate(-45deg);
   opacity: 0;
   transition-delay: 0.2s;
 }
-
-/* ===== 2. CLOSE TRIGGER (Exploding X) ===== */
+.nav-open .menu-trigger-bar.bottom {
+  transform: translate(80px, -80px) rotate(-45deg);
+  opacity: 0;
+  transition-delay: 0.3s;
+}
 .close-trigger {
-  /* It sits in the same spot, but layers depend on state */
   z-index: 9999;
 }
-
 .close-trigger-bar {
   display: block;
   width: 100%;
@@ -117,37 +110,27 @@
   top: 50%;
   left: 0;
   margin-top: -2px;
-  transition: transform 0.6s var(--ease-power4), opacity 0.4s;
+  transition: transform 0.9s var(--ease-power4), opacity 0.4s;
 }
-
-/* Initial "Exploded" State (Hidden) */
-/* Left bar is up-right and invisible */
 .close-trigger-bar.left {
   transform: translateX(100px) translateY(-100px) rotate(-45deg);
   opacity: 0;
 }
-/* Right bar is up-left and invisible */
 .close-trigger-bar.right {
   transform: translateX(-100px) translateY(-100px) rotate(45deg);
   opacity: 0;
 }
-
-/* --- ANIMATION: Assemble (Open State) --- */
 .nav-open .close-trigger-bar.left {
-  /* Move to center */
   transform: translateX(0) translateY(0) rotate(-45deg);
   opacity: 1;
-  transition-delay: 0.3s; /* Wait for hamburger to leave */
+  transition-delay: 0.5s;
 }
 
 .nav-open .close-trigger-bar.right {
-  /* Move to center */
   transform: translateX(0) translateY(0) rotate(45deg);
   opacity: 1;
-  transition-delay: 0.4s;
+  transition-delay: 0.6s;
 }
-
-/* Hover Effect for Close Button */
 .close-trigger-bar::before {
   content: "";
   position: absolute;
@@ -157,14 +140,11 @@
   width: 0%;
   height: 100%;
   background-color: var(--color-blue);
-  transition: width 0.3s var(--ease-in-out);
+  transition: width 0.6s var(--ease-in-out);
 }
 .close-trigger:hover .close-trigger-bar::before {
   width: 100%;
 }
-
-/* ===== 3. MENU BACKGROUNDS ===== */
-/* (Kept mostly same, adjusted for visual coverage) */
 .menu-bg {
   position: absolute;
   width: 250vw;
@@ -172,7 +152,7 @@
   left: -75%;
   top: -75%;
   background-color: var(--bg-color-menu);
-  transition: transform 0.8s var(--ease-in-out);
+  transition: transform 1s var(--ease-in-out);
   will-change: transform;
 }
 
@@ -183,7 +163,7 @@
 .menu-bg.middle {
   transform: rotate(-45deg) scaleY(0);
   z-index: 2;
-  background-color: #1a1a1a; 
+  background-color: #0b3863; 
 }
 .menu-bg.bottom {
   transform: rotate(-45deg) translateY(150%);
@@ -191,25 +171,21 @@
 }
 
 .nav-open .menu-bg.top { transform: rotate(-45deg) translateY(0); }
-.nav-open .menu-bg.middle { transform: rotate(-45deg) scaleY(1); }
-.nav-open .menu-bg.bottom { transform: rotate(-45deg) translateY(0); }
+.nav-open .menu-bg.middle { transform: rotate(-45deg) scaleY(1); transition-delay: 0.3s; }
+.nav-open .menu-bg.bottom { transform: rotate(-45deg) translateY(0); transition-delay: 0.3s; }
 
-/* ===== 4. MENU CONTENT ===== */
 .menu-content {
   opacity: 0;
   visibility: hidden;
-  transform: translateY(30px);
-  transition: all 0.6s ease-out;
+  transform: translateY(50px);
+  transition: all 0.7s ease-out;
 }
-
 .nav-open .menu-content {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-  transition-delay: 0.5s;
+  transition-delay: 0.7s;
 }
-
-/* Link underline */
 .menu-link-line {
   position: absolute;
   left: 0;
@@ -219,9 +195,8 @@
   background-color: #2da7ff;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.3s var(--ease-in-out);
+  transition: transform 0.7s var(--ease-in-out);
 }
-
 .menu-link:hover .menu-link-line {
   transform: scaleX(1);
   transform-origin: left;

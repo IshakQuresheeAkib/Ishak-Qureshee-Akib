@@ -53,8 +53,7 @@ export default function BurgerMenu(): React.ReactElement | null {
   if (!mounted) return null;
 
   return createPortal(
-    <div className={`burger-wrapper ${isOpen ? "nav-open" : ""}`} ref={menuRef}>
-      {/* OPEN TRIGGER (Diagonal Hamburger) */}
+    <div className={`burger-wrapper block lg:hidden ${isOpen ? "nav-open" : ""}`} ref={menuRef}>
       <div 
         className="menu-trigger trigger-btn" 
         onClick={toggleMenu}
@@ -84,7 +83,7 @@ export default function BurgerMenu(): React.ReactElement | null {
         <i className="menu-bg middle"></i>
         <i className="menu-bg bottom"></i>
 
-        <div className="absolute inset-0 flex items-center justify-center z-[10000]">
+        <div className="absolute inset-0 flex items-center justify-center z-10000">
           <ul className="menu-content flex flex-col items-start gap-6 p-10">
             {SECTIONS.map((section, index) => (
               <li key={section.id} className="relative group overflow-hidden">
