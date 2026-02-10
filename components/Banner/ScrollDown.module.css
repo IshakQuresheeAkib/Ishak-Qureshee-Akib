@@ -1,0 +1,11 @@
+/* Using raw CSS for the specific animation as requested */
+.mouseWheel {
+  animation: wheel 1.5s infinite;
+}
+
+@keyframes wheel {
+  to {
+    opacity: 0;
+    top: 40px; /* Matching the source CSS logic */
+  }
+}
