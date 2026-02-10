@@ -2,6 +2,7 @@ import Banner from "@/components/Banner/Banner";
 import Projects from "@/components/Projects/Projects";
 import About from "@/components/About/About";
 import MySkills from "@/components/MySkills/MySkills";
+import Experience from "@/components/Experience/Experience";
 import Education from "@/components/Education/Education";
 import ContactUs from "@/components/ContactUs/ContactUs";
 import SectionIndicator from "@/components/SectionIndicator/SectionIndicator";
@@ -17,6 +18,7 @@ export default function HomePage(): React.ReactElement {
         <Projects />          
         <About />
         <MySkills />
+        <Experience />
         <Education />
         <ContactUs />
       </div>
