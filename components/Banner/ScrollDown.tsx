@@ -16,7 +16,7 @@ export default function ScrollDown(): React.ReactElement {
   return (
     <button
       onClick={handleScroll}
-      aria-label="Scroll to next section"
+      aria-label="Scroll to Projects section"
       className="absolute bottom-1 left-1/2 -translate-x-1/2 lg:flex cursor-pointer flex-col items-center justify-center opacity-80 transition-opacity hover:opacity-100 hidden"
     >
       <div className="relative h-15 w-7.5 rounded-2xl border-2 border-white">
