@@ -5,7 +5,7 @@
   --indicator-size: 12px;
   --indicator-gap: 16px;
   --indicator-total-height: calc(
-    (var(--indicator-size) * 6) + (var(--indicator-gap) * 5)
+    (var(--indicator-size) * 7) + (var(--indicator-gap) * 6)
   );
   --color-indicator: #2396fb;
   --color-primary: #2396fb;
@@ -78,6 +78,10 @@
 .indicator[data-active="5"]::before {
   transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 4.8));
   --color-indicator: #187bd1;
+}
+.indicator[data-active="6"]::before {
+  transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 5.8));
+  --color-indicator: #2396fb;
 }
 
 /* Individual indicator item (label) */

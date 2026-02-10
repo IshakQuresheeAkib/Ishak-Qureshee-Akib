@@ -14,7 +14,6 @@ import {
 export interface SectionConfig {
   id: string;
   title: string;
-  color: string;
 }
 
 // Context value type
@@ -28,12 +27,13 @@ interface ScrollSnapContextValue {
 
 // Section configurations matching your portfolio
 export const SECTIONS: SectionConfig[] = [
-  { id: "banner", title: "Home", color: "#2396fb" },
-  { id: "projects", title: "Projects", color: "#65c1ff" },
-  { id: "about", title: "About", color: "#187bd1" },
-  { id: "skills", title: "Skills", color: "#0B2F52" },
-  { id: "education", title: "Education", color: "#2396fb" },
-  { id: "contactUs", title: "Contact", color: "#65c1ff" },
+  { id: "banner", title: "Home" },
+  { id: "projects", title: "Projects" },
+  { id: "about", title: "About" },
+  { id: "skills", title: "Skills" },
+  { id: "experience", title: "Experience" },
+  { id: "education", title: "Education" },
+  { id: "contactUs", title: "Contact" },
 ];
 
 const ScrollSnapContext = createContext<ScrollSnapContextValue | undefined>(

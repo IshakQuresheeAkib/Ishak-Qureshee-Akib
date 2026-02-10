@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode, ButtonHTMLAttributes, forwardRef, memo } from "react";
-import "./CustomButton.css";
 
 type ButtonVariant = "primary" | "secondary" | "danger";
 type ButtonSize = "sm" | "md" | "lg";

@@ -5,11 +5,12 @@ import { createPortal } from "react-dom";
 import { FaHome } from "react-icons/fa";
 import { RiShareBoxLine } from "react-icons/ri";
 import { MdAlternateEmail } from "react-icons/md";
-import { HiOutlineSparkles } from "react-icons/hi";
 import { IoSchoolOutline } from "react-icons/io5";
 import { BsPersonVcard } from "react-icons/bs";
 import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
 import "./burgerMenu.css";
+import { TbUserCode } from "react-icons/tb";
+import { CgCode } from "react-icons/cg";
 
 type IconMap = Record<string, React.ReactElement>;
 
@@ -45,7 +46,8 @@ export default function BurgerMenu(): React.ReactElement | null {
     Home: <FaHome />,
     Projects: <RiShareBoxLine />,
     About: <BsPersonVcard />,
-    Skills: <HiOutlineSparkles />,
+    Skills: <TbUserCode />,
+    Experience: <CgCode />,
     Education: <IoSchoolOutline />,
     Contact: <MdAlternateEmail />,
   };
@@ -53,8 +55,7 @@ export default function BurgerMenu(): React.ReactElement | null {
   if (!mounted) return null;
 
   return createPortal(
-    <div className={`burger-wrapper ${isOpen ? "nav-open" : ""}`} ref={menuRef}>
-      {/* OPEN TRIGGER (Diagonal Hamburger) */}
+    <div className={`burger-wrapper block lg:hidden ${isOpen ? "nav-open" : ""}`} ref={menuRef}>
       <div 
         className="menu-trigger trigger-btn" 
         onClick={toggleMenu}
@@ -84,7 +85,7 @@ export default function BurgerMenu(): React.ReactElement | null {
         <i className="menu-bg middle"></i>
         <i className="menu-bg bottom"></i>
 
-        <div className="absolute inset-0 flex items-center justify-center z-[10000]">
+        <div className="absolute inset-0 flex items-center justify-center z-10000">
           <ul className="menu-content flex flex-col items-start gap-6 p-10">
             {SECTIONS.map((section, index) => (
               <li key={section.id} className="relative group overflow-hidden">
@@ -94,11 +95,11 @@ export default function BurgerMenu(): React.ReactElement | null {
                     e.preventDefault();
                     handleNavClick(index);
                   }}
-                  className={`menu-link text-3xl md:text-5xl font-bold flex items-center gap-4 transition-colors duration-300 ${
+                  className={`menu-link text-2xl md:text-3xl font-bold flex items-center gap-4 transition-colors duration-300 ${
                     activeSection === index ? "text-[#2da7ff]" : "text-white/80"
                   }`}
                 >
-                  <span className="text-2xl md:text-4xl opacity-50 group-hover:opacity-100 transition-opacity">
+                  <span className="text-2xl md:text-3xl opacity-50 group-hover:opacity-100 transition-opacity">
                     {iconMap[section.title]}
                   </span>
                   {section.title}
@@ -107,10 +108,6 @@ export default function BurgerMenu(): React.ReactElement | null {
               </li>
             ))}
           </ul>
-        </div>
-        
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none">
-           <span className="text-[20vw] font-bold text-white/5 whitespace-nowrap">MENU</span>
         </div>
       </div>
     </div>,

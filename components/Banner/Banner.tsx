@@ -125,7 +125,7 @@ export default function Banner(): React.ReactElement {
             ))}
           </div>
         </div>
-          <p className="mt-2 3xl:mt-5 font-thin text-white/90 text-base 2xl:text-lg 3xl:text-2xl sm:max-w-4/5 leading-7 3xl:leading-10"> passionate about building scalable and performant web applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.  </p>
+          <p className="mt-2 3xl:mt-5 font-thin text-white/90 text-base 2xl:text-lg 3xl:text-2xl sm:max-w-4/5 leading-7 3xl:leading-10"> passionate about building scalable and performant web applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.</p>
           <ul className="flex w-fit gap-3 sm:gap-5 my-7">
             {SOCIAL_ICONS.map((social, index) => (
               <motion.div
@@ -147,7 +147,7 @@ export default function Banner(): React.ReactElement {
           </ul>
           <a href={EXTERNAL_URLS.resume} download>
             <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />}>
-               Resume
+              Resume
             </CustomButton>
           </a>
       </div>

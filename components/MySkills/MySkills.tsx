@@ -20,7 +20,7 @@ const containerVariants = {
 // --- Main Component ---
 export default function MySkills(): ReactElement {
   return (
-    <section id="skills" className="scroll-section pt-16 sm:pt-24">
+    <section id="skills" className="scroll-section py-16 lg:pb-0 sm:pt-24">
       <div className="max-w-[92%] 2xl:max-w-325 3xl:max-w-425 mx-auto">
         <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
           <Title>SkillSet</Title>
