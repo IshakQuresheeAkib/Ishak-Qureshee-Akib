@@ -89,7 +89,7 @@ export default function MySkills(): React.ReactElement {
   return (
     <section 
       id="skills" className="scroll-section py-16 sm:py-24 lg:py-36">
-      <div className="max-w-[95%] 2xl:max-w-375 3xl:max-w-500 mx-auto">
+      <div className="max-w-[92%] 3xl:max-w-375 mx-auto">
         
         {/* Title Section - Adjusted color to fit light theme of Neomorphism */}
         <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
