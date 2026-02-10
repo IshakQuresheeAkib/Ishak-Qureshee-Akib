@@ -76,6 +76,7 @@
 html {
   width: 100%;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 body {

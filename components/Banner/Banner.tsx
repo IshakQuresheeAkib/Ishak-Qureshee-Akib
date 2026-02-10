@@ -8,7 +8,9 @@ import CustomButton from "@/components/CustomButton/CustomButton";
 import AnimatedAvatar from "@/components/AnimatedAvatar/AnimatedAvatar";
 import SocialIconButton from "@/components/SocialIconButton/SocialIconButton";
 import { SOCIAL_LINKS, EXTERNAL_URLS } from "@/lib/constants";
+import ScrollDown from "./ScrollDown";
 
+// ... [Keep ROLES and SOCIAL_ICONS arrays exactly as they were] ...
 const ROLES: string[] = [
   "Web Developer",
   "Front End Developer",
@@ -50,7 +52,6 @@ export default function Banner(): React.ReactElement {
   useEffect(() => {
     if (!isMounted) return;
 
-    // Dynamically import SplitTextJS since it's a client-only library
     const initAnimation = async (): Promise<void> => {
       try {
         const SplitTextJS = (await import("split-text-js")).default;
@@ -60,7 +61,6 @@ export default function Banner(): React.ReactElement {
         const titles = textWrapperRef.current.querySelectorAll("h5");
         if (titles.length === 0) return;
 
-        // Clear any existing timeline
         if (timelineRef.current) {
           timelineRef.current.kill();
         }
@@ -108,7 +108,8 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="scroll-section flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
+      // Added 'relative' to allow absolute positioning of the ScrollDown component
+      className="scroll-section relative flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
     >
       <div>
         <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
@@ -171,6 +172,9 @@ export default function Banner(): React.ReactElement {
           priority
         />
       </div>
+
+      {/* Scroll Indicator positioned absolutely at bottom */}
+      <ScrollDown />
     </section>
   );
 }
