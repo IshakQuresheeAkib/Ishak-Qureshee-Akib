@@ -73,7 +73,7 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
 
     // Animation position classes based on size
     const liquidSizeClasses: Record<ButtonSize, string> = {
-      sm: "top-[-90px] h-[180px] group-hover:top-[-130px]",
+      sm: "top-[-35px] h-[100px] group-hover:top-[-60px]",
       md: "top-[-80px] h-[200px] group-hover:top-[-120px]",
       lg: "top-[-70px] h-[220px] group-hover:top-[-110px]",
     };
