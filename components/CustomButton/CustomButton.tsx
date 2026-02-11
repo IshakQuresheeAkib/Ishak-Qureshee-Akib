@@ -83,11 +83,7 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
         ref={ref}
         type={type}
         disabled={disabled}
-        className={`
-          group relative inline-flex items-center justify-center overflow-hidden rounded-[10px] border-none bg-transparent cursor-pointer font-sans uppercase no-underline
-          transition-[transform,box-shadow] duration-2000 ease hover:-translate-y-0.5 active:translate-y-0 active:scale-95 active:duration-75
-          shadow-(--btn-shadow) hover:shadow-(--btn-shadow-hover)
-          focus-visible:outline-2 focus-visible:outline-[#65c1ff] focus-visible:outline-offset-4
+        className={` group relative inline-flex items-center justify-center overflow-hidden rounded-[30px] border-none bg-transparent cursor-pointer font-sans uppercase no-underline transition-[transform,box-shadow] duration-2000 ease active:translate-y-0 active:scale-95 active:duration-75 shadow-(--btn-shadow) hover:shadow-(--btn-shadow-hover) focus-visible:outline-2 focus-visible:outline-[#65c1ff] focus-visible:outline-offset-4
           ${sizeClasses[size]}
           ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none group-disabled" : ""}
           ${className}

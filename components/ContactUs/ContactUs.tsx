@@ -2,7 +2,8 @@
 
 import { useRef, FormEvent, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
+import Lottie from "lottie-react";
+import type { AnimationItem } from "lottie-web";
 import { RiSendPlaneFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
@@ -10,21 +11,25 @@ import Title from "@/components/Title/Title";
 import CustomButton from "@/components/CustomButton/CustomButton";
 import { getEmailJSConfig, ANIMATION_DURATION } from "@/lib/constants";
 
-// Dynamic import for Lottie to prevent SSR issues
-const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
-
 export default function ContactUs(): React.ReactElement {
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
-  const [contactLottie, setContactLottie] = useState<object | null>(null);
+  const [animationData, setAnimationData] = useState<AnimationItem | null>(null);
 
+  // 2. Fetch the JSON from the public folder on mount
   useEffect(() => {
-    setIsMounted(true);
-    // Dynamic import for Lottie JSON to reduce bundle size
-    import("@/assets/contactlottie.json").then((module) => {
-      setContactLottie(module.default);
-    });
+    const fetchLottie = async () => {
+      try {
+        const response = await fetch("/lottie/contactlottie.json");
+        if (!response.ok) throw new Error("Failed to fetch animation");
+        const data = await response.json();
+        setAnimationData(data);
+      } catch (error) {
+        console.error("Animation load failed:", error);
+      }
+    };
+
+    fetchLottie();
   }, []);
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
@@ -54,8 +59,7 @@ export default function ContactUs(): React.ReactElement {
         toast.success("Email sent successfully!");
       }
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : "Unknown error";
+      const errorMessage = error instanceof Error ? error.message : "Unknown error";
       toast.error(`Failed to send email: ${errorMessage}`);
     } finally {
       setIsSubmitting(false);
@@ -75,9 +79,10 @@ export default function ContactUs(): React.ReactElement {
           viewport={{ once: true }}
           className="text-white flex-1 w-full max-w-sm sm:max-w-md lg:max-w-xl"
         >
-          {isMounted && contactLottie && (
-            <Lottie animationData={contactLottie} className="w-full max-w-xs sm:max-w-sm lg:max-w-xl mx-auto" loop />
-          )}
+          {animationData ? (
+            <Lottie animationData={animationData} loop={true}  className="w-full max-w-xs sm:max-w-sm lg:max-w-xl mx-auto" />
+          ) : <div className="w-full max-w-xs sm:max-w-sm lg:max-w-xl h-64 animate-pulse bg-white/5 rounded-lg" />
+          }
         </motion.div>
         <motion.div
           initial={{ x: 150, opacity: 0 }}
