@@ -21,7 +21,7 @@ export const TECH_ICONS: Record<string, IconType> = {
   "React": FaReact,
   "Next.js": SiNextdotjs,
   "TypeScript": SiTypescript,
-  "JavaScript": FaReact, // Fallback or separate JS icon
+  "JavaScript": FaReact,
   "Tailwind CSS": SiTailwindcss,
   "Node.js": FaNodeJs,
   "Express.js": SiExpress,

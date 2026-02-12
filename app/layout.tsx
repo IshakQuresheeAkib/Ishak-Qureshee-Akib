@@ -23,7 +23,7 @@ const auto_wide = Audiowide({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ishakquresheeakib.vercel.app"),
+  metadataBase: new URL("https://ishak-qureshee-akib.netlify.app"),
   title: "Ishak Qureshee Akib - Full Stack Developer",
   description:
     "Portfolio of Ishak Qureshee Akib showcasing web development projects, skills, and experience. Specializing in React, Next.js, and the MERN stack.",

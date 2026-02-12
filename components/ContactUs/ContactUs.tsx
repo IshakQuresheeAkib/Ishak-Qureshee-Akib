@@ -161,9 +161,8 @@ export default function ContactUs(): React.ReactElement {
               variant="primary"
               before={<RiSendPlaneFill className="text-lg sm:text-xl 3xl:text-2xl" />}
               disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Send"}
-            </CustomButton>
+              content={isSubmitting ? "Sending..." : "Send"}
+            />
           </form>
         </motion.div>
       </div>

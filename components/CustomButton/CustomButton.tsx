@@ -1,17 +1,30 @@
 "use client";
 
-import { ReactNode, ButtonHTMLAttributes, forwardRef, memo } from "react";
+import { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes, forwardRef, memo } from "react";
+import Link from "next/link";
 
 type ButtonVariant = "primary" | "secondary" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
 
-interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+type BaseButtonProps = {
+  content: string;
   before?: ReactNode;
   after?: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
-}
+};
+
+type ButtonAsButton = BaseButtonProps & 
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    href?: never;
+  };
+
+type ButtonAsLink = BaseButtonProps & 
+  Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'content'> & {
+    href: string;
+  };
+
+type CustomButtonProps = ButtonAsButton | ButtonAsLink;
 
 interface VariantStyles {
   "--liquid-bg-gradient": string;
@@ -48,22 +61,23 @@ const VARIANTS: Record<ButtonVariant, VariantStyles> = {
   },
 };
 
-const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
+const CustomButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CustomButtonProps>(
   (
     {
-      children,
+      content,
       before,
       after,
       variant = "primary",
       size = "md",
       className = "",
-      disabled,
-      type = "button",
       style,
       ...props
     },
     ref
   ): React.ReactElement => {
+    const isLink = 'href' in props && props.href !== undefined;
+    const disabled = !isLink && 'disabled' in props ? props.disabled : false;
+    const type = !isLink && 'type' in props ? props.type : 'button';
     // Responsive Size Classes - Mobile First
     const sizeClasses: Record<ButtonSize, string> = {
       sm: "px-3 py-2.5 min-w-[100px] text-[11px]",
@@ -78,27 +92,22 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
       lg: "top-[-70px] h-[220px] group-hover:top-[-110px]",
     };
 
-    return (
-      <button
-        ref={ref}
-        type={type}
-        disabled={disabled}
-        className={` group relative inline-flex items-center justify-center overflow-hidden rounded-[30px] border-none bg-transparent cursor-pointer font-sans uppercase no-underline transition-[transform,box-shadow] duration-2000 ease-in-out active:translate-y-0 active:scale-95 active:duration-75 shadow-(--btn-shadow) hover:shadow-(--btn-shadow-hover) focus-visible:outline-2 focus-visible:outline-[#65c1ff] focus-visible:outline-offset-4
-          ${sizeClasses[size]}
-          ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none group-disabled" : ""}
-          ${className}
-        `.trim()}
-        style={
-          {
-            ...VARIANTS[variant],
-            ...style,
-          } as React.CSSProperties
-        }
-        {...props}
-      >
+    const sharedClassName = ` group relative inline-flex items-center justify-center overflow-hidden rounded-[30px] border-none bg-transparent cursor-pointer font-sans uppercase no-underline transition-[transform,box-shadow] duration-2000 ease-in-out active:translate-y-0 active:scale-95 active:duration-75 shadow-(--btn-shadow) hover:shadow-(--btn-shadow-hover) focus-visible:outline-2 focus-visible:outline-[#65c1ff] focus-visible:outline-offset-4
+      ${sizeClasses[size]}
+      ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none group-disabled" : ""}
+      ${className}
+    `.trim();
+
+    const sharedStyle = {
+      ...VARIANTS[variant],
+      ...style,
+    } as React.CSSProperties;
+
+    const contentMarkup = (
+      <>
         <span className="relative z-10 flex items-center justify-center gap-2 font-semibold text-white">
           {before && <span className="flex items-center justify-center">{before}</span>}
-          <span className="whitespace-nowrap">{children}</span>
+          <span className="whitespace-nowrap">{content}</span>
           {after && <span className="flex items-center justify-center">{after}</span>}
         </span>
         
@@ -106,6 +115,54 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
           className={`liquid-effect absolute left-0 w-full pointer-events-none transition-[top] duration-1000 ease-out ${liquidSizeClasses[size]} ${disabled ? "hidden" : ""}`} 
           aria-hidden="true" 
         />
+      </>
+    );
+
+    if (isLink) {
+      const { href, ...linkProps } = props as ButtonAsLink;
+      
+      // Check if it's an internal Next.js route (starts with / but not //)
+      const isInternalLink = href.startsWith('/') && !href.startsWith('//');
+      
+      if (isInternalLink) {
+        return (
+          <Link
+            ref={ref as React.Ref<HTMLAnchorElement>}
+            href={href}
+            className={sharedClassName}
+            style={sharedStyle}
+            {...linkProps}
+          >
+            {contentMarkup}
+          </Link>
+        );
+      }
+      
+      // External link or special protocols (http, mailto, tel, etc.)
+      return (
+        <a
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          href={href}
+          className={sharedClassName}
+          style={sharedStyle}
+          {...linkProps}
+        >
+          {contentMarkup}
+        </a>
+      );
+    }
+
+    const { ...buttonProps } = props as ButtonAsButton;
+    return (
+      <button
+        ref={ref as React.Ref<HTMLButtonElement>}
+        type={type}
+        disabled={disabled}
+        className={sharedClassName}
+        style={sharedStyle}
+        {...buttonProps}
+      >
+        {contentMarkup}
       </button>
     );
   }

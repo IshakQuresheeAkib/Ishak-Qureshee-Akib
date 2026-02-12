@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import CustomButton from "@/components/CustomButton/CustomButton";
-import AnimatedAvatar from "@/components/AnimatedAvatar/AnimatedAvatar";
-import SocialIconButton from "@/components/SocialIconButton/SocialIconButton";
+import AnimatedAvatar from "@/components/Banner/AnimatedAvatar/AnimatedAvatar";
+import SocialIconButton from "@/components/Banner/SocialIconButton/SocialIconButton";
 import { SOCIAL_LINKS, EXTERNAL_URLS } from "@/lib/constants";
-import ScrollDown from "./ScrollDown";
+import ScrollDown from "./ScrollDown/ScrollDown";
 
 const ROLES: string[] = [
   "Web Developer",
@@ -107,7 +107,7 @@ export default function Banner(): React.ReactElement {
   return (
     <section
       id="banner"
-      className="scroll-section relative flex flex-col-reverse lg:flex-row min-h-screen max-w-[98%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
+      className="scroll-section relative flex flex-col-reverse lg:flex-row min-h-screen max-w-[96%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
     >
       <div>
         <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
@@ -145,11 +145,7 @@ export default function Banner(): React.ReactElement {
               </motion.div>
             ))}
           </ul>
-          <a href={EXTERNAL_URLS.resume} download>
-            <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />}>
-              Resume
-            </CustomButton>
-          </a>
+          <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />} content="Resume" href={EXTERNAL_URLS.resume} download />
       </div>
 
       <div className="flex justify-center items-center shrink-0">

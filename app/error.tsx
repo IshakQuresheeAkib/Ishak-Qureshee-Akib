@@ -28,15 +28,12 @@ export default function Error({ error, reset }: ErrorProps): React.ReactElement 
           </p>
         )}
         <div className="flex gap-4 justify-center">
-          <CustomButton variant="primary" onClick={reset}>
-            Try Again
-          </CustomButton>
+          <CustomButton variant="primary" onClick={reset} content="Try Again" />
           <CustomButton
             variant="secondary"
-            onClick={() => (window.location.href = "/")}
-          >
-            Go Home
-          </CustomButton>
+            href="/"
+            content="Go Home"
+          />
         </div>
       </div>
     </div>
