@@ -1,6 +1,6 @@
 "use client";
 
-import { useScrollSnap } from "@/lib/ScrollSnapContext";
+import { useScrollSnap } from "@/context/ScrollSnapContext";
 import { useCallback } from "react";
 import "./SectionIndicator.css";
 

@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback, memo } from "react";
-import BurgerMenu from "./BurgerMenu";
+import BurgerMenu from "./BurgerMenu/BurgerMenu";
 import { SCROLL_THRESHOLD } from "@/lib/constants";
-import { useScrollSnap } from "@/lib/ScrollSnapContext";
+import { useScrollSnap } from "@/context/ScrollSnapContext";
 import { NAV_ICONS, NAV_SECTIONS } from "@/lib/navigation";
 import "./Navbar.css";
 

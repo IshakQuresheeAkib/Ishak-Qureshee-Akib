@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer/Footer";
 import InitialLoading from "@/components/InitialLoading/InitialLoading";
-import { ScrollSnapProvider } from "@/lib/ScrollSnapContext";
+import { ScrollSnapProvider } from "@/context/ScrollSnapContext";
 import SmoothScroll from "@/components/SmoothScroll";
 
 const recursive = Recursive({

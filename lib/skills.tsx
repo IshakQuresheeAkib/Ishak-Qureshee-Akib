@@ -1,22 +1,23 @@
-"use client";
-
-import {
-  SiHtml5,
-  SiCss3,
-  SiTailwindcss,
-  SiJavascript,
-  SiReact,
-  SiNodedotjs,
-  SiExpress,
-  SiMongodb,
-  SiNextdotjs,
-  SiTypescript,
-  SiGit,
-} from "react-icons/si";
+import { SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiNextdotjs, SiTypescript, SiGit} from "react-icons/si";
 import { IoLogoFirebase } from "react-icons/io5";
 import { RiSupabaseFill } from "react-icons/ri";
 import { GrWordpress } from "react-icons/gr";
-import type { SkillCategory } from "./types";
+import type { ReactElement } from "react";
+
+// --- Types ---
+
+export interface Skill {
+  name: string;
+  icon: ReactElement;
+}
+
+export interface SkillCategory {
+  id: string;
+  title: string;
+  skills: Skill[];
+}
+
+// --- Data ---
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
