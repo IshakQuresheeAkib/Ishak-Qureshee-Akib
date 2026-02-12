@@ -3,7 +3,6 @@
 import { useRef, FormEvent, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
-import type { AnimationItem } from "lottie-web";
 import { RiSendPlaneFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
@@ -14,7 +13,7 @@ import { getEmailJSConfig, ANIMATION_DURATION } from "@/lib/constants";
 export default function ContactUs(): React.ReactElement {
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
-  const [animationData, setAnimationData] = useState<AnimationItem | null>(null);
+  const [animationData, setAnimationData] = useState<object | null>(null);
 
   // 2. Fetch the JSON from the public folder on mount
   useEffect(() => {
