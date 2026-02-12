@@ -93,9 +93,17 @@ export default function ProjectCard({
                   {project.techStack.backend.length > 0 && renderTechIcons(project.techStack.backend, "Backend")}
                   {project.techStack.database.length > 0 && renderTechIcons(project.techStack.database, "Database")}
                 </div>
-                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
-                  <CustomButton variant="primary" size="sm" before={<HiOutlineExternalLink className="text-base" />} content="Live Site" />
-                </a>
+               <div>
+                 <CustomButton 
+                  variant="primary"
+                  size="sm"
+                  before={<HiOutlineExternalLink className="text-base" />}
+                  content="Live Site"
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                />
+               </div>
               </div>
           </div>
         </section>

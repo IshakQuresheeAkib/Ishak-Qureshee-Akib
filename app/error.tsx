@@ -31,7 +31,7 @@ export default function Error({ error, reset }: ErrorProps): React.ReactElement 
           <CustomButton variant="primary" onClick={reset} content="Try Again" />
           <CustomButton
             variant="secondary"
-            onClick={() => (window.location.href = "/")}
+            href="/"
             content="Go Home"
           />
         </div>

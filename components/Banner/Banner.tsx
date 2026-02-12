@@ -145,9 +145,7 @@ export default function Banner(): React.ReactElement {
               </motion.div>
             ))}
           </ul>
-          <a href={EXTERNAL_URLS.resume} download>
-            <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />} content="Resume" />
-          </a>
+          <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />} content="Resume" href={EXTERNAL_URLS.resume} download />
       </div>
 
       <div className="flex justify-center items-center shrink-0">
