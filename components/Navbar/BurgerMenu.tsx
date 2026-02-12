@@ -2,17 +2,9 @@
 
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { FaHome } from "react-icons/fa";
-import { RiShareBoxLine } from "react-icons/ri";
-import { MdAlternateEmail } from "react-icons/md";
-import { IoSchoolOutline } from "react-icons/io5";
-import { BsPersonVcard } from "react-icons/bs";
-import { useScrollSnap, SECTIONS } from "@/lib/ScrollSnapContext";
+import { useScrollSnap } from "@/lib/ScrollSnapContext";
 import "./burgerMenu.css";
-import { TbUserCode } from "react-icons/tb";
-import { CgCode } from "react-icons/cg";
-
-type IconMap = Record<string, React.ReactElement>;
+import { NAV_ICONS, NAV_SECTIONS } from "@/lib/navigation";
 
 export default function BurgerMenu(): React.ReactElement | null {
   const { scrollToSection, activeSection } = useScrollSnap();
@@ -42,39 +34,17 @@ export default function BurgerMenu(): React.ReactElement | null {
     setIsOpen(false);
   };
 
-  const iconMap: IconMap = {
-    Home: <FaHome />,
-    Projects: <RiShareBoxLine />,
-    About: <BsPersonVcard />,
-    Skills: <TbUserCode />,
-    Experience: <CgCode />,
-    Education: <IoSchoolOutline />,
-    Contact: <MdAlternateEmail />,
-  };
-
   if (!mounted) return null;
 
   return createPortal(
     <div className={`burger-wrapper block lg:hidden ${isOpen ? "nav-open" : ""}`} ref={menuRef}>
-      <div 
-        className="menu-trigger trigger-btn" 
-        onClick={toggleMenu}
-        role="button"
-        aria-label="Open Menu"
-        aria-expanded={isOpen}
-      >
+      <div className="menu-trigger trigger-btn" onClick={toggleMenu} role="button" aria-label="Open Menu" aria-expanded={isOpen}>
         <span className="menu-trigger-bar top"></span>
         <span className="menu-trigger-bar middle"></span>
         <span className="menu-trigger-bar bottom"></span>
       </div>
 
-      {/* CLOSE TRIGGER (Exploding X) */}
-      <div 
-        className="close-trigger trigger-btn" 
-        onClick={toggleMenu}
-        role="button"
-        aria-label="Close Menu"
-      >
+      <div className="close-trigger trigger-btn" onClick={toggleMenu} role="button" aria-label="Close Menu">
         <span className="close-trigger-bar left"></span>
         <span className="close-trigger-bar right"></span>
       </div>
@@ -87,26 +57,29 @@ export default function BurgerMenu(): React.ReactElement | null {
 
         <div className="absolute inset-0 flex items-center justify-center z-10000">
           <ul className="menu-content flex flex-col items-start gap-6 p-10">
-            {SECTIONS.map((section, index) => (
-              <li key={section.id} className="relative group overflow-hidden">
-                <a
-                  href={`#${section.id}`}
+            {NAV_SECTIONS.map((section, index) => {
+              const Icon = NAV_ICONS[section.title];
+
+              return (
+                <li key={section.id} className="relative group overflow-hidden">
+                  <a href={`#${section.id}`}
                   onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(index);
-                  }}
-                  className={`menu-link text-2xl md:text-3xl font-bold flex items-center gap-4 transition-colors duration-300 ${
-                    activeSection === index ? "text-[#2da7ff]" : "text-white/80"
-                  }`}
-                >
-                  <span className="text-2xl md:text-3xl opacity-50 group-hover:opacity-100 transition-opacity">
-                    {iconMap[section.title]}
-                  </span>
-                  {section.title}
-                  <i className="menu-link-line"></i>
-                </a>
-              </li>
-            ))}
+                      e.preventDefault();
+                      handleNavClick(index);
+                    }}
+                    className={`menu-link text-2xl md:text-3xl font-bold flex items-center gap-4 transition-colors duration-300 ${
+                      activeSection === index ? "text-[#2da7ff]" : "text-white/80"
+                    }`}
+                  >
+                    <span className="opacity-50 group-hover:opacity-100 transition-opacity">
+                      <Icon className="text-2xl md:text-3xl" />
+                    </span>
+                    {section.title}
+                    <i className="menu-link-line"></i>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>

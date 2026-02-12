@@ -9,32 +9,16 @@ import {
   useMemo,
   ReactNode,
 } from "react";
-
-// Section configuration type
-export interface SectionConfig {
-  id: string;
-  title: string;
-}
+import { NAV_SECTIONS, type SectionConfig } from "@/lib/navigation";
 
 // Context value type
 interface ScrollSnapContextValue {
   activeSection: number;
   setActiveSection: (index: number) => void;
-  sections: SectionConfig[];
+  sections: readonly SectionConfig[];
   scrollToSection: (index: number) => void;
   scrollProgress: number;
 }
-
-// Section configurations matching your portfolio
-export const SECTIONS: SectionConfig[] = [
-  { id: "banner", title: "Home" },
-  { id: "projects", title: "Projects" },
-  { id: "about", title: "About" },
-  { id: "skills", title: "Skills" },
-  { id: "experience", title: "Experience" },
-  { id: "education", title: "Education" },
-  { id: "contactUs", title: "Contact" },
-];
 
 const ScrollSnapContext = createContext<ScrollSnapContextValue | undefined>(
   undefined
@@ -52,7 +36,7 @@ export function ScrollSnapProvider({
 
   // Scroll to specific section
   const scrollToSection = useCallback((index: number): void => {
-    const sectionId = SECTIONS[index]?.id;
+    const sectionId = NAV_SECTIONS[index]?.id;
     if (!sectionId) return;
 
     const element = document.getElementById(sectionId);
@@ -70,12 +54,13 @@ export function ScrollSnapProvider({
       const docHeight = document.documentElement.scrollHeight;
 
       // Calculate overall scroll progress (0 to 1)
-      const progress = scrollTop / (docHeight - windowHeight);
+      const maxScroll = Math.max(docHeight - windowHeight, 0);
+      const progress = maxScroll === 0 ? 0 : scrollTop / maxScroll;
       setScrollProgress(Math.min(Math.max(progress, 0), 1));
 
       // Find active section based on scroll position
       let currentSection = 0;
-      SECTIONS.forEach((section, index) => {
+      NAV_SECTIONS.forEach((section, index) => {
         const element = document.getElementById(section.id);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -99,7 +84,7 @@ export function ScrollSnapProvider({
     () => ({
       activeSection,
       setActiveSection,
-      sections: SECTIONS,
+      sections: NAV_SECTIONS,
       scrollToSection,
       scrollProgress,
     }),
