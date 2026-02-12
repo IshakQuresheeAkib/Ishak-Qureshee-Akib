@@ -17,18 +17,34 @@ export default function ContactUs(): React.ReactElement {
 
   // 2. Fetch the JSON from the public folder on mount
   useEffect(() => {
-    const fetchLottie = async () => {
+    const controller = new AbortController();
+
+    const fetchLottie = async (): Promise<void> => {
       try {
-        const response = await fetch("/lottie/contactlottie.json");
+        const response = await fetch("/lottie/contactlottie.json", {
+          signal: controller.signal,  // ← Attach abort signal
+        });
         if (!response.ok) throw new Error("Failed to fetch animation");
         const data = await response.json();
-        setAnimationData(data);
+        
+        // Only set state if not aborted
+        if (!controller.signal.aborted) {
+          setAnimationData(data);
+        }
       } catch (error) {
+        // Ignore AbortError (triggered on unmount)
+        if (error instanceof Error && error.name === "AbortError") {
+          return;
+        }
         console.error("Animation load failed:", error);
       }
     };
 
     fetchLottie();
+    // Cleanup: abort fetch if component unmounts
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>): Promise<void> => {

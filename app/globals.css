@@ -3,6 +3,7 @@
 @theme {
   --color-teal: #00857d;
   --color-orange: #fdb913;
+  --color-primary: #2396fb;
   --color-red: #dd372f;
   --font-auto_wide: var(--font-auto_wide);
   --breakpoint-3xl: 121rem;

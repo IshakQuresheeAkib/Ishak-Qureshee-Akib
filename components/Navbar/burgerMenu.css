@@ -1,6 +1,5 @@
 :root {
   --anim-speed: 0.6s;
-  --bg-color-menu: #090f8307;
   --color-blue: #65a6eb;
   --ease-in-out: cubic-bezier(0.55, 0, 0.1, 1);
   --ease-power4: cubic-bezier(0.25, 1, 0.5, 1);
@@ -137,7 +136,7 @@
   height: 250vh;
   left: -75%;
   top: -75%;
-  background-color: var(--bg-color-menu);
+  background-color: #090f8307;
   transition: transform 1s var(--ease-in-out);
   will-change: transform;
 }
