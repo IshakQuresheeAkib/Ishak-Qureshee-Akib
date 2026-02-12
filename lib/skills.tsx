@@ -4,8 +4,6 @@ import { RiSupabaseFill } from "react-icons/ri";
 import { GrWordpress } from "react-icons/gr";
 import type { ReactElement } from "react";
 
-// --- Types ---
-
 export interface Skill {
   name: string;
   icon: ReactElement;
@@ -16,8 +14,6 @@ export interface SkillCategory {
   title: string;
   skills: Skill[];
 }
-
-// --- Data ---
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
