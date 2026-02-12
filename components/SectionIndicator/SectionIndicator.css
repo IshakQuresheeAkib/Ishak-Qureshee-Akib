@@ -1,15 +1,9 @@
-/* Section Indicator - Checkbox Style Navigation */
-
-/* CSS Variables for indicator */
 :root {
   --indicator-size: 12px;
   --indicator-gap: 16px;
   --indicator-total-height: calc(
     (var(--indicator-size) * 7) + (var(--indicator-gap) * 6)
   );
-  --color-indicator: #2396fb;
-  --color-primary: #2396fb;
-  --color-secondary: #65c1ff;
 }
 
 /* Main indicator container */
@@ -44,9 +38,9 @@
   width: var(--indicator-size);
   height: var(--indicator-size);
   border-radius: 50%;
-  background: var(--color-indicator);
+  background: var(--color-primary);
   box-shadow: 
-    0 0 20px var(--color-indicator),
+    0 0 20px var(--color-primary),
     0 0 40px rgba(35, 150, 251, 0.4);
   z-index: 10;
   pointer-events: none;
@@ -57,31 +51,24 @@
 /* Move the indicator based on active section */
 .indicator[data-active="0"]::before {
   transform: translateX(-50%) translateY(-5px);
-  --color-indicator: #2396fb;
 }
 .indicator[data-active="1"]::before {
   transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 0.8));
-  --color-indicator: #65c1ff;
 }
 .indicator[data-active="2"]::before {
   transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 1.8));
-  --color-indicator: #187bd1;
 }
 .indicator[data-active="3"]::before {
   transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 2.8));
-  --color-indicator: #2396fb;
 }
 .indicator[data-active="4"]::before {
   transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 3.8));
-  --color-indicator: #65c1ff;
 }
 .indicator[data-active="5"]::before {
   transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 4.8));
-  --color-indicator: #187bd1;
 }
 .indicator[data-active="6"]::before {
   transform: translateX(-50%) translateY(calc((var(--indicator-size) + var(--indicator-gap)) * 5.8));
-  --color-indicator: #2396fb;
 }
 
 /* Individual indicator item (label) */

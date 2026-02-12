@@ -1,3 +1,4 @@
+import CustomButton from "@/components/CustomButton/CustomButton";
 import Link from "next/link";
 
 export default function NotFound(): React.ReactElement {
@@ -8,11 +9,10 @@ export default function NotFound(): React.ReactElement {
       <p className="text-white/70 mb-8">
         The page you are looking for does not exist.
       </p>
-      <Link
-        href="/"
-        className="px-6 py-3 bg-primary rounded-lg hover:bg-secondary transition-colors"
-      >
-        Go Home
+      <Link  href="/" className="no-underline">
+        <CustomButton variant="primary" size="md">
+          Go Home
+        </CustomButton>
       </Link>
     </div>
   );

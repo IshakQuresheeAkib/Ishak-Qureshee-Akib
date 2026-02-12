@@ -73,7 +73,7 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
 
     // Animation position classes based on size
     const liquidSizeClasses: Record<ButtonSize, string> = {
-      sm: "top-[-90px] h-[180px] group-hover:top-[-130px]",
+      sm: "top-[-35px] h-[100px] group-hover:top-[-60px]",
       md: "top-[-80px] h-[200px] group-hover:top-[-120px]",
       lg: "top-[-70px] h-[220px] group-hover:top-[-110px]",
     };
@@ -83,11 +83,7 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
         ref={ref}
         type={type}
         disabled={disabled}
-        className={`
-          group relative inline-flex items-center justify-center overflow-hidden rounded-[10px] border-none bg-transparent cursor-pointer font-sans uppercase no-underline
-          transition-[transform,box-shadow] duration-2000 ease hover:-translate-y-0.5 active:translate-y-0 active:scale-95 active:duration-75
-          shadow-(--btn-shadow) hover:shadow-(--btn-shadow-hover)
-          focus-visible:outline-2 focus-visible:outline-[#65c1ff] focus-visible:outline-offset-4
+        className={` group relative inline-flex items-center justify-center overflow-hidden rounded-[30px] border-none bg-transparent cursor-pointer font-sans uppercase no-underline transition-[transform,box-shadow] duration-2000 ease-in-out active:translate-y-0 active:scale-95 active:duration-75 shadow-(--btn-shadow) hover:shadow-(--btn-shadow-hover) focus-visible:outline-2 focus-visible:outline-[#65c1ff] focus-visible:outline-offset-4
           ${sizeClasses[size]}
           ${disabled ? "opacity-50 cursor-not-allowed pointer-events-none group-disabled" : ""}
           ${className}

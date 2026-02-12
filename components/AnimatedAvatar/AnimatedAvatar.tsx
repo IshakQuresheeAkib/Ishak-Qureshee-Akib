@@ -52,7 +52,7 @@ function AnimatedAvatarComponent({
             src={src}
             alt={alt}
             fill
-            sizes="(max-width: 768px) 40vw, (max-width: 1200px) 70vw, 70vw"
+            sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 70vw"
             className="w-full h-full object-cover rounded-full"
             priority={priority}
             quality={100}
