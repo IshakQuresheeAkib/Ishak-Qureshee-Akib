@@ -9,10 +9,8 @@ export default function NotFound(): React.ReactElement {
       <p className="text-white/70 mb-8">
         The page you are looking for does not exist.
       </p>
-      <Link  href="/" className="no-underline">
-        <CustomButton variant="primary" size="md">
-          Go Home
-        </CustomButton>
+      <Link href="/" className="no-underline">
+        <CustomButton variant="primary" size="md" content="Go Home" />
       </Link>
     </div>
   );

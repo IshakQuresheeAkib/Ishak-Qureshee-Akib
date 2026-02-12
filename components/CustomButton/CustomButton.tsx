@@ -6,7 +6,7 @@ type ButtonVariant = "primary" | "secondary" | "danger";
 type ButtonSize = "sm" | "md" | "lg";
 
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+  content: string;
   before?: ReactNode;
   after?: ReactNode;
   variant?: ButtonVariant;
@@ -51,7 +51,7 @@ const VARIANTS: Record<ButtonVariant, VariantStyles> = {
 const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
   (
     {
-      children,
+      content,
       before,
       after,
       variant = "primary",
@@ -98,7 +98,7 @@ const CustomButton = forwardRef<HTMLButtonElement, CustomButtonProps>(
       >
         <span className="relative z-10 flex items-center justify-center gap-2 font-semibold text-white">
           {before && <span className="flex items-center justify-center">{before}</span>}
-          <span className="whitespace-nowrap">{children}</span>
+          <span className="whitespace-nowrap">{content}</span>
           {after && <span className="flex items-center justify-center">{after}</span>}
         </span>
         

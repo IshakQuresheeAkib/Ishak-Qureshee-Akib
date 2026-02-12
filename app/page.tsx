@@ -10,10 +10,9 @@ import SectionIndicator from "@/components/SectionIndicator/SectionIndicator";
 export default function HomePage(): React.ReactElement {
   return (
     <>
-      {/* Section Indicator - Fixed position scroll navigation */}
       <SectionIndicator />
 
-      <div className="scroll-container xl:mx-10 md:mx-8 mx-5 relative">
+      <div className="scroll-container xl:mx-10 md:mx-8 mx-2 relative">
         <Banner />
         <Projects />
         <About /> 

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Title from "@/components/Title/Title";
-import { PERSONAL_INFO, ANIMATION_DURATION } from "@/lib/constants";
+import { PERSONAL_INFO, ANIMATION_DURATION, EXTERNAL_URLS } from "@/lib/constants";
 import "./aboutImage.css";
 
 
@@ -70,7 +70,7 @@ function AboutImage(): React.ReactElement {
       <div className="about-image-wrapper">
         <Image
           className="about-image"
-          src="https://i.ibb.co/hJbS7G9G/Untitled-design-1.png"
+          src={EXTERNAL_URLS.aboutImage}
           alt="Ishak Qureshee Akib"
           width={400}
           height={400}
