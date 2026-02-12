@@ -1,23 +1,17 @@
 @import "tailwindcss";
 
-
 @theme {
   --color-teal: #00857d;
-  --color-purple: #782b8f;
-  --color-blue: #334982;
-  --color-grey: #f3f3f3;
   --color-orange: #fdb913;
-  --color-pink: #e40087;
   --color-red: #dd372f;
   --font-auto_wide: var(--font-auto_wide);
   --breakpoint-3xl: 121rem;
 }
 
 @layer components {
-  /* --- FANCY CORNERS LOGIC --- */
   .fancy-corners {
     @apply relative bg-white;
-    transform-style: preserve-3d; /* Key for placing pseudo-elements behind */
+    transform-style: preserve-3d;
   }
 
   .fancy-corners::before,
@@ -83,8 +77,6 @@ html {
 ul, li {
   list-style: none;
 }
-
-/* Section entrance animations */
 .scroll-section {
   opacity: 1;
   transform: translateY(0);
@@ -102,7 +94,6 @@ ul, li {
     transform: translateY(0);
   }
 }
-
 .scroll-section.revealed {
   animation: sectionFadeIn 0.8s ease forwards;
 }
