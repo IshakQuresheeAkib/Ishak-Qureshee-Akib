@@ -11,7 +11,6 @@ import {
 } from "react";
 import { NAV_SECTIONS, type SectionConfig } from "@/lib/navigation";
 
-// Context value type
 interface ScrollSnapContextValue {
   activeSection: number;
   setActiveSection: (index: number) => void;
@@ -46,7 +45,6 @@ export function ScrollSnapProvider({
     }
   }, []);
 
-  // Handle scroll events to detect active section
   useEffect(() => {
     const handleScroll = (): void => {
       const scrollTop = window.scrollY;
@@ -75,7 +73,7 @@ export function ScrollSnapProvider({
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // Initial check
+    handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

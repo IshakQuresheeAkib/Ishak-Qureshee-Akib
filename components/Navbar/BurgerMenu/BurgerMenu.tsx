@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
-import { useScrollSnap } from "@/lib/ScrollSnapContext";
+import { useScrollSnap } from "@/context/ScrollSnapContext";
 import "./burgerMenu.css";
 import { NAV_ICONS, NAV_SECTIONS } from "@/lib/navigation";
 

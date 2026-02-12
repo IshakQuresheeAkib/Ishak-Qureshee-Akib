@@ -5,10 +5,9 @@ import { motion } from "framer-motion";
 import Title from "@/components/Title/Title";
 import BadgeTitle from "@/components/MySkills/BadgeTitle";
 import NeoSkillCircle from "@/components/MySkills/NeoSkillCircle";
-import { SKILL_CATEGORIES } from "@/components/MySkills/skillCategories";
+import { SKILL_CATEGORIES } from "@/lib/skills";
 import "./skills.css";
 
-// --- Animation Variants ---
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -17,7 +16,6 @@ const containerVariants = {
   },
 };
 
-// --- Main Component ---
 export default function MySkills(): ReactElement {
   return (
     <section id="skills" className="scroll-section py-16 lg:pb-0 sm:pt-24">
