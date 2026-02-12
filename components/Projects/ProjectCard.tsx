@@ -6,6 +6,7 @@ import CustomButton from "@/components/CustomButton/CustomButton";
 import { TECH_ICONS } from "@/lib/projects";
 import type { Project } from "@/lib/projects";
 import type { IconType } from "react-icons";
+import "./projectCard.css";
 
 interface ProjectCardProps {
   project: Project;

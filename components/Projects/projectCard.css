@@ -1,0 +1,73 @@
+@layer components {
+  .fancy-corners {
+    position: relative;
+    background-color: white;
+    transform-style: preserve-3d;
+  }
+
+  .fancy-corners::before,
+  .fancy-corners::after {
+    position: absolute;
+    width: 8em;
+    height: 8em;
+    z-index: -10;
+    content: "";
+    background-size: 100% 100%;
+    transform: translateZ(-1px);
+  }
+
+  /* Theme Coloring */
+  [data-theme="teal"] .fancy-corners::before,
+  [data-theme="teal"] .fancy-corners::after {
+    background-color: #00857d;
+  }
+
+  [data-theme="orange"] .fancy-corners::before,
+  [data-theme="orange"] .fancy-corners::after {
+    background-color: #c2410c;
+  }
+
+  [data-theme="red"] .fancy-corners::before,
+  [data-theme="red"] .fancy-corners::after {
+    background-color: #991b1b;
+  }
+
+  /* Positioning Logic */
+  .fancy-corners--large.fancy-corners--top-left::before {
+    top: -2.05882em;
+    left: -2.05882em;
+  }
+
+  .fancy-corners--large.fancy-corners--bottom-right::after {
+    bottom: -2.05882em;
+    right: -2.05882em;
+  }
+
+  /* Masking Logic (The Diagonal Cut) */
+  .fancy-corners--top-left::before {
+    mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+    -webkit-mask-image: linear-gradient(-45deg, #fff 85.5%, transparent 0);
+  }
+
+  .fancy-corners--bottom-right::after {
+    mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+    -webkit-mask-image: linear-gradient(-45deg, transparent 14.5%, #fff 0);
+  }
+
+  /* Responsive Adjustments for Mobile */
+  @media (max-width: 1024px) {
+    .fancy-corners::before,
+    .fancy-corners::after {
+      width: 5em;
+      height: 5em;
+    }
+    .fancy-corners--large.fancy-corners--top-left::before {
+      top: -1.2em;
+      left: -1.2em;
+    }
+    .fancy-corners--large.fancy-corners--bottom-right::after {
+      bottom: -1.2em;
+      right: -1.2em;
+    }
+  }
+}
