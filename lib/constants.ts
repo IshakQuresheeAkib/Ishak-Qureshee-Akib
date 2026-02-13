@@ -1,17 +1,12 @@
 export const ANIMATION_DURATION = 1;
 export const SCROLL_THRESHOLD = 100;
 
-export interface NavItem {
+export interface EducationItem {
   id: number;
+  period: string;
   title: string;
-  link: string;
+  institution: string;
 }
-
-export const NAV_ITEMS: NavItem[] = [
-  { id: 1, title: "Home", link: "#" },
-  { id: 2, title: "Projects", link: "#projects" },
-  { id: 3, title: "Contact Me", link: "#contactUs" },
-];
 
 export const SOCIAL_LINKS = {
   github: "https://github.com/IshakQuresheeAkib",
@@ -38,3 +33,32 @@ export const getEmailJSConfig = () => ({
   templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "",
   publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "",
 });
+
+
+
+export const educationData: EducationItem[] = [
+  {
+    id: 1,
+    period: "Batch 8",
+    title: "Complete Web Development Course",
+    institution: "Programming Hero",
+  },
+  {
+    id: 2,
+    period: "Session 2019-2020",
+    title: "Bachelor (HONORS) In Zoology",
+    institution: "Mc College, Sylhet",
+  },
+  {
+    id: 3,
+    period: "Session 2017-2018",
+    title: "Higher Secondary School Certificate Examination",
+    institution: "Sylhet Government College, Sylhet.",
+  },
+  {
+    id: 4,
+    period: "Session 2016-2017",
+    title: "Secondary School Certificate Examination",
+    institution: "Shahjalal Jamia Islamia School & College, Sylhet",
+  },
+];
