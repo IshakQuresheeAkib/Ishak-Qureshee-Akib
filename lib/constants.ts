@@ -36,7 +36,7 @@ export const getEmailJSConfig = () => ({
 
 
 
-export const educationData: EducationItem[] = [
+export const EDUCATION_DATA: EducationItem[] = [
   {
     id: 1,
     period: "Batch 8",

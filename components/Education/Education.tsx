@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Title from "@/components/Title/Title";
-import { educationData, EducationItem } from "@/lib/constants";
+import { EDUCATION_DATA, EducationItem } from "@/lib/constants";
 
 export default function Education(): React.ReactElement {
   return (
@@ -17,7 +17,7 @@ export default function Education(): React.ReactElement {
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        {educationData.map((item) => (
+        {EDUCATION_DATA.map((item) => (
           <EducationCard key={item.id} item={item} />
         ))}
       </motion.div>
