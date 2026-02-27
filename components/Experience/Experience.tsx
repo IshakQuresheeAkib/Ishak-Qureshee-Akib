@@ -24,9 +24,10 @@ const experienceData: ExperienceItem[] = [
     period: "June 2024 – Jan 2026",
     role: "Front end developer",
     details: [
-      "Designed and developed responsive web applications using React, Next.js, TypeScript, etc.",
-      "Implemented headless CMS using WordPress as the backend and Next.js for the front end.",
-      "Created custom WordPress theme.",
+      "Converted Figma designs into responsive, pixel-perfect, production-ready web applications using Next.js and TypeScript, closely aligning with UI/UX details.",
+      "Built and maintained modern front-end features with a strong focus on performance, scalability, maintainability, and cross-browser compatibility.",
+      "Collaborated with design and backend teams in a remote environment, participated in code reviews, and upheld quality standards.",
+      "Created custom WordPress themes with attention to accessibility and SEO best practices."
     ],
   },
 ];
@@ -48,7 +49,7 @@ const itemVariants = {
 export default function Experience(): ReactElement {
   return (
     <section
-      className="scroll-section max-w-6xl mx-auto py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8"
+      className="scroll-section max-w-8xl mx-auto py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8"
       id="experience"
     >
       <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">

@@ -6,7 +6,7 @@ import { EDUCATION_DATA, EducationItem } from "@/lib/constants";
 
 export default function Education(): React.ReactElement {
   return (
-    <section className="scroll-section max-w-6xl mx-auto py-12 sm:py-16 lg:py-20 px-4 sm:px-6 lg:px-8" id="education">
+    <section className="scroll-section max-w-6xl mx-auto py-12 sm:py-9 lg:py-12 px-4 sm:px-6 lg:px-8" id="education">
       <div className="mx-auto w-fit pb-8 sm:pb-12 lg:pb-16">
         <Title>Education</Title>
       </div>
