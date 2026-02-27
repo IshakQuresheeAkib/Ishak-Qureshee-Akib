@@ -15,7 +15,7 @@ export const SOCIAL_LINKS = {
 } as const;
 
 export const EXTERNAL_URLS = {
-  resume: "https://www.dropbox.com/scl/fi/d1qsesy0ppqsd50zxmcqa/Resume-of-Akib.pdf?rlkey=7evxodrqybc4mhn8p7xa1o4dt&st=e5k7g352&dl=1",
+  resume: "https://www.dropbox.com/scl/fi/3jyk30itq15ks112h683s/Resume-of-Akib-Front-end.pdf?rlkey=3ncnj8nnpdcl6g9df64ngt2qf&st=semssyxu&dl=1",
   avatarImage: "https://i.ibb.co/Z6PYFGCp/Copy-of-Untitled-Design.png",
   aboutImage: "https://i.ibb.co/hJbS7G9G/Untitled-design-1.png",
 } as const;
