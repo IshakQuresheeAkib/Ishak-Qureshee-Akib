@@ -1,8 +1,10 @@
-import { SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiNextdotjs, SiTypescript, SiGit} from "react-icons/si";
+import { SiHtml5, SiCss3, SiTailwindcss, SiJavascript, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiNextdotjs, SiTypescript, SiGit, SiGithub } from "react-icons/si";
 import { IoLogoFirebase } from "react-icons/io5";
 import { RiSupabaseFill } from "react-icons/ri";
 import { GrWordpress } from "react-icons/gr";
+import { FaFigma,  FaUserShield } from "react-icons/fa";
 import type { ReactElement } from "react";
+import { BsFillPiggyBankFill } from "react-icons/bs";
 
 export interface Skill {
   name: string;
@@ -42,7 +44,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     title: "Database",
     skills: [
       { name: "MongoDB", icon: <SiMongodb className="text-[#47A248]" /> },
-      { name: "Firebase", icon: <IoLogoFirebase className="text-[#f59712]" /> },
       { name: "Supabase", icon: <RiSupabaseFill className="text-[#3CC98B]" /> },
     ],
   },
@@ -51,7 +52,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
     title: "Tools",
     skills: [
       { name: "Git", icon: <SiGit className="text-[#F05032]" /> },
+      { name: "GitHub", icon: <SiGithub className="text-white" /> },
+      { name: "Zustand", icon: <BsFillPiggyBankFill className="text-[#000000]" /> },
+      { name: "NextAuth", icon: <FaUserShield className="text-[#6366F1]" /> },
+      { name: "Figma", icon: <FaFigma className="text-[#F24E1E]" /> },
       { name: "WordPress", icon: <GrWordpress className="text-[#50b9ff]" /> },
+      { name: "Firebase", icon: <IoLogoFirebase className="text-[#f59712]" /> },
     ],
   },
 ];
