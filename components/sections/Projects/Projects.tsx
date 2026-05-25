@@ -1,65 +1,42 @@
 "use client";
 
-import { useRef, useState, useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
+import {  useScroll } from "framer-motion";
 import Title from "@/components/ui/Title/Title";
 import { PROJECTS_DATA } from "@/lib/projects";
-import ProjectCard from "./ProjectCard";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import ProjectCard from "../../ui/ProjectCard/ProjectCard";
 
 export default function Projects(): React.ReactElement {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!containerRef.current) return;
-
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        // This defines the scroll distance: 100% of viewport height per project
-        end: `+=${PROJECTS_DATA.length * 100}%`, 
-        pin: true,
-        scrub: 0.5,
-        onUpdate: (self) => {
-          // Calculate active index based on scroll progress (0 to 1)
-          const total = PROJECTS_DATA.length;
-          const index = Math.min(
-            total - 1,
-            Math.max(0, Math.floor(self.progress * total))
-          );
-          setActiveIndex(index);
-        },
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
   return (
-    <section id="projects" className="relative">
-      <div ref={containerRef}className="h-screen w-full flex flex-col">
-        <div className="w-full py-[3vh] lg:pb-0 lg:pt-24 3xl:pt-32 z-20 shrink-0">
-          <div className="mx-auto w-fit">
-            <Title>Projects</Title>
-          </div>
-        </div>
-        <div className="relative flex-1">
-          {PROJECTS_DATA.map((project, index) => (
+    <section id="projects" className="relative" ref={containerRef}>
+      {/* Protected sticky header logic to prevent overlapping */}
+      <div className="sticky top-0 w-full pt-10 lg:pt-20 z-30 pointer-events-none flex justify-center">
+         <Title>Projects</Title>
+      </div>
+
+      <div className="relative w-full flex flex-col items-center pb-20">
+        {PROJECTS_DATA.map((project, index) => {
+          // Add sticky offset per card so they stack
+          const targetScale = 1.15 - (PROJECTS_DATA.length - index) * 0.15;
+          
+          return (
             <ProjectCard
               key={project.id}
               project={project}
               index={index}
-              totalProjects={PROJECTS_DATA.length}
-              isActive={activeIndex === index}
+              progress={scrollYProgress}
+              range={[index * 0.25, 1]}
+              targetScale={targetScale}
             />
-          ))}
-        </div>
+          );
+        })}
       </div>
     </section>
   );
