@@ -2,7 +2,7 @@
 
 import type { ReactElement } from "react";
 import { motion } from "framer-motion";
-import type { Skill } from "@/lib/skills";
+import { Skill } from "@/lib/skills";
 
 const itemVariants = {
   hidden: { scale: 0, opacity: 0 },
@@ -15,32 +15,41 @@ const itemVariants = {
 
 interface NeoSkillCircleProps {
   skill: Skill;
+  size?: "sm" | "lg";
 }
 
-export default function NeoSkillCircle({ skill }: NeoSkillCircleProps): ReactElement {
+export default function NeoSkillCircle({ skill, size = "lg" }: NeoSkillCircleProps): ReactElement {
+  const isSm = size === "sm";
+
   return (
     <motion.div
       variants={itemVariants}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
-      className="group relative flex flex-col items-center justify-center gap-5"
+      className={`group relative flex flex-col items-center justify-center ${isSm ? "gap-2 m-1" : "gap-5"}`}
+      title={isSm ? skill.name : undefined}
     >
-      <div className="
+      <div className={`
           relative flex items-center justify-center
-          w-15 h-15 3xl:w-24 3xl:h-24
+          ${isSm ? "w-8 h-8 sm:w-10 sm:h-10" : "w-15 h-15 3xl:w-24 3xl:h-24"}
           rounded-full bg-[#0f2c4197]
-          shadow-[-5px_-5px_10px_rgba(255,255,255,0.05),5px_5px_15px_rgba(0,0,0,0.5)]
+          ${isSm ? "shadow-[-2px_-2px_5px_rgba(255,255,255,0.05),2px_2px_5px_rgba(0,0,0,0.4)]" : "shadow-[-5px_-5px_10px_rgba(255,255,255,0.05),5px_5px_15px_rgba(0,0,0,0.5)]"}
           transition-shadow duration-300
-        ">
-        <div className=" flex items-center justify-center w-[84%] h-[84%] rounded-full bg-transparent shadow-[inset_-5px_-5px_10px_rgba(255,255,255,0.05),inset_5px_5px_15px_rgba(0,0,0,0.5)]">
-          <div className="text-xl sm:text-2xl 2xl:text-3xl 3xl:text-5xl transition-transform duration-300 group-hover:scale-105">
+        `}>
+        <div className={`
+          flex items-center justify-center w-[84%] h-[84%] rounded-full bg-transparent 
+          ${isSm ? "shadow-[inset_-2px_-2px_5px_rgba(255,255,255,0.05),inset_2px_2px_5px_rgba(0,0,0,0.4)]" : "shadow-[inset_-5px_-5px_10px_rgba(255,255,255,0.05),inset_5px_5px_15px_rgba(0,0,0,0.5)]"}
+        `}>
+          <div className={`${isSm ? "text-sm sm:text-lg" : "text-xl sm:text-2xl 2xl:text-3xl 3xl:text-5xl"} transition-transform duration-300 group-hover:scale-105`}>
             {skill.icon}
           </div>
         </div>
       </div>
-      <span className="text-[12px] 3xl:text-lg font-semibold text-gray-300 absolute -bottom-6 2xl:-bottom-7 whitespace-nowrap">
-        {skill.name}
-      </span>
+      {!isSm && (
+        <span className="text-[12px] 3xl:text-lg font-semibold text-gray-300 absolute -bottom-6 2xl:-bottom-7 whitespace-nowrap">
+          {skill.name}
+        </span>
+      )}
     </motion.div>
   );
 }

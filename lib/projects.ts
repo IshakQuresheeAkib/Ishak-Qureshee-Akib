@@ -9,6 +9,8 @@ export interface Project {
   features: string[];
   image: string;
   liveUrl: string;
+  clientRepo?: string;
+  serverRepo?: string;
   techStack: {
     frontend: string[];
     backend: string[];
@@ -36,7 +38,7 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: 1,
     title: "Concord",
-    description: "Concord is a modern matrimony platform designed for seamless connections. With a user-friendly interface and advanced features, Concord simplifies the search for the perfect life partner.",
+    description: "A responsive full-stack MERN matrimony platform with role-based access control (RBAC) and JWT-secured authentication.",
     features: [
       "Stripe payment integration for contact requests",
       "Role-based dashboards (Admin vs User)",
@@ -44,6 +46,8 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: "https://i.ibb.co/jkHS0LD/IMG-20240227-WA0020-01-jpeg.jpg",
     liveUrl: "https://assignment-12-847d7.web.app/",
+    clientRepo: "https://github.com/IshakQuresheeAkib/concord",
+    serverRepo: "https://github.com/IshakQuresheeAkib/concord-server",
     techStack: {
       frontend: ["React", "Tailwind CSS"],
       backend: ["Node.js", "Express.js"],
@@ -61,6 +65,8 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: "https://i.ibb.co/Z8BTdK4/Whats-App-Image-2024-02-27-at-23-19-30-a5c82f45.jpg",
     liveUrl: "https://nourish-net.web.app/",
+    clientRepo: "https://github.com/IshakQuresheeAkib/nourish-net",
+    serverRepo: "https://github.com/IshakQuresheeAkib/nourish-net-server",
     techStack: {
       frontend: ["React", "TypeScript"],
       backend: ["Node.js", "Express.js"],
@@ -78,27 +84,12 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: "https://i.ibb.co/myZqSvL/Whats-App-Image-2024-02-28-at-00-13-23-c0f74721.jpg",
     liveUrl: "https://car-canvas.web.app/",
+    clientRepo: "https://github.com/",
+    serverRepo: "https://github.com/",
     techStack: {
       frontend: ["React", "Tailwind CSS"],
       backend: ["Node.js", "Express.js"],
       database: ["MongoDB"]
     }
   },
-  {
-    id: 4,
-    title: "Occasion Alchemy",
-    description: "Occasion Alchemy transforms ordinary events into extraordinary memories, specializing in weddings, birthdays, and anniversaries.",
-    features: [
-      "Firebase Authentication",
-      "Pagination for event listings",
-      "Responsive event management interface"
-    ],
-    image: "https://i.ibb.co/T1sX87M/Whats-App-Image-2024-02-28-at-00-31-51-253c595c.jpg",
-    liveUrl: "https://occasion-alchemy-40dfe.web.app/",
-    techStack: {
-      frontend: ["React", "Tailwind CSS"],
-      backend: ["Firebase"],
-      database: ["Firebase"]
-    }
-  }
 ];
