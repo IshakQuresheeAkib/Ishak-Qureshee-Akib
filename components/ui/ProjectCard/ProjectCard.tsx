@@ -45,7 +45,7 @@ export default function ProjectCard({
         </div>
 
         {/* Image Section */}
-        <div className="relative w-full sm:w-[45%] lg:w-[50%] h-[35%] min-h-62 sm:min-h-0 sm:h-full overflow-hidden border-b sm:border-b-0 sm:border-r border-slate-700/50 group flex-none">
+        <div className="relative w-full sm:w-[45%] lg:w-[50%] h-[35%] min-h-62 sm:min-h-0 sm:h-full overflow-hidden group flex-none">
            <motion.div style={{ scale: imageScale }} className="absolute inset-0 w-full h-full">
             <Image
               src={project.image}
@@ -56,9 +56,6 @@ export default function ProjectCard({
               priority={index === 0}
             />
           </motion.div>
-          
-          {/* Subtle overlay gradient */}
-          <div className="absolute inset-0 bg-linear-to-t from-slate-950 to-transparent sm:bg-linear-to-r sm:from-transparent sm:to-slate-950 pointer-events-none" />
         </div>
 
         {/* Content Section */}
@@ -77,7 +74,7 @@ export default function ProjectCard({
 
              <div className="flex-1 flex flex-col gap-[3vh]">
                <div>
-                 <h3 className="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2 sm:mb-3">Core Features</h3>
+                 <h3 className="text-[9px] sm:text-[15px] font-bold text-slate-400 uppercase tracking-widest mb-2 sm:mb-3">Core Features</h3>
                  <ul className="flex flex-col sm:flex-row flex-wrap gap-x-6 gap-y-1.5 sm:gap-y-2">
                    {project.features.map((feature, i) => (
                      <li key={i} className="flex items-center gap-2 text-slate-200 text-xs sm:text-sm">

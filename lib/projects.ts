@@ -38,7 +38,7 @@ export const PROJECTS_DATA: Project[] = [
   {
     id: 1,
     title: "Concord",
-    description: "Concord is a modern matrimony platform designed for seamless connections. With a user-friendly interface and advanced features, Concord simplifies the search for the perfect life partner.",
+    description: "A responsive full-stack MERN matrimony platform with role-based access control (RBAC) and JWT-secured authentication.",
     features: [
       "Stripe payment integration for contact requests",
       "Role-based dashboards (Admin vs User)",

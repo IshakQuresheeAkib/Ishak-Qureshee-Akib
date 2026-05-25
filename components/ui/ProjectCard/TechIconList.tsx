@@ -1,5 +1,6 @@
 import { TECH_ICONS } from "@/lib/projects";
 import type { IconType } from "react-icons";
+import NeoSkillCircle from "@/components/sections/MySkills/NeoSkillCircle";
 
 interface TechIconListProps {
   techs: string[];
@@ -17,22 +18,18 @@ export default function TechIconList({
       <span className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-slate-500">
         {label}
       </span>
-      <div className="flex flex-wrap gap-1.5">
+      <div className="flex flex-wrap gap-1.5 items-center">
         {techs.map((tech) => {
           const Icon: IconType = TECH_ICONS[tech] || TECH_ICONS["React"];
           return (
-            <div
+            <NeoSkillCircle 
               key={tech}
-              className="group relative flex items-center justify-center p-1.5 sm:p-2.5 rounded-lg bg-slate-900/60 border border-slate-700/50 hover:border-slate-400 hover:bg-slate-800 transition-all duration-300 backdrop-blur-md shadow-sm"
-              title={tech}
-              aria-label={tech}
-              role="img"
-            >
-              <Icon
-                aria-hidden="true"
-                className="text-lg sm:text-2xl text-slate-300 group-hover:text-white transition-colors"
-              />
-            </div>
+              size="sm"
+              skill={{ 
+                name: tech, 
+                icon: <Icon aria-hidden="true" className="text-slate-300 group-hover:text-white transition-colors" /> 
+              }} 
+            />
           );
         })}
       </div>
