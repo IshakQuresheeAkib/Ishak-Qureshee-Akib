@@ -2,7 +2,7 @@
 
 import type { ReactElement } from "react";
 import { motion } from "framer-motion";
-import type { Skill } from "@/lib/skills";
+import { Skill } from "@/lib/skills";
 
 const itemVariants = {
   hidden: { scale: 0, opacity: 0 },
@@ -14,7 +14,7 @@ const itemVariants = {
 };
 
 interface NeoSkillCircleProps {
-  skill: { name: string; icon: ReactElement };
+  skill: Skill;
   size?: "sm" | "lg";
 }
 

@@ -4,7 +4,7 @@ import { useRef } from "react";
 import {  useScroll } from "framer-motion";
 import Title from "@/components/ui/Title/Title";
 import { PROJECTS_DATA } from "@/lib/projects";
-import ProjectCard from "../../ui/ProjectCard/ProjectCard";
+import ProjectCard from "@/components/ui/ProjectCard/ProjectCard";
 
 export default function Projects(): React.ReactElement {
   const containerRef = useRef<HTMLDivElement>(null);
