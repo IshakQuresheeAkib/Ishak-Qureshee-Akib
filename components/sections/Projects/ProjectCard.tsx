@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { HiOutlineExternalLink } from "react-icons/hi";
-import CustomButton from "@/components/CustomButton/CustomButton";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
 import { TECH_ICONS } from "@/lib/projects";
 import type { Project } from "@/lib/projects";
 import type { IconType } from "react-icons";

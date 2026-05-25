@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import CustomButton from "@/components/CustomButton/CustomButton";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
 
 interface ErrorProps {
   error: Error & { digest?: string };

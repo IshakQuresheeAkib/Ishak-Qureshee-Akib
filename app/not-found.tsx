@@ -1,4 +1,4 @@
-import CustomButton from "@/components/CustomButton/CustomButton";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
 
 export default function NotFound(): React.ReactElement {
   return (

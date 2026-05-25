@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Title from "@/components/Title/Title";
+import Title from "@/components/ui/Title/Title";
 import { EDUCATION_DATA, EducationItem } from "@/lib/constants";
 
 export default function Education(): React.ReactElement {

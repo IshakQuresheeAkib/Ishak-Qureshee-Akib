@@ -3,7 +3,7 @@
 import { useRef, useState, useLayoutEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Title from "@/components/Title/Title";
+import Title from "@/components/ui/Title/Title";
 import { PROJECTS_DATA } from "@/lib/projects";
 import ProjectCard from "./ProjectCard";
 

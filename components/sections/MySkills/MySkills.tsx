@@ -2,7 +2,7 @@
 
 import type { ReactElement } from "react";
 import { motion } from "framer-motion";
-import Title from "@/components/Title/Title";
+import Title from "@/components/ui/Title/Title";
 import BadgeTitle from "@/components/MySkills/BadgeTitle";
 import NeoSkillCircle from "@/components/MySkills/NeoSkillCircle";
 import { SKILL_CATEGORIES } from "@/lib/skills";

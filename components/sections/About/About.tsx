@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Title from "@/components/Title/Title";
+import Title from "@/components/ui/Title/Title";
 import { PERSONAL_INFO, ANIMATION_DURATION } from "@/lib/constants";
 import AboutImage from "./AboutImage";
 

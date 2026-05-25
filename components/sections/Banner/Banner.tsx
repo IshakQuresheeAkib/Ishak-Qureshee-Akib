@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
-import CustomButton from "@/components/CustomButton/CustomButton";
-import AnimatedAvatar from "@/components/Banner/AnimatedAvatar/AnimatedAvatar";
-import SocialIconButton from "@/components/Banner/SocialIconButton/SocialIconButton";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
+import AnimatedAvatar from "@/components/sections/Banner/AnimatedAvatar/AnimatedAvatar";
+import SocialIconButton from "@/components/sections/Banner/SocialIconButton/SocialIconButton";
 import { SOCIAL_LINKS, EXTERNAL_URLS } from "@/lib/constants";
 import ScrollDown from "./ScrollDown/ScrollDown";
 
