@@ -1,11 +1,11 @@
-import Banner from "@/components/Banner/Banner";
-import Projects from "@/components/Projects/Projects";
-import About from "@/components/About/About";
-import MySkills from "@/components/MySkills/MySkills";
-import Experience from "@/components/Experience/Experience";
-import Education from "@/components/Education/Education";
-import ContactUs from "@/components/ContactUs/ContactUs";
-import SectionIndicator from "@/components/SectionIndicator/SectionIndicator";
+import Banner from "@/components/sections/Banner/Banner";
+import Projects from "@/components/sections/Projects/Projects";
+import About from "@/components/sections/About/About";
+import MySkills from "@/components/sections/MySkills/MySkills";
+import Experience from "@/components/sections/Experience/Experience";
+import Education from "@/components/sections/Education/Education";
+import ContactUs from "@/components/sections/ContactUs/ContactUs";
+import SectionIndicator from "@/components/ui/SectionIndicator/SectionIndicator";
 
 export default function HomePage(): React.ReactElement {
   return (

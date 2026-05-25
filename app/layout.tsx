@@ -3,11 +3,11 @@ import { Audiowide, Recursive } from "next/font/google";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
-import InitialLoading from "@/components/InitialLoading/InitialLoading";
+import Navbar from "@/components/ui/Navbar/Navbar";
+import Footer from "@/components/ui/Footer/Footer";
+import InitialLoading from "@/components/ui/InitialLoading/InitialLoading";
 import { ScrollSnapProvider } from "@/context/ScrollSnapContext";
-import SmoothScroll from "@/components/SmoothScroll";
+import SmoothScroll from "@/components/providers/SmoothScroll";
 
 const recursive = Recursive({
   subsets: ["latin"],

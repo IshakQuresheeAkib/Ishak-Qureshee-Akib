@@ -1,10 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
-import Title from "@/components/Title/Title";
-import { PERSONAL_INFO, ANIMATION_DURATION, EXTERNAL_URLS } from "@/lib/constants";
-import "./aboutImage.css";
+import Title from "@/components/ui/Title/Title";
+import { PERSONAL_INFO, ANIMATION_DURATION } from "@/lib/constants";
+import AboutImage from "./AboutImage";
 
 
 interface InfoItem {
@@ -64,20 +63,3 @@ export default function About(): React.ReactElement {
   );
 }
 
-function AboutImage(): React.ReactElement {
-  return (
-    <div className="w-full flex justify-center">
-      <div className="about-image-wrapper">
-        <Image
-          className="about-image"
-          src={EXTERNAL_URLS.aboutImage}
-          alt="Ishak Qureshee Akib"
-          width={400}
-          height={400}
-          sizes="(max-width: 480px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 400px"
-          priority
-        />
-      </div>
-    </div>
-  );
-}

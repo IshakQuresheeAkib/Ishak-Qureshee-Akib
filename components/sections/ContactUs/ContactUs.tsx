@@ -6,8 +6,8 @@ import Lottie from "lottie-react";
 import { RiSendPlaneFill } from "react-icons/ri";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
-import Title from "@/components/Title/Title";
-import CustomButton from "@/components/CustomButton/CustomButton";
+import Title from "@/components/ui/Title/Title";
+import CustomButton from "@/components/ui/CustomButton/CustomButton";
 import { getEmailJSConfig, ANIMATION_DURATION } from "@/lib/constants";
 
 export default function ContactUs(): React.ReactElement {

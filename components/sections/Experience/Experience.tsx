@@ -4,7 +4,7 @@ import type { ReactElement } from "react";
 import { motion } from "framer-motion";
 import { HiOutlineBriefcase, HiOutlineMapPin, HiOutlineCalendarDays } from "react-icons/hi2";
 import { BsCheck2Circle } from "react-icons/bs";
-import Title from "@/components/Title/Title";
+import Title from "@/components/ui/Title/Title";
 import { PiBuildingOfficeBold } from "react-icons/pi";
 
 interface ExperienceItem {

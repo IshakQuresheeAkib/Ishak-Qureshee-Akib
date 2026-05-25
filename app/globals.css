@@ -7,6 +7,8 @@
   --color-red: #dd372f;
   --font-auto_wide: var(--font-auto_wide);
   --breakpoint-3xl: 121rem;
+  --animate-wheel: wheel 1.5s infinite;
+
 }
 
 html {
@@ -26,6 +28,12 @@ ul, li {
   position: relative;
   scroll-margin-top: 80px;
 }
+@keyframes wheel {
+    to {
+      opacity: 0;
+      top: 40px;
+    }
+  }
 @keyframes sectionFadeIn {
   from {
     opacity: 0;
