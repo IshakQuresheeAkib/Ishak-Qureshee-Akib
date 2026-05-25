@@ -9,12 +9,6 @@
   --breakpoint-3xl: 121rem;
   --animate-wheel: wheel 1.5s infinite;
 
-  @keyframes wheel {
-    to {
-      opacity: 0;
-      top: 40px;
-    }
-  }
 }
 
 html {
@@ -34,6 +28,12 @@ ul, li {
   position: relative;
   scroll-margin-top: 80px;
 }
+@keyframes wheel {
+    to {
+      opacity: 0;
+      top: 40px;
+    }
+  }
 @keyframes sectionFadeIn {
   from {
     opacity: 0;
