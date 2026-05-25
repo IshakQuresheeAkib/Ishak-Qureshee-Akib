@@ -34,10 +34,10 @@ export default function ProjectCard({
   const imageScale = useTransform(cardProgress, [0, 1], [1.3, 1]);
 
   return (
-    <div ref={container} className="min-h-screen w-full flex items-center justify-center sticky top-0">
+    <div ref={container} className="min-h-screen w-full flex items-center justify-center sticky top-0 pointer-events-none">
       <motion.div 
         style={{ scale, top: `calc(7vh + ${index * 20}px)` }} 
-        className={`relative flex flex-col sm:flex-row w-full min-h-160 sm:min-h-0 sm:h-[75vh] rounded-3xl overflow-hidden border bg-linear-to-br backdrop-blur-xl shadow-2xl origin-top focus-within:ring-2 focus-within:ring-blue-500/50 outline-none`}
+        className={`relative flex flex-col sm:flex-row w-full min-h-160 sm:min-h-0 sm:h-[75vh] rounded-3xl overflow-hidden border bg-linear-to-br backdrop-blur-xl shadow-2xl origin-top focus-within:ring-2 focus-within:ring-blue-500/50 outline-none pointer-events-auto`}
       >
         {/* Number indicator background */}
         <div className="absolute top-4 right-6 text-slate-100/5 font-black text-7xl md:text-9xl pointer-events-none select-none z-0 mix-blend-overlay">
