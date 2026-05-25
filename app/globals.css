@@ -7,6 +7,14 @@
   --color-red: #dd372f;
   --font-auto_wide: var(--font-auto_wide);
   --breakpoint-3xl: 121rem;
+  --animate-wheel: wheel 1.5s infinite;
+
+  @keyframes wheel {
+    to {
+      opacity: 0;
+      top: 40px;
+    }
+  }
 }
 
 html {

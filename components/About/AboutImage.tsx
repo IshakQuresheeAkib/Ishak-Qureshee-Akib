@@ -1,5 +1,4 @@
 import Image from "next/image";
-// @ts-expect-error - No type declarations for css files
 import "./aboutImage.css";
 import { EXTERNAL_URLS } from "@/lib/constants";
 

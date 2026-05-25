@@ -1,7 +1,5 @@
 "use client";
 
-import styles from "./ScrollDown.module.css";
-
 export default function ScrollDown(): React.ReactElement {
   const handleScroll = (): void => {
     // Attempt to scroll to the Projects section, or fallback to window scroll
@@ -21,7 +19,7 @@ export default function ScrollDown(): React.ReactElement {
     >
       <div className="relative h-15 w-7.5 rounded-2xl border-2 border-white">
         <div
-          className={`absolute left-1/2 top-1.5 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-white ${styles.mouseWheel}`}
+          className="absolute left-1/2 top-1.5 h-2.5 w-2.5 -translate-x-1/2 rounded-full bg-white animate-wheel"
         />
       </div>
     </button>

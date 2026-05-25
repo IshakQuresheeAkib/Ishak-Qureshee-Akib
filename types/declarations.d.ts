@@ -1,5 +1,8 @@
 // Type declarations for libraries without TypeScript support
-
+declare module "*.css" {
+  const content: { [className: string]: string };
+  export default content;
+}
 declare module "split-text-js" {
   interface SplitTextJSOptions {
     type?: string;
