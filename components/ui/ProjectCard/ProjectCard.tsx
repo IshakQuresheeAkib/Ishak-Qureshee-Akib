@@ -7,7 +7,6 @@ import { FaGithub } from "react-icons/fa";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import type { Project } from "@/lib/projects";
 import TechIconList from "./TechIconList";
-import "./projectCard.css";
 
 interface ProjectCardProps {
   project: Project;
