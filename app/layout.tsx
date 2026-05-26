@@ -84,6 +84,9 @@ export default function RootLayout({
 }>): React.ReactElement {
   return (
     <html lang="en">
+      <head>
+        <link rel="preload" href="/profile_small.png" as="image" type="image/png" />
+      </head>
       <body className={`${recursive.className} ${auto_wide.variable} antialiased`}>
         <SmoothScroll>
           <ScrollSnapProvider>
