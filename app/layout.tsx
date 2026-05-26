@@ -5,7 +5,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "@/components/ui/Navbar/Navbar";
 import Footer from "@/components/ui/Footer/Footer";
-import InitialLoading from "@/components/ui/InitialLoading/InitialLoading";
 import { ScrollSnapProvider } from "@/context/ScrollSnapContext";
 import SmoothScroll from "@/components/providers/SmoothScroll";
 
@@ -24,7 +23,13 @@ const auto_wide = Audiowide({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ishak-qureshee-akib.netlify.app"),
-  title: "Ishak Qureshee Akib - Full Stack Developer",
+  alternates: {
+    canonical: "/",
+  },
+  title: {
+    default: "Ishak Qureshee Akib | Software Developer",
+    template: "%s | Ishak Qureshee Akib"
+  },
   description:
     "Portfolio of Ishak Qureshee Akib showcasing web development projects, skills, and experience. Specializing in React, Next.js, and the MERN stack.",
   keywords: [
@@ -37,23 +42,26 @@ export const metadata: Metadata = {
     "frontend developer",
     "JavaScript",
     "TypeScript",
+    "Ishak Qureshee Akib", "Akib", "Qureshee",
   ],
   authors: [{ name: "Ishak Qureshee Akib" }],
+  creator: "Ishak Qureshee Akib",
   openGraph: {
-    title: "Ishak Qureshee Akib - Portfolio",
-    description: "Full Stack Developer Portfolio - React, Next.js, MERN Stack",
-    images: ["/Akib.png"],
+    title: "Ishak Qureshee Akib - Software Developer",
+    description: "Personal portfolio showcasing my software solutions, websites and skills.",
+    url: "https://ishak-qureshee-akib.netlify.app",
+    images: ["/favicon.png"],
     type: "website",
+    locale: "en_US",
     siteName: "Ishak Qureshee Akib Portfolio",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Ishak Qureshee Akib - Portfolio",
-    description: "Full Stack Developer Portfolio",
   },
   icons: {
     icon: "/favicon.png",
   },
+  verification: {
+    google: "snP4pG79eonl3CdiMVHwQnz0XJTlnruJIghnbHAgkno",
+  }
+  
 };
 
 export default function RootLayout({
@@ -66,7 +74,6 @@ export default function RootLayout({
       <body className={`${recursive.className} ${auto_wide.variable} antialiased`}>
         <SmoothScroll>
           <ScrollSnapProvider>
-            <InitialLoading />
             <div className="bg-cover bg-fixed bg-[url('/pattern.svg')] min-h-screen w-full">
               <Navbar />
               <main>{children}</main>

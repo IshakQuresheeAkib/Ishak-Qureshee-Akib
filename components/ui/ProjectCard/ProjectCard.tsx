@@ -36,7 +36,7 @@ export default function ProjectCard({
     <div ref={container} className="min-h-screen w-full flex items-center justify-center sticky top-0 pointer-events-none">
       <motion.div 
         style={{ scale, top: `calc(7vh + ${index * 20}px)` }} 
-        className={`relative flex flex-col sm:flex-row w-full min-h-150 sm:min-h-0 sm:h-[75vh] rounded-3xl overflow-hidden border bg-linear-to-br backdrop-blur-xl shadow-2xl origin-top focus-within:ring-2 focus-within:ring-blue-500/50 outline-none pointer-events-auto`}
+        className={`relative flex flex-col sm:flex-row w-full min-h-140 sm:min-h-0 sm:h-[75vh] rounded-3xl overflow-hidden border bg-linear-to-br backdrop-blur-xl shadow-2xl origin-top focus-within:ring-2 focus-within:ring-blue-500/50 outline-none pointer-events-auto`}
       >
         {/* Number indicator background */}
         <div className="absolute top-4 right-6 text-slate-100/5 font-black text-7xl md:text-9xl pointer-events-none select-none z-0 mix-blend-overlay">
@@ -58,20 +58,20 @@ export default function ProjectCard({
         </div>
 
         {/* Content Section */}
-        <div className="relative w-full sm:w-[55%] lg:w-[50%] h-[65%] sm:h-full flex flex-col justify-between px-6 sm:px-10 py-[2vh] z-10 bg-slate-950/50 sm:bg-transparent overflow-hidden">
+        <div className="relative w-full sm:w-[55%] lg:w-[50%] h-[65%] sm:h-full flex flex-col justify-between px-3 sm:px-10 py-[2vh] z-10 bg-slate-950/50 sm:bg-transparent overflow-hidden">
           
           <div className="flex flex-col h-full pointer-events-auto">
              <div className="flex-none mb-3 sm:mb-4">
                <div className="flex items-center gap-3 mb-2">
                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight drop-shadow-md">{project.title}</h2>
-                 <div className="h-px bg-slate-700/80 flex-1 ml-2" />
+                 <div className="h-px bg-blue-400/50 flex-1 ml-2" />
                </div>
                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-light line-clamp-2 sm:line-clamp-3">
                  {project.description}
                </p>
              </div>
 
-             <div className="flex-1 flex flex-col gap-[3vh]">
+             <div className="flex-1 flex flex-col md:gap-[3vh]">
                <div>
                  <h3 className="text-[9px] sm:text-[15px] font-bold text-slate-400 uppercase tracking-widest mb-2 sm:mb-3">Core Features</h3>
                  <ul className="flex flex-col sm:flex-row flex-wrap gap-x-6 gap-y-1.5 sm:gap-y-2">
@@ -92,17 +92,17 @@ export default function ProjectCard({
              </div>
 
              {/* Footer Buttons */}
-             <div className="flex-none pt-4 sm:pt-[1vh] flex flex-wrap gap-2.5 sm:gap-3">
-               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex justify-center items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold rounded-lg transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-900/20 focus:ring-2 focus:ring-blue-400 outline-none" aria-label={`View live site for ${project.title}`}>
+             <div className="flex-none pt-4 sm:pt-[1vh] flex flex-wrap gap-1.5 sm:gap-3">
+               <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex justify-center items-center gap-2 px-1 py-2 sm:px-5 sm:py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs sm:text-sm font-semibold rounded-lg transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-blue-900/20 focus:ring-2 focus:ring-blue-400 outline-none" aria-label={`View live site for ${project.title}`}>
                  <HiOutlineExternalLink aria-hidden="true" className="text-base" /> Live Site
                </a>
                {project.clientRepo && (
-                 <a href={project.clientRepo} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex justify-center items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm font-medium rounded-lg border border-slate-700 transition-transform hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-slate-400 outline-none" aria-label={`View Client Repo for ${project.title}`}>
+                 <a href={project.clientRepo} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex justify-center items-center gap-2 px-1 py-2 sm:px-5 sm:py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm font-medium rounded-lg border border-slate-700 transition-transform hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-slate-400 outline-none" aria-label={`View Client Repo for ${project.title}`}>
                    <FaGithub aria-hidden="true" className="text-base" /> Client Repo
                  </a>
                )}
                {project.serverRepo && (
-                 <a href={project.serverRepo} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex justify-center items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm font-medium rounded-lg border border-slate-700 transition-transform hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-slate-400 outline-none" aria-label={`View Server Repo for ${project.title}`}>
+                 <a href={project.serverRepo} target="_blank" rel="noopener noreferrer" className="flex-1 sm:flex-none flex justify-center items-center gap-2 px-1 py-2 sm:px-5 sm:py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs sm:text-sm font-medium rounded-lg border border-slate-700 transition-transform hover:scale-[1.02] active:scale-[0.98] focus:ring-2 focus:ring-slate-400 outline-none" aria-label={`View Server Repo for ${project.title}`}>
                    <FaGithub aria-hidden="true" className="text-base" /> Server Repo
                  </a>
                )}
