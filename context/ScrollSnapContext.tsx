@@ -90,18 +90,20 @@ export function ScrollSnapProvider({
         });
 
         let maxRatio = 0;
-        let activeId: SectionId | undefined = NAV_SECTIONS[0]?.id;
+        let activeId: SectionId | undefined;
 
         ratios.forEach((ratio, id) => {
-          if (ratio >= maxRatio) {
+          if (ratio > maxRatio) {
             maxRatio = ratio;
             activeId = id;
           }
         });
 
-        const index = NAV_SECTIONS.findIndex((section) => section.id === activeId);
-        if (index !== -1) {
-          setActiveSection(index);
+        if (activeId !== undefined && maxRatio > 0) {
+          const index = NAV_SECTIONS.findIndex((section) => section.id === activeId);
+          if (index !== -1) {
+            setActiveSection(index);
+          }
         }
       },
       {
