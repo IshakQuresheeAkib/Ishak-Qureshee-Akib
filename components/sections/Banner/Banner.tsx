@@ -110,13 +110,13 @@ export default function Banner(): React.ReactElement {
       className="scroll-section relative flex flex-col-reverse lg:flex-row min-h-screen max-w-[96%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
     >
       <div>
-        <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
+        <h2 className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </h2>
         <p className="text-3xl font-auto_wide sm:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5"
           style={{ textShadow: "0 .2ch 10px oklch(10% .2 320), 0 -2px 0 oklch(98% .05 320)" }}>
           Ishak Qureshee Akib
         </p>
         <div className="flex items-center gap-2 3xl:gap-4 xl:mt-9 3xl:mt-11">
-          <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
+          <h2 className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</h2>
           <div className="relative inline-flex min-w-0 items-baseline" ref={textWrapperRef}>
             {ROLES.map((role) => (
               <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]">

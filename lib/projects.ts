@@ -84,8 +84,8 @@ export const PROJECTS_DATA: Project[] = [
     ],
     image: "https://i.ibb.co/myZqSvL/Whats-App-Image-2024-02-28-at-00-13-23-c0f74721.jpg",
     liveUrl: "https://car-canvas.web.app/",
-    clientRepo: "https://github.com/",
-    serverRepo: "https://github.com/",
+    clientRepo: "https://github.com/IshakQuresheeAkib/car-canvas",
+    serverRepo: "https://github.com/IshakQuresheeAkib/car-canvas-server",
     techStack: {
       frontend: ["React", "Tailwind CSS"],
       backend: ["Node.js", "Express.js"],
