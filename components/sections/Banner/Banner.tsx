@@ -41,14 +41,14 @@ const SOCIAL_ICONS = [
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const [renderAnimatedRoles, setRenderAnimatedRoles] = useState<boolean>(false);
+  const staticRoleRef = useRef<HTMLSpanElement>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
+  const [canAnimateRoles, setCanAnimateRoles] = useState<boolean>(false);
+  const splitTextRef = useRef<(typeof import("split-text-js"))["default"] | null>(null);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => {
-      const reduceMotion = media.matches;
-      setRenderAnimatedRoles(!reduceMotion);
-    };
+    const updatePreference = () => setPrefersReducedMotion(media.matches);
 
     updatePreference();
 
@@ -61,72 +61,105 @@ export default function Banner(): React.ReactElement {
     return () => media.removeListener(updatePreference);
   }, []);
 
+  useEffect(() => {
+    let isActive = true;
+
+    if (prefersReducedMotion) {
+      setCanAnimateRoles(false);
+      return () => {
+        isActive = false;
+      };
+    }
+
+    const loadSplitText = async (): Promise<void> => {
+      try {
+        const SplitTextJS = (await import("split-text-js")).default;
+        if (!isActive) return;
+        splitTextRef.current = SplitTextJS;
+        setCanAnimateRoles(true);
+      } catch (error) {
+        console.error("Error loading text animation module:", error);
+        setCanAnimateRoles(false);
+      }
+    };
+
+    loadSplitText();
+
+    return () => {
+      isActive = false;
+    };
+  }, [prefersReducedMotion]);
+
   useLayoutEffect(() => {
-    if (!renderAnimatedRoles) {
+    if (!canAnimateRoles) {
       if (timelineRef.current) {
         timelineRef.current.kill();
         timelineRef.current = null;
       }
+      if (textWrapperRef.current) {
+        gsap.set(textWrapperRef.current, { autoAlpha: 0 });
+      }
+      if (staticRoleRef.current) {
+        gsap.set(staticRoleRef.current, { autoAlpha: 1 });
+      }
       return;
     }
 
-    const initAnimation = async (): Promise<void> => {
-      try {
-        const SplitTextJS = (await import("split-text-js")).default;
+    const SplitTextJS = splitTextRef.current;
+    if (!SplitTextJS || !textWrapperRef.current) return;
 
-        if (!textWrapperRef.current) return;
+    gsap.set(textWrapperRef.current, { autoAlpha: 1 });
+    if (staticRoleRef.current) {
+      gsap.set(staticRoleRef.current, { autoAlpha: 0 });
+    }
 
-        const titles = textWrapperRef.current.querySelectorAll("[data-hero-role]");
-        if (titles.length === 0) return;
+    const titles = textWrapperRef.current.querySelectorAll("[data-hero-role]");
+    if (titles.length === 0) return;
 
-        if (timelineRef.current) {
-          timelineRef.current.kill();
-        }
+    if (timelineRef.current) {
+      timelineRef.current.kill();
+    }
 
-        const tl = gsap.timeline({ repeat: -1 });
-        timelineRef.current = tl;
+    const tl = gsap.timeline({ repeat: -1 });
+    timelineRef.current = tl;
 
-        titles.forEach((title) => {
-          const splitTitle = new SplitTextJS(title as HTMLElement);
+    titles.forEach((title) => {
+      const splitTitle = new SplitTextJS(title as HTMLElement);
+      gsap.set(splitTitle.chars, { opacity: 0, y: 10, rotateX: -90 });
 
-          tl.from(
-            splitTitle.chars,
-            {
-              opacity: 0,
-              y: 10,
-              rotateX: -90,
-              stagger: 0.02,
-            },
-            "<"
-          ).to(
-            splitTitle.chars,
-            {
-              opacity: 0,
-              y: -10,
-              rotateX: 90,
-              stagger: 0.02,
-            },
-            "<1"
-          );
-        });
-      } catch (error) {
-        console.error("Error initializing text animation:", error);
-      }
-    };
-
-    initAnimation();
+      tl.to(
+        splitTitle.chars,
+        {
+          opacity: 1,
+          y: 0,
+          rotateX: 0,
+          stagger: 0.02,
+        },
+        "<"
+      ).to(
+        splitTitle.chars,
+        {
+          opacity: 0,
+          y: -10,
+          rotateX: 90,
+          stagger: 0.02,
+        },
+        "<1"
+      );
+    });
 
     return () => {
       if (timelineRef.current) {
         timelineRef.current.kill();
       }
     };
-  }, [renderAnimatedRoles]);
+  }, [canAnimateRoles]);
 
-  const rolesToRender = renderAnimatedRoles ? ROLES : ROLES.slice(0, 1);
-  const roleClassName = renderAnimatedRoles
-    ? "absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]"
-    : "whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold text-[#65c1ff]";
+  const roleBaseClassName =
+    "whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold text-[#65c1ff]";
+  const rolePlaceholderClassName = `invisible ${roleBaseClassName}`;
+  const animatedWrapperClassName = "absolute left-0";
+  const animatedRoleClassName = `absolute left-0 m-0 ${roleBaseClassName}`;
 
   return (
     <section
@@ -141,12 +174,24 @@ export default function Banner(): React.ReactElement {
         </h1>
         <div className="flex items-center gap-2 3xl:gap-4 xl:mt-9 3xl:mt-11">
           <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
-          <div className="relative inline-flex min-w-0 items-baseline" ref={textWrapperRef}>
-            {rolesToRender.map((role) => (
-              <span key={role} data-hero-role className={roleClassName}>
-                {role}
-              </span>
-            ))}
+          <div className="relative inline-flex min-w-0 items-baseline">
+            <span className={rolePlaceholderClassName} aria-hidden="true">
+              {ROLES.reduce((longest, role) => (role.length > longest.length ? role : longest), ROLES[0])}
+            </span>
+            <span ref={staticRoleRef} className={animatedRoleClassName}>
+              {ROLES[0]}
+            </span>
+            <div
+              ref={textWrapperRef}
+              className={animatedWrapperClassName}
+              aria-hidden="true"
+            >
+              {ROLES.map((role) => (
+                <span key={role} data-hero-role className={animatedRoleClassName}>
+                  {role}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
           <p className="mt-2 3xl:mt-5 font-thin text-white/90 text-base 2xl:text-lg 3xl:text-2xl sm:max-w-4/5 leading-7 3xl:leading-10"> passionate about building scalable and performant web applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.</p>
