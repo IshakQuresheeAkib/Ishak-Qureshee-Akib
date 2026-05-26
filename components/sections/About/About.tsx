@@ -32,7 +32,7 @@ export default function About(): React.ReactElement {
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: ANIMATION_DURATION }}
               viewport={{ once: true }}
-              className="h-fit w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px] mx-auto flex-shrink-0"
+              className="h-fit w-full max-w-75 sm:max-w-87.5 lg:max-w-100 mx-auto shrink-0"
             >
               <AboutImage />
             </motion.div>
@@ -50,8 +50,8 @@ export default function About(): React.ReactElement {
               <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:gap-10">
                 {infoItems.map((item) => (
                   <div key={item.label}>
-                    <h6 className="font-bold text-sm sm:text-base 3xl:text-lg">{item.label}</h6>
-                    <p className="text-xs sm:text-sm 3xl:text-base font-thin text-white/80 break-words">
+                    <p className="font-bold text-sm sm:text-base 3xl:text-lg">{item.label}</p>
+                    <p className="text-xs sm:text-sm 3xl:text-base font-thin text-white/80 wrap-break-word">
                       {item.value}
                     </p>
                   </div>

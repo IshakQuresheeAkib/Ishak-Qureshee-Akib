@@ -7,32 +7,35 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
-  gsap.registerPlugin(ScrollTrigger);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
 
-  const lenis = new Lenis({
-    duration: 1.5,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 1,
-    touchMultiplier: 2,
-  });
+    gsap.registerPlugin(ScrollTrigger);
 
-  lenis.on('scroll', ScrollTrigger.update);
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: "vertical",
+      gestureOrientation: "vertical",
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
 
-  const tickerCallback = (time: number) => {
-    lenis.raf(time * 1000);
-  };
+    lenis.on("scroll", ScrollTrigger.update);
 
-  gsap.ticker.add(tickerCallback);
-  gsap.ticker.lagSmoothing(0);
+    const tickerCallback = (time: number) => {
+      lenis.raf(time * 1000);
+    };
 
-  return () => {
-    lenis.destroy();
-    gsap.ticker.remove(tickerCallback);  // ✓ Now removes the correct callback
-  };
-}, []);
+    gsap.ticker.add(tickerCallback);
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      lenis.destroy();
+      gsap.ticker.remove(tickerCallback); // ✓ Now removes the correct callback
+    };
+  }, []);
 
   return <>{children}</>;
 }

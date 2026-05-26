@@ -72,7 +72,7 @@ export default function BurgerMenu(): React.ReactElement | null {
                     }`}
                   >
                     <span className="opacity-50 group-hover:opacity-100 transition-opacity">
-                      <Icon className="text-2xl md:text-3xl" />
+                      <Icon className="text-2xl md:text-3xl" aria-hidden="true" />
                     </span>
                     {section.title}
                     <i className="menu-link-line"></i>

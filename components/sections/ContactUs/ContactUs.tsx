@@ -1,22 +1,44 @@
 "use client";
 
 import { useRef, FormEvent, useState, useEffect } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
-import Lottie from "lottie-react";
 import { RiSendPlaneFill } from "react-icons/ri";
-import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import Title from "@/components/ui/Title/Title";
 import CustomButton from "@/components/ui/CustomButton/CustomButton";
 import { getEmailJSConfig, ANIMATION_DURATION } from "@/lib/constants";
 
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+
 export default function ContactUs(): React.ReactElement {
+  const sectionRef = useRef<HTMLElement | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [animationData, setAnimationData] = useState<object | null>(null);
+  const [shouldLoadAnimation, setShouldLoadAnimation] = useState<boolean>(false);
 
-  // 2. Fetch the JSON from the public folder on mount
   useEffect(() => {
+    const target = sectionRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadAnimation(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" }
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoadAnimation) return;
+
     const controller = new AbortController();
 
     const fetchLottie = async (): Promise<void> => {
@@ -45,7 +67,7 @@ export default function ContactUs(): React.ReactElement {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [shouldLoadAnimation]);
 
   const sendEmail = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -62,6 +84,7 @@ export default function ContactUs(): React.ReactElement {
     }
 
     try {
+      const { default: emailjs } = await import("@emailjs/browser");
       const result = await emailjs.sendForm(
         emailConfig.serviceId,
         emailConfig.templateId,
@@ -82,7 +105,11 @@ export default function ContactUs(): React.ReactElement {
   };
 
   return (
-    <section className="scroll-section pt-16 sm:pt-24 lg:pt-40 xl:pt-52 mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden" id="contactUs">
+    <section
+      ref={sectionRef}
+      className="scroll-section pt-16 sm:pt-24 lg:pt-40 xl:pt-52 mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden"
+      id="contactUs"
+    >
       <div className="w-fit mx-auto mb-8 sm:mb-12 lg:mb-16">
         <Title>Contact Me</Title>
       </div>
@@ -94,8 +121,8 @@ export default function ContactUs(): React.ReactElement {
           viewport={{ once: true }}
           className="text-white flex-1 w-full max-w-sm sm:max-w-md lg:max-w-xl"
         >
-          {animationData ? (
-            <Lottie animationData={animationData} loop={true}  className="w-full max-w-xs sm:max-w-sm lg:max-w-xl mx-auto" />
+          {shouldLoadAnimation && animationData ? (
+            <Lottie animationData={animationData} loop={true} className="w-full max-w-xs sm:max-w-sm lg:max-w-xl mx-auto" />
           ) : <div className="w-full max-w-xs sm:max-w-sm lg:max-w-xl h-64 animate-pulse bg-white/5 rounded-lg" />
           }
         </motion.div>
@@ -159,7 +186,7 @@ export default function ContactUs(): React.ReactElement {
             <CustomButton
               type="submit"
               variant="primary"
-              before={<RiSendPlaneFill className="text-lg sm:text-xl 3xl:text-2xl" />}
+              before={<RiSendPlaneFill className="text-lg sm:text-xl 3xl:text-2xl" aria-hidden="true" />}
               disabled={isSubmitting}
               content={isSubmitting ? "Sending..." : "Send"}
             />

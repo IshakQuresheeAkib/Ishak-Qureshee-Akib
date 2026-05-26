@@ -13,7 +13,7 @@ export default function Title({ children }: TitleProps): React.ReactElement {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
     >
-      <h1
+      <h2
         className="text-[6vw] sm:text-3xl lg:text-4xl 3xl:text-5xl font-medium uppercase text-white before:content-[''] before:block before:w-20.5 before:h-2 before:rounded-4xl font-auto_wide before:bg-[#2282ff] before:mb-2 text-center sm:text-left"
         style={{
           textShadow:
@@ -21,7 +21,7 @@ export default function Title({ children }: TitleProps): React.ReactElement {
         }}
       >
         {children}
-      </h1>
+      </h2>
     </motion.div>
   );
 }

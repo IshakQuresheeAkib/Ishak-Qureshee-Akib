@@ -30,7 +30,6 @@ export default function HomePage(): React.ReactElement {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <h1 className="hidden">Ishak Qureshee Akib - Front End Developer</h1>
       <SectionIndicator />
 
       <div className="scroll-container xl:mx-10 md:mx-8 mx-2 relative">

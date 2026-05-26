@@ -29,11 +29,15 @@ ul, li {
   scroll-margin-top: 80px;
 }
 @keyframes wheel {
-    to {
-      opacity: 0;
-      top: 40px;
-    }
+  from {
+    opacity: 1;
+    transform: translateY(0);
   }
+  to {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
 @keyframes sectionFadeIn {
   from {
     opacity: 0;

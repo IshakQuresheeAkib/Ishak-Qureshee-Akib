@@ -52,7 +52,7 @@ export default function ProjectCard({
               fill
               sizes="(max-width: 640px) 100vw, 50vw"
               className="object-cover object-top sm:object-center transition-transform duration-1000 group-hover:scale-105"
-              priority={index === 0}
+              quality={75}
             />
           </motion.div>
         </div>
