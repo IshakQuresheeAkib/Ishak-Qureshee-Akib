@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import CustomButton from "@/components/ui/CustomButton/CustomButton";
@@ -41,10 +41,31 @@ const SOCIAL_ICONS = [
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setPrefersReducedMotion(media.matches);
+
+    updatePreference();
+
+    if (media.addEventListener) {
+      media.addEventListener("change", updatePreference);
+      return () => media.removeEventListener("change", updatePreference);
+    }
+
+    media.addListener(updatePreference);
+    return () => media.removeListener(updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      if (timelineRef.current) {
+        timelineRef.current.kill();
+        timelineRef.current = null;
+      }
+      return;
+    }
 
     const initAnimation = async (): Promise<void> => {
       try {
@@ -97,7 +118,12 @@ export default function Banner(): React.ReactElement {
         timelineRef.current.kill();
       }
     };
-  }, []);
+  }, [prefersReducedMotion]);
+
+  const rolesToRender = prefersReducedMotion ? ROLES.slice(0, 1) : ROLES;
+  const roleClassName = prefersReducedMotion
+    ? "whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold text-[#65c1ff]"
+    : "absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]";
 
   return (
     <section
@@ -113,8 +139,8 @@ export default function Banner(): React.ReactElement {
         <div className="flex items-center gap-2 3xl:gap-4 xl:mt-9 3xl:mt-11">
           <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
           <div className="relative inline-flex min-w-0 items-baseline" ref={textWrapperRef}>
-            {ROLES.map((role) => (
-              <span key={role} data-hero-role className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]">
+            {rolesToRender.map((role) => (
+              <span key={role} data-hero-role className={roleClassName}>
                 {role}
               </span>
             ))}
