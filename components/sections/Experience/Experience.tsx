@@ -83,29 +83,29 @@ function ExperienceCard({ item }: ExperienceCardProps): ReactElement {
     >
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-white/70 text-xs sm:text-sm 3xl:text-base">
         <span className="inline-flex items-center gap-2">
-          <HiOutlineCalendarDays className="text-base sm:text-lg text-primary" />
+          <HiOutlineCalendarDays className="text-base sm:text-lg text-primary" aria-hidden="true" />
           {item.period}
         </span>
         <span className="inline-flex items-center gap-2">
-          <HiOutlineMapPin className="text-base sm:text-lg text-primary" />
+          <HiOutlineMapPin className="text-base sm:text-lg text-primary" aria-hidden="true" />
           {item.location}
         </span>
       </div>
 
       <div className="my-3 flex items-center gap-2">
-        <HiOutlineBriefcase className="text-xl text-primary" />
+        <HiOutlineBriefcase className="text-xl text-primary" aria-hidden="true" />
         <h3 className="text-base sm:text-lg lg:text-xl 3xl:text-2xl font-bold leading-snug ">
           {item.role}
         </h3>
       </div>
       <p className="inline-flex items-center gap-2 text-sm sm:text-base 3xl:text-lg">
-        <PiBuildingOfficeBold className="text-base sm:text-lg inline leading-2 mr-1 text-primary" />
+        <PiBuildingOfficeBold className="text-base sm:text-lg inline leading-2 mr-1 text-primary" aria-hidden="true" />
         {item.company}
       </p>
       <ul className="mt-3 space-y-2 text-white/80 text-sm sm:text-base 3xl:text-lg">
         {item.details.map((detail) => (
           <li key={detail} className="flex items-start gap-2">
-            <BsCheck2Circle className="mt-0.5 shrink-0 text-[#3CC98B]" />
+            <BsCheck2Circle className="mt-0.5 shrink-0 text-[#3CC98B]" aria-hidden="true" />
             <span>{detail}</span>
           </li>
         ))}

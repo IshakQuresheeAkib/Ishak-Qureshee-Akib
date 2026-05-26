@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import CustomButton from "@/components/ui/CustomButton/CustomButton";
@@ -42,14 +41,34 @@ const SOCIAL_ICONS = [
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [renderAnimatedRoles, setRenderAnimatedRoles] = useState<boolean>(false);
 
   useEffect(() => {
-    setIsMounted(true);
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => {
+      const reduceMotion = media.matches;
+      setRenderAnimatedRoles(!reduceMotion);
+    };
+
+    updatePreference();
+
+    if (media.addEventListener) {
+      media.addEventListener("change", updatePreference);
+      return () => media.removeEventListener("change", updatePreference);
+    }
+
+    media.addListener(updatePreference);
+    return () => media.removeListener(updatePreference);
   }, []);
 
-  useEffect(() => {
-    if (!isMounted) return;
+  useLayoutEffect(() => {
+    if (!renderAnimatedRoles) {
+      if (timelineRef.current) {
+        timelineRef.current.kill();
+        timelineRef.current = null;
+      }
+      return;
+    }
 
     const initAnimation = async (): Promise<void> => {
       try {
@@ -57,7 +76,7 @@ export default function Banner(): React.ReactElement {
 
         if (!textWrapperRef.current) return;
 
-        const titles = textWrapperRef.current.querySelectorAll("h5");
+        const titles = textWrapperRef.current.querySelectorAll("[data-hero-role]");
         if (titles.length === 0) return;
 
         if (timelineRef.current) {
@@ -102,7 +121,12 @@ export default function Banner(): React.ReactElement {
         timelineRef.current.kill();
       }
     };
-  }, [isMounted]);
+  }, [renderAnimatedRoles]);
+
+  const rolesToRender = renderAnimatedRoles ? ROLES : ROLES.slice(0, 1);
+  const roleClassName = renderAnimatedRoles
+    ? "absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]"
+    : "whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold text-[#65c1ff]";
 
   return (
     <section
@@ -110,42 +134,34 @@ export default function Banner(): React.ReactElement {
       className="scroll-section relative flex flex-col-reverse lg:flex-row min-h-screen max-w-[96%] lg:max-w-[90%] xl:max-w-[88%] 2xl:max-w-9/12 3xl:max-w-9/12 mx-auto justify-center items-center gap-[5vh] lg:gap-0 pt-[calc(100px-5vh)] lg:pt-[calc(200px-15vh)] mb-14 lg:mb-0"
     >
       <div>
-        <h2 className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </h2>
-        <p className="text-3xl font-auto_wide sm:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5"
+        <p className="text-3xl 3xl:text-5xl font-bold text-white"> Hi! I&apos;m </p>
+        <h1 className="text-3xl font-auto_wide sm:text-4xl xl:text-5xl 3xl:text-6xl font-extrabold uppercase text-white my-5"
           style={{ textShadow: "0 .2ch 10px oklch(10% .2 320), 0 -2px 0 oklch(98% .05 320)" }}>
           Ishak Qureshee Akib
-        </p>
+        </h1>
         <div className="flex items-center gap-2 3xl:gap-4 xl:mt-9 3xl:mt-11">
-          <h2 className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</h2>
+          <p className="text-xl sm:text-3xl 3xl:text-5xl font-bold text-white whitespace-nowrap">I&apos;m a</p>
           <div className="relative inline-flex min-w-0 items-baseline" ref={textWrapperRef}>
-            {ROLES.map((role) => (
-              <h5 key={role} className="absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]">
+            {rolesToRender.map((role) => (
+              <span key={role} data-hero-role className={roleClassName}>
                 {role}
-              </h5>
+              </span>
             ))}
           </div>
         </div>
           <p className="mt-2 3xl:mt-5 font-thin text-white/90 text-base 2xl:text-lg 3xl:text-2xl sm:max-w-4/5 leading-7 3xl:leading-10"> passionate about building scalable and performant web applications using MERN stack. I take responsibility to craft a good user experience using modern front-end architecture.</p>
           <ul className="flex w-fit gap-3 sm:gap-5 my-7">
-            {SOCIAL_ICONS.map((social, index) => (
-              <motion.div
+            {SOCIAL_ICONS.map((social) => (
+              <SocialIconButton
                 key={social.variant}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ duration: 0.2, delay: index * 0.1 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-              >
-                <SocialIconButton
-                  icon={social.icon}
-                  href={social.href}
-                  variant={social.variant}
-                  ariaLabel={social.ariaLabel}
-                />
-              </motion.div>
+                icon={social.icon}
+                href={social.href}
+                variant={social.variant}
+                ariaLabel={social.ariaLabel}
+              />
             ))}
           </ul>
-          <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" />} content="Resume" href={EXTERNAL_URLS.resume} download />
+          <CustomButton before={<FaCloudDownloadAlt className="text-base sm:text-xl 3xl:text-4xl" aria-hidden="true" />} content="Resume" href={EXTERNAL_URLS.resume} download />
       </div>
 
       <div className="flex justify-center items-center shrink-0">

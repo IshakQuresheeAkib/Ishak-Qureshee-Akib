@@ -50,10 +50,23 @@ export const metadata: Metadata = {
     title: "Ishak Qureshee Akib - Software Developer",
     description: "Personal portfolio showcasing my software solutions, websites and skills.",
     url: "https://ishak-qureshee-akib.netlify.app",
-    images: ["/favicon.png"],
+    images: [
+      {
+        url: "/profile_small.png",
+        width: 800,
+        height: 800,
+        alt: "Ishak Qureshee Akib portrait",
+      },
+    ],
     type: "website",
     locale: "en_US",
     siteName: "Ishak Qureshee Akib Portfolio",
+  },
+  twitter: {
+    card: "summary",
+    title: "Ishak Qureshee Akib - Software Developer",
+    description: "Portfolio of Ishak Qureshee Akib showcasing web development projects, skills, and experience.",
+    images: ["/profile_small.png"],
   },
   icons: {
     icon: "/favicon.png",
@@ -74,7 +87,7 @@ export default function RootLayout({
       <body className={`${recursive.className} ${auto_wide.variable} antialiased`}>
         <SmoothScroll>
           <ScrollSnapProvider>
-            <div className="bg-cover bg-fixed bg-[url('/pattern.svg')] min-h-screen w-full">
+            <div className="bg-[url('/pattern.svg')] bg-cover bg-scroll md:bg-fixed min-h-screen w-full">
               <Navbar />
               <main>{children}</main>
               <Footer />

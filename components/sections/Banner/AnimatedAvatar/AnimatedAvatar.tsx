@@ -55,7 +55,7 @@ function AnimatedAvatarComponent({
             sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 70vw"
             className="w-full h-full object-cover rounded-full"
             priority={priority}
-            quality={100}
+            quality={90}
           />
         </div>
       </div>

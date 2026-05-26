@@ -13,7 +13,8 @@ export default function AboutImage(): React.ReactElement {
           width={400}
           height={400}
           sizes="(max-width: 480px) 250px, (max-width: 768px) 300px, (max-width: 1024px) 350px, 400px"
-          priority
+          quality={75}
+          loading="lazy"
         />
     </div>
   );

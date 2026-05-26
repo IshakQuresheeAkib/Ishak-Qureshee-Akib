@@ -59,7 +59,7 @@ const Navbar = memo(function Navbar(): React.ReactElement {
                   aria-label={`Navigate to ${section.title}`}
                   aria-current={activeSection === index ? "page" : undefined}
                 >
-                  <Icon className={iconClasses} />
+                  <Icon className={iconClasses} aria-hidden="true" />
                   <span className="nav-text relative z-10 text-inherit">{section.title}</span>
                 </button>
               </li>
