@@ -149,7 +149,7 @@ export default function Banner(): React.ReactElement {
       </div>
 
       <div className="flex justify-center items-center shrink-0">
-        <AnimatedAvatar src={EXTERNAL_URLS.avatarImage} alt="Ishak Qureshee Akib" priority />
+        <AnimatedAvatar src="/profile_small.png" alt="Ishak Qureshee Akib" priority />
       </div>
       <ScrollDown />
     </section>

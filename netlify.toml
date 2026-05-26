@@ -1,0 +1,16 @@
+# netlify.toml (Place in root folder)
+
+# 2. Add Security and Caching Headers
+[[headers]]
+  for = "/*" # Applies to everything
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    # Ensure browsers don't cache html files natively, giving you fresh content on updates
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/_next/static/*" # Next.js static assets can be cached safely forever
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
