@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { FaCloudDownloadAlt, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa";
 import CustomButton from "@/components/ui/CustomButton/CustomButton";
@@ -41,11 +41,14 @@ const SOCIAL_ICONS = [
 export default function Banner(): React.ReactElement {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(false);
+  const [renderAnimatedRoles, setRenderAnimatedRoles] = useState<boolean>(false);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updatePreference = () => setPrefersReducedMotion(media.matches);
+    const updatePreference = () => {
+      const reduceMotion = media.matches;
+      setRenderAnimatedRoles(!reduceMotion);
+    };
 
     updatePreference();
 
@@ -58,8 +61,8 @@ export default function Banner(): React.ReactElement {
     return () => media.removeListener(updatePreference);
   }, []);
 
-  useEffect(() => {
-    if (prefersReducedMotion) {
+  useLayoutEffect(() => {
+    if (!renderAnimatedRoles) {
       if (timelineRef.current) {
         timelineRef.current.kill();
         timelineRef.current = null;
@@ -118,12 +121,12 @@ export default function Banner(): React.ReactElement {
         timelineRef.current.kill();
       }
     };
-  }, [prefersReducedMotion]);
+  }, [renderAnimatedRoles]);
 
-  const rolesToRender = prefersReducedMotion ? ROLES.slice(0, 1) : ROLES;
-  const roleClassName = prefersReducedMotion
-    ? "whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold text-[#65c1ff]"
-    : "absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]";
+  const rolesToRender = renderAnimatedRoles ? ROLES : ROLES.slice(0, 1);
+  const roleClassName = renderAnimatedRoles
+    ? "absolute left-0 m-0 whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold leading-0 text-[#65c1ff]"
+    : "whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold text-[#65c1ff]";
 
   return (
     <section

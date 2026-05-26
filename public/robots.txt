@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://ishak-qureshee-akib.netlify.app/sitemap.xml
