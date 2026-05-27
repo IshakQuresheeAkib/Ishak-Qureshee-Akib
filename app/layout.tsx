@@ -107,14 +107,14 @@ export default function RootLayout({
           ]
         }) }} />
       </head>
-      <body className={`${recursive.className} ${auto_wide.variable} antialiased`}>
+      <body className={`${recursive.className} ${auto_wide.variable} antialiased bg-[#0E3576]`}>
         <SmoothScroll>
           <ScrollSnapProvider>
-            <div className="bg-[url('/pattern.svg')] bg-cover bg-scroll md:bg-fixed min-h-screen w-full">
+            <main className="bg-[url('/pattern.svg')] bg-cover bg-scroll md:bg-fixed min-h-screen w-full">
               <Navbar />
-              <main>{children}</main>
+              {children}
               <Footer />
-            </div>
+            </main>
             <ToastContainer
               position="top-right"
               autoClose={3000}
