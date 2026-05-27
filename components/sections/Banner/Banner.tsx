@@ -158,7 +158,7 @@ export default function Banner(): React.ReactElement {
   const roleBaseClassName =
     "whitespace-nowrap text-xl sm:text-3xl 3xl:text-5xl font-bold text-[#65c1ff]";
   const rolePlaceholderClassName = `invisible ${roleBaseClassName}`;
-  const animatedWrapperClassName = "absolute left-0";
+  const animatedWrapperClassName = "absolute left-0 opacity-0";
   const animatedRoleClassName = `absolute left-0 m-0 ${roleBaseClassName}`;
 
   return (
