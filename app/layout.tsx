@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     url: "https://ishak-qureshee-akib.netlify.app",
     images: [
       {
-        url: "/profile_small.png",
+        url: "https://ishak-qureshee-akib.netlify.app/profile_small.png",
         width: 800,
         height: 800,
         alt: "Ishak Qureshee Akib portrait",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Ishak Qureshee Akib - Software Developer",
     description: "Portfolio of Ishak Qureshee Akib showcasing web development projects, skills, and experience.",
-    images: ["/profile_small.png"],
+    images: ["https://ishak-qureshee-akib.netlify.app/profile_small.png"],
   },
   icons: {
     icon: "/favicon.png",
@@ -84,6 +84,29 @@ export default function RootLayout({
 }>): React.ReactElement {
   return (
     <html lang="en">
+      <head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@graph": [
+            {
+              "@type": "Organization",
+              "name": "Ishak Qureshee Akib",
+              "url": "https://ishak-qureshee-akib.netlify.app",
+              "logo": "https://ishak-qureshee-akib.netlify.app/profile_small.png"
+            },
+            {
+              "@type": "WebSite",
+              "name": "Ishak Qureshee Akib Portfolio",
+              "url": "https://ishak-qureshee-akib.netlify.app",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://ishak-qureshee-akib.netlify.app/?s={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            }
+          ]
+        }) }} />
+      </head>
       <body className={`${recursive.className} ${auto_wide.variable} antialiased`}>
         <SmoothScroll>
           <ScrollSnapProvider>
