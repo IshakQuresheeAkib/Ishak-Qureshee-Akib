@@ -68,9 +68,6 @@ export const metadata: Metadata = {
     description: "Portfolio of Ishak Qureshee Akib showcasing web development projects, skills, and experience.",
     images: ["https://ishak-qureshee-akib.netlify.app/profile_small.png"],
   },
-  icons: {
-    icon: "/favicon.png",
-  },
   verification: {
     google: "snP4pG79eonl3CdiMVHwQnz0XJTlnruJIghnbHAgkno",
   }
