@@ -100,3 +100,21 @@ ul, li {
 .group-disabled .liquid-effect::after {
   animation: none;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-wheel,
+  .scroll-section.revealed,
+  .liquid-effect::before,
+  .liquid-effect::after {
+    animation: none;
+  }
+
+  .scroll-section,
+  .liquid-effect {
+    transition-duration: 0.01ms;
+  }
+}

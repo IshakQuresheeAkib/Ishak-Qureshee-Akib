@@ -38,3 +38,9 @@
     --glow-angle: 1turn;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-avatar {
+    animation: none;
+  }
+}

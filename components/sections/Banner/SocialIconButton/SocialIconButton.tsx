@@ -1,7 +1,6 @@
 "use client";
 
-import { memo, useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { memo } from "react";
 import type { IconType } from "react-icons";
 
 interface SocialIconButtonProps {
@@ -13,42 +12,26 @@ interface SocialIconButtonProps {
 
 const variantStyles = {
   github: {
-    iconColor: "#6e7681",
+    iconColor: "#65c1ff",
     fillBg: "#24292f",
   },
   linkedin: {
-    iconColor: "#0a66c2",
+    iconColor: "#65c1ff",
     fillBg: "#0a66c2",
   },
   facebook: {
-    iconColor: "#1877f2",
+    iconColor: "#65c1ff",
     fillBg: "#1877f2",
   },
 };
 
 const SocialIconButton = memo<SocialIconButtonProps>(
   ({ icon: Icon, href, variant, ariaLabel }) => {
-    const [isMounted, setIsMounted] = useState<boolean>(false);
     const colors = variantStyles[variant];
 
-    useEffect(() => {
-      setIsMounted(true);
-    }, []);
-
     return (
-      <motion.li
-        className="relative flex-[0_0_clamp(2rem,3vw,3rem)] list-none group/icon"
-        initial={{ opacity: 0, scale: 0.5, y: 20 }}
-        animate={
-          isMounted
-            ? { opacity: 1, scale: 1, y: 0 }
-            : { opacity: 0, scale: 0.5, y: 20 }
-        }
-        transition={{
-          duration: 0.7,
-          delay: 0.1,
-          ease: [0.25, 1, 0.5, 1],
-        }}
+      <li
+        className="relative flex-[0_0_clamp(2.75rem,3vw,3rem)] list-none group/icon"
       >
 
         <a
@@ -56,28 +39,20 @@ const SocialIconButton = memo<SocialIconButtonProps>(
           target="_blank"
           rel="noopener noreferrer"
           aria-label={ariaLabel}
-          className="relative flex justify-center items-center w-[clamp(2.5rem,2vw,6rem)] aspect-square border-2 rounded-full no-underline outline-none overflow-hidden cursor-pointer transition-colors duration-700 -webkit-tap-highlight-color-transparent group/link"
+          className="relative flex aspect-square w-[clamp(2.75rem,3vw,3rem)] cursor-pointer items-center justify-center overflow-hidden rounded-full border-2 border-(--social-accent) text-(--social-accent) no-underline transition-colors duration-300 group/link hover:border-(--social-fill) hover:text-white focus-visible:border-(--social-fill) focus-visible:text-white focus-visible:outline-2 focus-visible:outline-[#65c1ff] focus-visible:outline-offset-4"
           style={{
-            color: colors.iconColor,
-            borderColor: colors.iconColor,
+            "--social-accent": colors.iconColor,
+            "--social-fill": colors.fillBg,
             WebkitTapHighlightColor: "rgba(0, 0, 0, 0)",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.color = "#fff";
-            e.currentTarget.style.borderColor = colors.fillBg;
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.color = colors.iconColor;
-            e.currentTarget.style.borderColor = colors.iconColor;
-          }}
+          } as React.CSSProperties}
         >
-          <div className="absolute inset-0 top-full group-hover/link:top-0 transition-all duration-700 z-0 pointer-events-none" style={{ backgroundColor: colors.fillBg }} />
+          <div className="absolute inset-0 top-full z-0 bg-(--social-fill) transition-all duration-500 pointer-events-none group-hover/link:top-0 group-focus-visible/link:top-0" />
           <Icon
             aria-hidden="true"
             className="relative z-2 rounded-3xl w-full h-full max-w-[clamp(1.7rem,1vw,2.5rem)] max-h-[clamp(1.7rem,1vw,2.5rem)]"
           />
         </a>
-      </motion.li>
+      </li>
     );
   }
 );
