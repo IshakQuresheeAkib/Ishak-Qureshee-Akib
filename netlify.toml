@@ -1,6 +1,3 @@
-# netlify.toml (Place in root folder)
-
-# 2. Add Security and Caching Headers
 [[headers]]
   for = "/*" # Applies to everything
   [headers.values]

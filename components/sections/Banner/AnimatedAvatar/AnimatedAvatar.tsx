@@ -46,13 +46,13 @@ function AnimatedAvatarComponent({
   return (
     <div className="animated-avatar-wrapper flex justify-center items-center shrink-0">
       <GlowFilterSVG />
-      <div className="animated-avatar w-70 h-70 sm:w-80 sm:h-80 xl:w-96 xl:h-96 3xl:w-112.5 3xl:h-112.5 object-cover rounded-full relative liquid-effect">
+      <div className="animated-avatar relative h-[clamp(13rem,62vw,17.5rem)] w-[clamp(13rem,62vw,17.5rem)] rounded-full object-cover liquid-effect sm:h-80 sm:w-80 xl:h-96 xl:w-96 3xl:h-112.5 3xl:w-112.5">
         <div className="animated-avatar-image-wrapper">
           <Image
             src={src}
             alt={alt}
             fill
-            sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 70vw"
+            sizes="(max-width: 335px) 208px, (max-width: 639px) 62vw, (max-width: 1279px) 320px, (max-width: 1935px) 384px, 450px"
             className="w-full h-full object-cover rounded-full"
             priority={priority}
             quality={90}

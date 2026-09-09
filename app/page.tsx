@@ -13,7 +13,7 @@ export default function HomePage(): React.ReactElement {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Ishak Qureshee Akib",
-    alternateName: ["Akib", "Qureshee"], // Helps capture those extra search strings
+    alternateName: ["Akib", "Qureshee"],
     jobTitle: "Front-End Developer",
     url: "https://ishak-qureshee-akib.netlify.app",
     sameAs: [
